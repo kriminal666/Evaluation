@@ -1,6 +1,6 @@
 {
-	"name": "criminal/Evaluation",
-	"description": "evaluation module for Ebre-escool app.",
+	"name": "criminal/evaluation",
+	"description": "Evaluation module for Ebre-escool app.",
 	"keywords": ["framework", "laravel", "Ebre-escool"],
 	"license": "MIT",
 	"type": "project",
