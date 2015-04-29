@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\Schema;
+
 
 class CreateEvaluationTable extends Migration {
 
@@ -13,16 +13,19 @@ class CreateEvaluationTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('evaluation', function(Blueprint $table)
+		Schema::create('evaluation', function(Blueprint $table)
 		{
-			$table->increments('id');
+			$table->increments('evaluation_id');
             $table->integer('evaluation_academic_period_id');
             $table->integer('evaluation_student_id');
-            $table->integer('evaluation_study_submodule_id');
+            $table->integer('evaluation_study_subModule_id');
             $table->integer('evaluation_mark_id');
+            $table->timestamp('evaluation_created_at');
             $table->integer('evaluation_creation_user_id');
-            $table->timestamps();
+            $table->timestamp('evaluation_updated_at');
+            $table->integer('evaluation_updateUser_id');
             $table->softDeletes();
+
 
 		});
 	}
@@ -34,7 +37,7 @@ class CreateEvaluationTable extends Migration {
 	 */
 	public function down()
 	{
-        Schema::dropIfExists('evaluation');
+        Schema::drop('evaluation');
 	}
 
 }
