@@ -15,7 +15,14 @@ class CreateGradeScaleStudySubmodulesAcademicPeriodsTable extends Migration {
 		Schema::create('gradeScale_studySubmodules_academicPeriods', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->timestamps();
+            $table->integer('gradeScale_studySubmodules_academicPeriods_academicPeriodID');
+            $table->integer('gradeScale_studySubmodules_academicPeriods_studySubmodulesID');
+            $table->integer('gradeScale_studySubmodules_academicPeriods_gradeScaleID');
+			$table->timestamp('gradeScale_studySubmodules_academicPeriods_created_at');
+            $table->integer('gradeScale_studySubmodules_academicPeriods_creationUserId');
+            $table->timestamp('gradeScale_studySubmodules_academicPeriods_updated_at');
+            $table->integer('gradeScale_studySubmodules_academicPeriods_lastUpdateUserId');
+            $table->softDeletes();
 		});
 	}
 
