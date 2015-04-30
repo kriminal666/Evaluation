@@ -11,4 +11,11 @@ class Mark extends Model {
      */
      protected $table ='mark';
 
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $primaryKey='mark_id';
+
 }

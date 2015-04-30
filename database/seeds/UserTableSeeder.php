@@ -25,8 +25,8 @@ class UserTableSeeder extends DatabaseSeeder {
             }
 
             User::Create(array(
-           'name' => $line[0],
-           'email' => $line[0].$cont."@example.com",
+           'name' => $line[0].$cont,
+           'email' => $line[0]."@example.com",
            'password' => Hash::make($line[1])
         ));
             $cont++;

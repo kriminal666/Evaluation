@@ -17,9 +17,9 @@ class CreateGradeScaleTable extends Migration {
 			$table->increments('grade_scale_id');
 			$table->string('grade_scale_description');
             $table->timestamp('grade_scale_created_at');
-            $table->integer('grade_scale_creationUserId');
+            $table->integer('grade_scale_creationUserId')->unsigned()->nullable();
             $table->timestamp('grade_scale_updated_at');
-            $table->integer('grade_scale_lastUpdateUserId');
+            $table->integer('grade_scale_lastUpdateUserId')->unsigned()->nullable();
             $table->softdeletes();
 		});
 	}

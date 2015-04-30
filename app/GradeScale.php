@@ -9,6 +9,13 @@ class GradeScale extends Model {
      *
      * @var string
      */
-     protected $table ='grade_scale';
+    protected $table ='grade_scale';
+
+    /**
+     * Override primary key name
+     *
+     * @var string
+     */
+    protected $primaryKey = 'grade_scale_id';
 
 }

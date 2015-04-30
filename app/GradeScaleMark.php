@@ -11,4 +11,11 @@ class GradeScaleMark extends Model {
      */
      protected $table ='grade_scale_mark';
 
+    /**
+     * Override primary key name
+     *
+     * @var string
+     */
+    protected $primaryKey = 'grade_scale_mark_id';
+
 }

@@ -21,9 +21,9 @@ class CreateEvaluationTable extends Migration {
             $table->integer('evaluation_study_subModule_id');
             $table->integer('evaluation_mark_id');
             $table->timestamp('evaluation_created_at');
-            $table->integer('evaluation_creationUserId');
+            $table->integer('evaluation_creationUserId')->unsigned()->nullable();
             $table->timestamp('evaluation_updated_at');
-            $table->integer('evaluation_lastUpdateUserId');
+            $table->integer('evaluation_lastUpdateUserId')->unsigned()->nullable();
             $table->softDeletes();
 
 

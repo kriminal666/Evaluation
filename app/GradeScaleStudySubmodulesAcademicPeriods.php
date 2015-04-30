@@ -11,4 +11,11 @@ class GradeScaleStudySubmodulesAcademicPeriods extends Model {
      */
      protected $table ='gradeScale_studySubmodules_academicPeriods';
 
+    /**
+     * Override primary key name
+     *
+     * @var string
+     */
+    protected $primaryKey = 'gradeScale_studySubmodules_academicPeriods_id';
+
 }

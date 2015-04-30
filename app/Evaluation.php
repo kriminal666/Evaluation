@@ -11,4 +11,11 @@ class Evaluation extends Model {
      */
     protected $table ='evaluation';
 
+    /**
+     * Override primary key name
+     *
+     * @var string
+     */
+    protected $primaryKey = 'evaluation_id';
+
 }

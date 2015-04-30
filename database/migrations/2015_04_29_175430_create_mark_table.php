@@ -19,9 +19,9 @@ class CreateMarkTable extends Migration {
 			$table -> increments('mark_id');
             $table -> string('mark_value');
             $table->timestamp('mark_created_at');
-            $table->integer('mark_creationUserId');
+            $table->integer('mark_creationUserId')->unsigned()->nullable();
             $table->timestamp('mark_updated_at');
-            $table->integer('mark_lastUpdateUserId');
+            $table->integer('mark_lastUpdateUserId')->unsigned()->nullable();
             $table->softDeletes();
 		});
 	}
