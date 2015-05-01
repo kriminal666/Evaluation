@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property string grade_scale_description
+ */
 class GradeScale extends Model {
 
     /**
