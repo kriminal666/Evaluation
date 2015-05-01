@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
 
+
 class DatabaseSeeder extends Seeder {
 
 	/**
@@ -15,10 +16,10 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
         //call users seeder
-		$this->call('UserTableSeeder');
+		//$this->call('UserTableSeeder');
 
         //call grade_scale seeder
-        $this -> call('GradeScaleTableSeeder');
+        $this->call('GradeScaleTableSeeder');
 	}
 
 }

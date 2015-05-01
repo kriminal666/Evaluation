@@ -18,4 +18,18 @@ class GradeScaleStudySubmodulesAcademicPeriods extends Model {
      */
     protected $primaryKey = 'gradeScale_studySubmodules_academicPeriods_id';
 
+    /**
+     * The name of the "created at" column.
+     *
+     * @var string
+     */
+    const CREATED_AT = 'gradeScale_studySubmodules_academicPeriods_created_at';
+
+    /**
+     * The name of the "updated at" column.
+     *
+     * @var string
+     */
+    const UPDATED_AT = 'gradeScale_studySubmodules_academicPeriods_updated_at';
+
 }

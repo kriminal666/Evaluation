@@ -1,6 +1,8 @@
 <?php
 
 use Evaluation\GradeScale;
+use Illuminate\Database\Eloquent\Model;
+
 
 class GradeScaleTableSeeder extends DatabaseSeeder {
 
@@ -11,6 +13,7 @@ class GradeScaleTableSeeder extends DatabaseSeeder {
      */
     public function run()
     {
+        Model::unguard();
         //First delete all table
         DB::table('grade_scale')->delete();
 

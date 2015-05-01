@@ -18,4 +18,18 @@ class Evaluation extends Model {
      */
     protected $primaryKey = 'evaluation_id';
 
+    /**
+     * The name of the "created at" column.
+     *
+     * @var string
+     */
+    const CREATED_AT = 'evaluation_created_at';
+
+    /**
+     * The name of the "updated at" column.
+     *
+     * @var string
+     */
+    const UPDATED_AT = 'evaluation_updated_at';
+
 }

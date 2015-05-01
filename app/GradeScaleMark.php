@@ -18,4 +18,18 @@ class GradeScaleMark extends Model {
      */
     protected $primaryKey = 'grade_scale_mark_id';
 
+    /**
+     * The name of the "created at" column.
+     *
+     * @var string
+     */
+    const CREATED_AT = 'grade_scale_mark_created_at';
+
+    /**
+     * The name of the "updated at" column.
+     *
+     * @var string
+     */
+    const UPDATED_AT = 'grade_scale_mark_updated_at';
+
 }

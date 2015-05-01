@@ -18,4 +18,18 @@ class Mark extends Model {
      */
     protected $primaryKey='mark_id';
 
+    /**
+     * The name of the "created at" column.
+     *
+     * @var string
+     */
+    const CREATED_AT = 'mark_created_at';
+
+    /**
+     * The name of the "updated at" column.
+     *
+     * @var string
+     */
+    const UPDATED_AT = 'mark_updated_at';
+
 }
