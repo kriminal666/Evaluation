@@ -15,23 +15,23 @@ class DatabaseSeeder extends Seeder {
 	public function run()
 	{
 		Model::unguard();
-        //call users seeder
+		//call users seeder
 		$this->call('UserTableSeeder');
 
-        //call grade_scale seeder
-        $this->call('GradeScaleTableSeeder');
+		//call grade_scale seeder
+		$this->call('GradeScaleTableSeeder');
 
-        //call mark table seeder
-        $this->call('MarkTableSeeder');
+		//call mark table seeder
+		$this->call('MarkTableSeeder');
 
-        //call grade_scale_mark table seeder
-        $this->call('GradeScaleMarkTableSeeder');
+		//call grade_scale_mark table seeder
+		$this->call('GradeScaleMarkTableSeeder');
 
-        //call evaluation table seeder
-        $this->call('EvaluationTableSeeder');
+		//call evaluation table seeder
+		$this->call('EvaluationTableSeeder');
 
-        //call gradeScale_studySubmodules_academicPeriods table seeder
-        $this->call('GradeScaleStudySubmodulesAcademicPeriodsTableSeeder');
+		//call gradeScale_studySubmodules_academicPeriods table seeder
+		$this->call('GradeScaleStudySubmodulesAcademicPeriodsTableSeeder');
 	}
 
 }
