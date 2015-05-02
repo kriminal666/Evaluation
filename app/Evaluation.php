@@ -9,7 +9,7 @@ class Evaluation extends Model {
 	 *
 	 * @var string
 	 */
-	protected $table ='evaluation';
+	protected $table = 'evaluation';
 
 	/**
 	 * Override primary key name
