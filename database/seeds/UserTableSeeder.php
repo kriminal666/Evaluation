@@ -12,7 +12,7 @@ class UserTableSeeder extends DatabaseSeeder {
     public function run()
     {
        //First delete all table
-        DB::table('users')->delete();
+        DB::table('users')->truncate();
       //use docs_seeder/users.csv to seed
         $csv =dirname(__FILE__).'/docs_seeder/users.csv';
         $file_handle = fopen($csv, "r");

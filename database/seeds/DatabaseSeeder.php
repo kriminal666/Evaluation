@@ -16,10 +16,13 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
         //call users seeder
-		//$this->call('UserTableSeeder');
+		$this->call('UserTableSeeder');
 
         //call grade_scale seeder
         $this->call('GradeScaleTableSeeder');
+
+        //call mark table seeder
+        $this->call('MarkTableSeeder');
 	}
 
 }

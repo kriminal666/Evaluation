@@ -15,7 +15,7 @@ class GradeScaleTableSeeder extends DatabaseSeeder {
     {
         Model::unguard();
         //First delete all table
-        DB::table('grade_scale')->delete();
+        DB::table('grade_scale')->truncate();
 
         //Create a record
         GradeScale::create(['grade_scale_description' =>'normal']);
