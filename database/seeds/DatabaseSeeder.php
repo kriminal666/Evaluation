@@ -23,6 +23,15 @@ class DatabaseSeeder extends Seeder {
 
         //call mark table seeder
         $this->call('MarkTableSeeder');
+
+        //call grade_scale_mark table seeder
+        $this->call('GradeScaleMarkTableSeeder');
+
+        //call evaluation table seeder
+        $this->call('EvaluationTableSeeder');
+
+        //call gradeScale_studySubmodules_academicPeriods table seeder
+        $this->call('GradeScaleStudySubmodulesAcademicPeriodsTableSeeder');
 	}
 
 }
