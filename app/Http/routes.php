@@ -22,8 +22,11 @@ Route::get('evaluation', 'ModelControllers\EvaluationController@showAll');
 Route::get('user/{id}', 'ModelControllers\UsersController@show');
 
 Route::get('users', 'ModelControllers\UsersController@showAll');
+Route::get('test', function () {
+    return view('evaluation_test');
+});
 
 Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
 ]);

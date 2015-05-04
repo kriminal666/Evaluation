@@ -16,6 +16,7 @@ class UserTableSeeder extends DatabaseSeeder {
       //use docs_seeder/users.csv to seed
         $csv =dirname(__FILE__).'/docs_seeder/users.csv';
         $file_handle = fopen($csv, "r");
+        $this -> command->info('Table users starting seed!');
         //create unique email var
         $cont = 0;
         while (!feof($file_handle)) {
@@ -29,6 +30,7 @@ class UserTableSeeder extends DatabaseSeeder {
            'email' => $line[0]."@example.com",
            'password' => Hash::make($line[1])
         ));
+            $this -> command->info('Seeded user :'.$cont);
             $cont++;
 
         }
