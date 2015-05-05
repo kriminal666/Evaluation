@@ -5,6 +5,7 @@
 # Evaluation
 Evaluation module for Ebre-escool aplication
 ##Project Docs
-Follow this link to all project used docs
+Follow this link to all project used docs 
 [Project Docs](https://github.com/kriminal666/Evaluation_docs)
-
+##WIKI
+ [Wiki link](http://acacha.org/mediawiki/Usuari:Iván_Roldán/Módulo_Evaluación(Ebre-escool)
