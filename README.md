@@ -12,4 +12,4 @@ Follow this link to all project used docs
 ##WIKI
 Go to wiki documentation
 
-[Wiki documentation](https://acacha.org/mediawiki/Usuari:Iván_Roldán/Módulo_Evaluación(Ebre-escool))
+[Wiki documentation](http://acacha.org/mediawiki/Usuari:Iván_Roldán/Módulo_Evaluación(Ebre-escool))
