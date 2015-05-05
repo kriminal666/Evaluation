@@ -1,6 +1,7 @@
 <?php namespace Evaluation;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Response;
 
 /**
  * @property string grade_scale_description
@@ -35,5 +36,16 @@ class GradeScale extends Model
      * @var string
      */
     const UPDATED_AT = 'grade_scale_updated_at';
+
+    /**
+     * join tables
+     *
+     * @return Response
+     */
+    //TODO
+   /* public function marks()
+    {
+        return $this->hasManyThrough('Evaluation\Mark', 'Evaluation\GradeScaleMark');
+    }*/
 
 }

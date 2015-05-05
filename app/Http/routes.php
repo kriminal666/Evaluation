@@ -23,6 +23,17 @@ Route::get('test', function () {
     return view('evaluation_test');
 });
 
+/*
+ * TODO
+Route::get('marks',function(){
+        $gradeScale= \Evaluation\GradeScale::find(1);
+        foreach( $gradeScale->marks() as $item ){
+            return json_encode($item);
+
+        };
+
+});*/
+
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
