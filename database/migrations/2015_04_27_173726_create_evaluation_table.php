@@ -1,21 +1,21 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 
-class CreateEvaluationTable extends Migration {
+class CreateEvaluationTable extends Migration
+{
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::create('evaluation', function(Blueprint $table)
-		{
-			$table->increments('evaluation_id');
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('evaluation', function (Blueprint $table) {
+            $table->increments('evaluation_id');
             $table->integer('evaluation_academic_period_id');
             $table->integer('evaluation_student_id');
             $table->integer('evaluation_study_subModule_id');
@@ -27,17 +27,17 @@ class CreateEvaluationTable extends Migration {
             $table->softDeletes();
 
 
-		});
-	}
+        });
+    }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
         Schema::drop('evaluation');
-	}
+    }
 
 }

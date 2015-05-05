@@ -4,7 +4,8 @@ use Evaluation\GradeScale;
 use Illuminate\Database\Eloquent\Model;
 
 
-class GradeScaleTableSeeder extends DatabaseSeeder {
+class GradeScaleTableSeeder extends DatabaseSeeder
+{
 
     /**
      * Table grade_scale seeder
@@ -18,9 +19,9 @@ class GradeScaleTableSeeder extends DatabaseSeeder {
         DB::table('grade_scale')->truncate();
 
         //Create a record
-        GradeScale::create(['grade_scale_description' =>'normal']);
+        GradeScale::create(['grade_scale_description' => 'normal']);
         //message
-        $this -> command->info('Table grade_scale seeded!');
+        $this->command->info('Table grade_scale seeded!');
 
     }
 

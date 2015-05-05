@@ -2,7 +2,8 @@
 
 use Evaluation\User;
 
-class UserTableSeeder extends DatabaseSeeder {
+class UserTableSeeder extends DatabaseSeeder
+{
 
     /**
      * Table users seeder
@@ -11,12 +12,12 @@ class UserTableSeeder extends DatabaseSeeder {
      */
     public function run()
     {
-       //First delete all table
+        //First delete all table
         DB::table('users')->truncate();
-      //use docs_seeder/users.csv to seed
-        $csv =dirname(__FILE__).'/docs_seeder/users.csv';
+        //use docs_seeder/users.csv to seed
+        $csv = dirname(__FILE__) . '/docs_seeder/users.csv';
         $file_handle = fopen($csv, "r");
-        $this -> command->info('Table users starting seed!');
+        $this->command->info('Table users starting seed!');
         //create unique email var
         $cont = 0;
         while (!feof($file_handle)) {
@@ -26,17 +27,17 @@ class UserTableSeeder extends DatabaseSeeder {
             }
 
             User::Create(array(
-           'name' => $line[0].$cont,
-           'email' => $line[0]."@example.com",
-           'password' => Hash::make($line[1])
-        ));
-            $this -> command->info('Seeded user :'.$cont);
+                'name' => $line[0] . $cont,
+                'email' => $line[0] . "@example.com",
+                'password' => Hash::make($line[1])
+            ));
+            $this->command->info('Seeded user :' . $cont);
             $cont++;
 
         }
         fclose($file_handle);
         //message
-        $this -> command->info('Table users seeded!');
+        $this->command->info('Table users seeded!');
 
     }
 

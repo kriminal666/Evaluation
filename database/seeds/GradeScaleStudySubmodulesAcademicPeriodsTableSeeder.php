@@ -4,7 +4,8 @@ use Evaluation\GradeScaleStudySubmodulesAcademicPeriods;
 use Illuminate\Database\Eloquent\Model;
 
 
-class GradeScaleStudySubmodulesAcademicPeriodsTableSeeder extends DatabaseSeeder {
+class GradeScaleStudySubmodulesAcademicPeriodsTableSeeder extends DatabaseSeeder
+{
 
     /**
      * Table gradeScale_studySubmodules_academicPeriods seeder
@@ -18,7 +19,7 @@ class GradeScaleStudySubmodulesAcademicPeriodsTableSeeder extends DatabaseSeeder
         DB::table('gradeScale_studySubmodules_academicPeriods')->truncate();
 
         //use docs_seeder/evaluation.csv to seed
-        $csv =dirname(__FILE__).'/docs_seeder/gradeScaleStudySubmoulesAcademicPeriods.csv';
+        $csv = dirname(__FILE__) . '/docs_seeder/gradeScaleStudySubmoulesAcademicPeriods.csv';
         $file_handle = fopen($csv, "r");
 
         while (!feof($file_handle)) {
@@ -38,7 +39,7 @@ class GradeScaleStudySubmodulesAcademicPeriodsTableSeeder extends DatabaseSeeder
         fclose($file_handle);
 
         //message
-        $this -> command->info('Table gradeScale_studySubmodules_academicPeriods seeded!');
+        $this->command->info('Table gradeScale_studySubmodules_academicPeriods seeded!');
 
 
     }

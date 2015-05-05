@@ -1,7 +1,8 @@
 <?php namespace Evaluation\Commands;
 
-abstract class Command {
+abstract class Command
+{
 
-	//
+    //
 
 }

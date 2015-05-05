@@ -2,21 +2,22 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Mark extends Model {
+class Mark extends Model
+{
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-     protected $table ='mark';
+    protected $table = 'mark';
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $primaryKey='mark_id';
+    protected $primaryKey = 'mark_id';
 
     /**
      * The name of the "created at" column.

@@ -2,14 +2,15 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class GradeScaleStudySubmodulesAcademicPeriods extends Model {
+class GradeScaleStudySubmodulesAcademicPeriods extends Model
+{
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-     protected $table ='gradeScale_studySubmodules_academicPeriods';
+    protected $table = 'gradeScale_studySubmodules_academicPeriods';
 
     /**
      * Override primary key name
