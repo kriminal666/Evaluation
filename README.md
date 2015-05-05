@@ -1,5 +1,6 @@
-https://scrutinizer-ci.com/g/kriminal666/Evaluation/badges/quality-score.png?b=master
+
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kriminal666/Evaluation/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/kriminal666/Evaluation/?branch=master)
+!https://scrutinizer-ci.com/g/kriminal666/Evaluation/badges/quality-score.png?b=master!:https://scrutinizer-ci.com/g/kriminal666/Evaluation/?branch=master
 # Evaluation
 Evaluation mo0dule for Ebre-escool aplication
 ##Project Docs
