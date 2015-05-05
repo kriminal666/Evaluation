@@ -4,8 +4,8 @@
 
     <div class="container" ng-app="testEvaluation">
         <!--  Review Form -->
-        <form name="evaluateForm" ng-controller="FormController as FormCtrl"
-              ng-submit=" FormCtrl.post()" novalidate>
+        <form name="evaluateForm" ng-controller="FormController"
+              ng-submit="evaluateForm.$valid && addEvaluation()" novalidate>
             <!--  Live Preview -->
             <blockquote>
                 <strong>Stars</strong>
@@ -17,23 +17,35 @@
             <!--  Review Form -->
             <h4>Submit a evaluation</h4>
             <fieldset class="form-group">
-                <select ng-model="FormCtrl.mark" class="form-control" ng-options="mark for marks in [1,2,3,4,5,6,7,8,9,10,11]"  title="Notas" required>
+                <select ng-model="evaluate.mark" class="form-control" ng-options="marks for marks in [1,2,3,4,5,6,7,8,9,10,11]"  title="Marks" required>
                     <option value="">Evaluate</option>
                 </select>
             </fieldset>
             <fieldset class="form-group">
-                <input ng-model="FormCtrl.student" type="number" class="form-control" placeholder="" title="Student" required />
+                <input ng-model="evaluate.student" type="number" class="form-control" placeholder="Student" title="Student" required />
             </fieldset>
             <fieldset class="form-group">
-                <input ng-model="FormCtrl.uf" type="number" class="form-control" placeholder="" title="UF" required />
+                <input ng-model="evaluate.uf" type="number" class="form-control" placeholder="UF" title="UF" required />
             </fieldset>
-
+            <div>Evaluate Form is : $$ evaluateForm.$valid $$</div>
             <fieldset class="form-group">
-                <input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+                <input type="submit" class="btn btn-primary pull-right" value="Submit Evaluation" />
+                <i ng-show="loading" class="fa fa-spinner fa-spin"></i>
             </fieldset>
         </form>
 
-
+        <hr>
+       <!-- <div class="row">
+            <div class="col-md-4">
+                <table class="table table-striped">
+                    <tr ng-repeat='evaluation in evaluations'>
+                        <td><input type="checkbox" ng-true-value="1" ng-false-value="'0'" ng-model="todo.done" ng-change="updateTodo(todo)"></td>
+                        <td><% todo.title %></td>
+                        <td><button class="btn btn-danger btn-xs" ng-click="deleteTodo($index)">  <span class="glyphicon glyphicon-trash" ></span></button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>-->
 
 
 

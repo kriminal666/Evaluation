@@ -15,13 +15,10 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
-Route::get('evaluation/{id}', 'ModelControllers\EvaluationController@show');
+Route::resource('api/evaluation', 'ModelControllers\EvaluationController');
 
-Route::get('evaluation', 'ModelControllers\EvaluationController@showAll');
+Route::resource('api/users', 'ModelControllers\UsersController');
 
-Route::get('user/{id}', 'ModelControllers\UsersController@show');
-
-Route::get('users', 'ModelControllers\UsersController@showAll');
 Route::get('test', function () {
     return view('evaluation_test');
 });

@@ -20,6 +20,14 @@ class Evaluation extends Model
     protected $primaryKey = 'evaluation_id';
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['evaluation_academic_period_id', 'evaluation_mark_id',
+        'evaluation_student_id', 'evaluation_study_subModule_id'];
+
+    /**
      * The name of the "created at" column.
      *
      * @var string

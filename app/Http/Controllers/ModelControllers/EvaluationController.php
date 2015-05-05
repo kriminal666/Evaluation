@@ -1,10 +1,10 @@
 <?php namespace Evaluation\Http\Controllers\ModelControllers;
 
 use Evaluation\Evaluation;
-use Evaluation\Http\Requests;
 use Evaluation\Http\Controllers\Controller;
+use Evaluation\Http\Requests;
+use Request;
 
-use Illuminate\Http\Request;
 
 class EvaluationController extends Controller
 {
@@ -16,7 +16,7 @@ class EvaluationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+       // $this->middleware('auth');
     }
 
     /**
@@ -46,7 +46,7 @@ class EvaluationController extends Controller
      */
     public function store()
     {
-        //
+        Evaluation::create(Request::all());
     }
 
     /**
