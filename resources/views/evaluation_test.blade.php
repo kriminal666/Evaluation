@@ -17,12 +17,15 @@
             <!--  Review Form -->
             <h4>Submit a evaluation</h4>
             <fieldset class="form-group">
-                <select ng-model="evaluate.mark" class="form-control" ng-options="marks for marks in [1,2,3,4,5,6,7,8,9,10,11]"  title="Marks" required>
+                <select ng-model="evaluate.mark" class="form-control" ng-options="mark.mark_id as mark.mark_value for mark in marks"  title="Marks" required>
                     <option value="">Evaluate</option>
                 </select>
             </fieldset>
             <fieldset class="form-group">
-                <input ng-model="evaluate.student" type="number" class="form-control" placeholder="Student" title="Student" required />
+                <select ng-model="evaluate.student" class="form-control" ng-options="user.id as user.name for user in users"  title="Users" required>
+                    <option value="">Users</option>
+                </select>
+
             </fieldset>
             <fieldset class="form-group">
                 <input ng-model="evaluate.uf" type="number" class="form-control" placeholder="UF" title="UF" required />

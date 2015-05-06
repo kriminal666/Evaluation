@@ -18,6 +18,7 @@ Route::get('home', 'HomeController@index');
 Route::resource('api/evaluation', 'ModelControllers\EvaluationController');
 
 Route::resource('api/users', 'ModelControllers\UsersController');
+Route::resource('api/gradescale', 'ModelControllers\GradeScaleController');
 
 Route::get('test', function () {
     return view('evaluation_test');

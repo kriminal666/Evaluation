@@ -7,6 +7,26 @@
     app.controller('FormController' , function($scope, $http) {
         $scope.loading = false;
         $scope.evaluates = [];
+        $scope.marks = [];
+        $scope.users = [];
+
+        $scope.marks = function(){
+            $scope.loading = true;
+            $http.get('/api/gradescale/1').
+                success(function(data, status, headers, config) {
+                    $scope.marks = data;
+                    $scope.loading= false;
+                });
+        };
+
+        $scope.users = function(){
+            $scope.loading = true;
+            $http.get('/api/users').
+                success(function(data, status, headers, config) {
+                    $scope.users = data;
+                    $scope.loading= false;
+                });
+        };
 
         $scope.addEvaluation = function () {
             $scope.loading = true;
@@ -24,6 +44,9 @@
             });
 
         };
+
+        $scope.marks();
+        $scope.users();
     });
 
 
