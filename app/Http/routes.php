@@ -23,18 +23,23 @@ Route::get('test', function () {
     return view('evaluation_test');
 });
 
-/*
- * TODO
+
 Route::get('marks',function(){
-        $gradeScale= \Evaluation\GradeScale::find(1);
-        foreach( $gradeScale->marks() as $item ){
-            return json_encode($item);
 
-        };
 
-});*/
+    return  \Evaluation\GradeScale::find(1)->marks();
+
+
+
+});
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
 ]);
+
+/**Get last query
+Event::listen('illuminate.query', function($sql)
+{
+    var_dump($sql);
+});**/

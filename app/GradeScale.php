@@ -6,7 +6,7 @@ use Illuminate\Http\Response;
 /**
  * @property string grade_scale_description
  */
-class GradeScale extends Model
+class GradeScale extends GradeScaleMark
 {
 
     /**
@@ -42,10 +42,11 @@ class GradeScale extends Model
      *
      * @return Response
      */
-    //TODO
-   /* public function marks()
+
+    public function marks()
     {
-        return $this->hasManyThrough('Evaluation\Mark', 'Evaluation\GradeScaleMark');
-    }*/
+        return $this->hasManyThrough( 'Evaluation\Mark','Evaluation\GradeScaleMark',
+            'grade_scale_mark_gradeScaleID','mark_id')->getResults();
+    }
 
 }
