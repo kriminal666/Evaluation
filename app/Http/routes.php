@@ -24,11 +24,10 @@ Route::get('test', function () {
 });
 
 
-Route::get('marks',function(){
+Route::get('marks', function () {
 
 
-    return  \Evaluation\GradeScale::find(1)->marks();
-
+    return \Evaluation\GradeScale::find(1)->marks();
 
 
 });
@@ -39,7 +38,7 @@ Route::controllers([
 ]);
 
 /**Get last query
-Event::listen('illuminate.query', function($sql)
-{
-    var_dump($sql);
-});**/
+ * Event::listen('illuminate.query', function($sql)
+ * {
+ * var_dump($sql);
+ * });**/

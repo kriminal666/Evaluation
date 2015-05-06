@@ -37,16 +37,15 @@ class GradeScale extends GradeScaleMark
      */
     const UPDATED_AT = 'grade_scale_updated_at';
 
-    /**
-     * join tables
-     *
-     * @return Response
-     */
 
+    /**
+     * Get all marks that belongs to this
+     * @return mixed
+     */
     public function marks()
     {
-        return $this->hasManyThrough( 'Evaluation\Mark','Evaluation\GradeScaleMark',
-            'grade_scale_mark_gradeScaleID','mark_id')->getResults();
+        return $this->hasManyThrough('Evaluation\Mark', 'Evaluation\GradeScaleMark',
+            'grade_scale_mark_gradeScaleID', 'mark_id')->getResults();
     }
 
 }

@@ -33,12 +33,12 @@ class GradeScaleMark extends Model
      */
     const UPDATED_AT = 'grade_scale_mark_updated_at';
 
-   /* public function mark(){
-        return $this->belongsTo('Evaluation\Mark','grade_scale_mark_markID');
-    }
+    /* public function mark(){
+         return $this->belongsTo('Evaluation\Mark','grade_scale_mark_markID');
+     }
 
-    public function gradeScale(){
-        return $this->belongsTo('Evaluation\GradeScale','grade_scale_mark_gradeScaleID');
-    }*/
+     public function gradeScale(){
+         return $this->belongsTo('Evaluation\GradeScale','grade_scale_mark_gradeScaleID');
+     }*/
 
 }
