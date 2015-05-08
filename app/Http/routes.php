@@ -18,7 +18,14 @@ Route::get('home', 'HomeController@index');
 Route::resource('api/evaluation', 'ModelControllers\EvaluationController');
 
 Route::resource('api/users', 'ModelControllers\UsersController');
+
 Route::resource('api/gradescale', 'ModelControllers\GradeScaleController');
+
+Route::get('gradescale/{id}/marks', 'ModelControllers\GradeScaleController@getMarks');
+
+Route::get('/user/evaluation/{id}', 'ModelControllers\UsersController@getUserEvaluations');
+
+Route::get('test1', 'ModelControllers\MarkController@test');
 
 Route::get('test', function () {
     return view('evaluation_test');
@@ -28,7 +35,7 @@ Route::get('test', function () {
 Route::get('marks', function () {
 
 
-    return \Evaluation\GradeScale::find(1)->marks();
+    return \Evaluation\GradeScale::findOrFail(1)->marks();
 
 
 });
@@ -38,8 +45,9 @@ Route::controllers([
     'password' => 'Auth\PasswordController',
 ]);
 
-/**Get last query
- * Event::listen('illuminate.query', function($sql)
- * {
- * var_dump($sql);
- * });**/
+//Get last query
+
+ Event::listen('illuminate.query', function($sql)
+ {
+  var_dump($sql);
+  });

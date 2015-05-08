@@ -33,9 +33,35 @@ class Mark extends Model
      */
     const UPDATED_AT = 'mark_updated_at';
 
-    /* public function gradeScale(){
-         return $this->belongsTo('Evaluation\GradeScale','grade_scale_mark_markID',null,'Evaluation\GradeScaleMark');
-     }*/
+    /**
+     * Relation this with evaluation table
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function evaluations()
+    {
+        return $this->hasMany('Evaluation\Evaluation', 'evaluation_mark_id');
+    }
+
+    /**
+     * Define that this belongs to one gradeScale
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function gradeScale()
+    {
+        return $this->belongsTo('Evaluation\GradeScale', 'grade_scale_mark_gradeScaleID');
+    }
+
+    /**
+     * Define that we have many of this in grade_scale_mark
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function gradeScaleMark()
+    {
+        return $this->hasMany('Evaluation\GradeScaleMark', 'grade_scale_mark_markID')->select(array('grade_scale_mark_markID'
+            , 'grade_scale_mark_gradeScaleID'));
+    }
 
 
 }

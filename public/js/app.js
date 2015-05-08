@@ -1,30 +1,31 @@
-(function(){
-    var app = angular.module('testEvaluation',[ ], function($interpolateProvider) {
+(function () {
+    var app = angular.module('testEvaluation', [], function ($interpolateProvider) {
         $interpolateProvider.startSymbol('$$');
         $interpolateProvider.endSymbol('$$');
     });
 
-    app.controller('FormController' , function($scope, $http) {
+    app.controller('FormController', function ($scope, $http) {
         $scope.loading = false;
         $scope.evaluates = [];
         $scope.marks = [];
         $scope.users = [];
+        $scope.userEvaluations = [];
 
-        $scope.marks = function(){
+        $scope.marks = function () {
             $scope.loading = true;
-            $http.get('/api/gradescale/1').
-                success(function(data, status, headers, config) {
+            $http.get('gradescale/1/marks').
+                success(function (data, status, headers, config) {
                     $scope.marks = data;
-                    $scope.loading= false;
+                    $scope.loading = false;
                 });
         };
 
-        $scope.users = function(){
+        $scope.users = function () {
             $scope.loading = true;
             $http.get('/api/users').
-                success(function(data, status, headers, config) {
+                success(function (data, status, headers, config) {
                     $scope.users = data;
-                    $scope.loading= false;
+                    $scope.loading = false;
                 });
         };
 
@@ -43,6 +44,23 @@
 
             });
 
+        };
+
+        $scope.getUserEvaluations = function ($id) {
+              console.log("cojones");
+            $scope.userEvaluations = [];
+            $scope.loading = true;
+            $http.get('/user/evaluation/' + $id).
+                success(function (data, status, headers, config) {
+                    console.log(data);
+                    dta.forEach(function(entry) {
+                        console.log(entry);
+                    });
+                    $scope.userEvaluations = data;
+                    $scope.loading = false;
+                    console.log("Longitud del response"+$scope.userEvaluations.length);
+
+                });
         };
 
         $scope.marks();

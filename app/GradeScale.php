@@ -37,6 +37,12 @@ class GradeScale extends GradeScaleMark
      */
     const UPDATED_AT = 'grade_scale_updated_at';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['grade_scale_description'];
 
     /**
      * Get all marks that belongs to this
@@ -45,7 +51,7 @@ class GradeScale extends GradeScaleMark
     public function marks()
     {
         return $this->hasManyThrough('Evaluation\Mark', 'Evaluation\GradeScaleMark',
-            'grade_scale_mark_gradeScaleID', 'mark_id')->getResults();
+            'grade_scale_mark_gradeScaleID', 'mark_id')->select(array('mark_value'))->getResults();
     }
 
 }

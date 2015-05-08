@@ -106,4 +106,15 @@ class UsersController extends Controller
         //
     }
 
+    /**
+     * Get evaluations of all UFs from one user
+     * @param $id
+     * @return mixed
+     */
+    public function getUserEvaluations($id)
+    {
+        //NOT FINISHED
+        return User::findOrFail($id)->evaluations()->get();
+    }
+
 }

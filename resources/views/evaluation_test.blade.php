@@ -2,9 +2,9 @@
 
 @section('content')
 
-    <div class="container" ng-app="testEvaluation">
+    <div class="container" ng-app="testEvaluation" ng-controller="FormController">
         <!--  Review Form -->
-        <form name="evaluateForm" ng-controller="FormController"
+        <form name="evaluateForm"
               ng-submit="evaluateForm.$valid && addEvaluation()" novalidate>
             <!--  Live Preview -->
             <blockquote>
@@ -36,19 +36,32 @@
                 <i ng-show="loading" class="fa fa-spinner fa-spin"></i>
             </fieldset>
         </form>
-
         <hr>
-       <!-- <div class="row">
+        <blockquote><p>Select user and get evaluation of him.</p></blockquote>
+        <div class="row">
+        <div class="col-md-4">
+            <select ng-model="student" class="form-control" ng-options="user.id as user.name for user in users"  title="Users" required>
+                <option value="">Users</option>
+            </select>
+            </div>
+      <div class="col-md-4">
+        <button class="btn btn-primary" ng-click ="getUserEvaluations(student)">Get  evaluations</button>
+          <p> ID:$$student$$</p>
+      </div>
+    </div>
+        <hr>
+        <div class="row">
             <div class="col-md-4">
                 <table class="table table-striped">
-                    <tr ng-repeat='evaluation in evaluations'>
-                        <td><input type="checkbox" ng-true-value="1" ng-false-value="'0'" ng-model="todo.done" ng-change="updateTodo(todo)"></td>
-                        <td><% todo.title %></td>
-                        <td><button class="btn btn-danger btn-xs" ng-click="deleteTodo($index)">  <span class="glyphicon glyphicon-trash" ></span></button></td>
+                    <tr ng-repeat='evaluation in userEvaluations'>
+                        <td>Academic period : $$ evaluation.evaluation_academic_period_id $$</td>
+                        <td>Student :$$ evaluation.evaluation_student_id $$</td>
+                        <td>UF ID :$$ evaluation.evaluation_study_subModule_id $$</td>
+                        <td>Mark ID : $$ evaluation.evaluation_mark_id $$</td>
                     </tr>
                 </table>
             </div>
-        </div>-->
+        </div>
 
 
 

@@ -46,4 +46,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     const UPDATED_AT = 'users_updated_at';
 
+    /**
+     * Relationship definition
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function evaluations()
+    {
+        return $this->hasMany('Evaluation\Evaluation', 'evaluation_student_id');
+    }
+
 }

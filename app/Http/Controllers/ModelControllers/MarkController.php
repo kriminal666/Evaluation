@@ -1,23 +1,13 @@
 <?php namespace Evaluation\Http\Controllers\ModelControllers;
 
-use Evaluation\Evaluation;
-use Evaluation\Http\Controllers\Controller;
 use Evaluation\Http\Requests;
-use Request;
+use Evaluation\Http\Controllers\Controller;
 
+use Evaluation\Mark;
+use Illuminate\Http\Request;
 
-class EvaluationController extends Controller
+class MarkController extends Controller
 {
-
-    /**
-     * Create a new controller instance.
-     *
-     *
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Display a listing of the resource.
@@ -26,7 +16,7 @@ class EvaluationController extends Controller
      */
     public function index()
     {
-       return Evaluation::all();
+        //
     }
 
     /**
@@ -46,7 +36,7 @@ class EvaluationController extends Controller
      */
     public function store()
     {
-        Evaluation::create(Request::all());
+        //
     }
 
     /**
@@ -57,8 +47,7 @@ class EvaluationController extends Controller
      */
     public function show($id)
     {
-        //Show all
-        return Evaluation::find($id);
+        //
     }
 
     /**
@@ -95,17 +84,14 @@ class EvaluationController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Get the grade_scale of this
      *
-     *
-     * @return Response
+     * @return mixed
      */
-    public function showAll()
+    public function test()
     {
-        //Show all
-        return Evaluation::all();
+
+        return Mark::find(1)->gradeScaleMark()->with('gradeScale')->get();
     }
-
-
 
 }
