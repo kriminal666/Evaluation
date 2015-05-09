@@ -113,8 +113,8 @@ class UsersController extends Controller
      */
     public function getUserEvaluations($id)
     {
-        //NOT FINISHED
-        return User::findOrFail($id)->evaluations()->get();
+
+        return User::findOrFail($id)->evaluations()->with('mark', 'user', 'studysubmodules', 'academicperiods')->get();
     }
 
 }

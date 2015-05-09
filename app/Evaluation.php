@@ -41,7 +41,47 @@ class Evaluation extends Model
      */
     const UPDATED_AT = 'evaluation_updated_at';
 
+    /**
+     * This belong to one user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(){
 
+        return $this->belongsTo('Evaluation\User', 'evaluation_student_id');
+    }
+
+    /**
+     * This belongs to one mark
+     *
+     * @return mixed
+     */
+    public function mark(){
+
+        return $this -> belongsTo('Evaluation\Mark', 'evaluation_mark_id')->select(array('mark_id', 'mark_value'));
+    }
+
+    /**
+     * This belongs to one study_submodules
+     *
+     * @return mixed
+     */
+    public function studySubmodules(){
+
+        return $this->belongsto('Evaluation\StudySubmodules', 'evaluation_study_subModule_id')
+            ->select(array('study_submodules_id', 'study_submodules_shortname', 'study_submodules_name'));
+    }
+
+    /**
+     * this belongs to one academic period
+     *
+     * @return mixed
+     */
+    public function academicPeriods(){
+
+        return $this->belongsTo('Evaluation\AcademicPeriods', 'evaluation_academic_period_id')
+            ->select(array('academic_periods_id', 'academic_periods_name'));
+    }
 
 
 }

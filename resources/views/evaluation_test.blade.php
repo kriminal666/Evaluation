@@ -54,10 +54,10 @@
             <div class="col-md-4">
                 <table class="table table-striped">
                     <tr ng-repeat='evaluation in userEvaluations'>
-                        <td>Academic period : $$ evaluation.evaluation_academic_period_id $$</td>
-                        <td>Student :$$ evaluation.evaluation_student_id $$</td>
-                        <td>UF ID :$$ evaluation.evaluation_study_subModule_id $$</td>
-                        <td>Mark ID : $$ evaluation.evaluation_mark_id $$</td>
+                        <td>Academic period : $$ evaluation.academicperiods.academic_periods_name $$</td>
+                        <td>Student :$$ evaluation.user.name $$</td>
+                        <td>UF :$$ evaluation.studysubmodules.study_submodules_name $$</td>
+                        <td>Mark : $$ evaluation.mark.mark_value $$</td>
                     </tr>
                 </table>
             </div>

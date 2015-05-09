@@ -52,13 +52,8 @@
             $scope.loading = true;
             $http.get('/user/evaluation/' + $id).
                 success(function (data, status, headers, config) {
-                    console.log(data);
-                    dta.forEach(function(entry) {
-                        console.log(entry);
-                    });
                     $scope.userEvaluations = data;
                     $scope.loading = false;
-                    console.log("Longitud del response"+$scope.userEvaluations.length);
 
                 });
         };

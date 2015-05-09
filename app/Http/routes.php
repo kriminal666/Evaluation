@@ -47,7 +47,7 @@ Route::controllers([
 
 //Get last query
 
- Event::listen('illuminate.query', function($sql)
+ /*Event::listen('illuminate.query', function($sql)
  {
   var_dump($sql);
-  });
+  });*/
