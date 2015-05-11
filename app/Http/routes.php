@@ -35,7 +35,7 @@ Route::get('test', function () {
 Route::get('marks', function () {
 
 
-    return \Evaluation\GradeScale::findOrFail(1)->marks();
+    return \Evaluation\GradeScale::findOrFail(4)->marks();
 
 
 });

@@ -62,18 +62,6 @@ class UsersController extends Controller
     }
 
     /**
-     * Display all resources.
-     *
-     *
-     * @return Response
-     */
-    public function showAll()
-    {
-        //Return one user
-        return User::all();
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int $id
