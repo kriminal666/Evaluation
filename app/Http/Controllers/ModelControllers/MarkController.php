@@ -10,13 +10,23 @@ class MarkController extends Controller
 {
 
     /**
+     * Create a new controller instance.
+     *
+     *
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return Response
      */
     public function index()
     {
-        //
+        return Mark::all();
     }
 
     /**
@@ -36,7 +46,7 @@ class MarkController extends Controller
      */
     public function store()
     {
-        //
+       Mark::create(Request::all());
     }
 
     /**
@@ -47,7 +57,7 @@ class MarkController extends Controller
      */
     public function show($id)
     {
-        //
+        return Mark::findOrFail($id);
     }
 
     /**
@@ -86,12 +96,13 @@ class MarkController extends Controller
     /**
      * Get the grade_scale of this
      *
+     * @param  int $id
      * @return mixed
      */
-    public function test()
+    public function gradeScale($id)
     {
 
-        return Mark::find(1)->gradeScaleMark()->with('gradeScale')->get();
+        return Mark::findOrFail($id)->gradeScaleMark()->with('gradeScale')->get();
     }
 
 }

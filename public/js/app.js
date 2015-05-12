@@ -10,6 +10,7 @@
         $scope.marks = [];
         $scope.users = [];
         $scope.userEvaluations = [];
+        $scope.studySubmodules = [];
 
         $scope.marks = function () {
             $scope.loading = true;
@@ -25,6 +26,15 @@
             $http.get('/api/users').
                 success(function (data, status, headers, config) {
                     $scope.users = data;
+                    $scope.loading = false;
+                });
+        };
+
+        $scope.studySubmodules = function () {
+            $scope.loading = true;
+            $http.get('/api/studysubmodules').
+                success(function (data, status, headers, config) {
+                    $scope.studySubmodules = data;
                     $scope.loading = false;
                 });
         };
@@ -47,7 +57,7 @@
         };
 
         $scope.getUserEvaluations = function ($id) {
-              console.log("cojones");
+            console.log("cojones");
             $scope.userEvaluations = [];
             $scope.loading = true;
             $http.get('/user/evaluation/' + $id).
@@ -60,6 +70,7 @@
 
         $scope.marks();
         $scope.users();
+        $scope.studySubmodules();
     });
 
 

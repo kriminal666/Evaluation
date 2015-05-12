@@ -15,11 +15,19 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
-Route::resource('api/evaluation', 'ModelControllers\EvaluationController');
+Route::group(['prefix' =>'api'], function (){
 
-Route::resource('api/users', 'ModelControllers\UsersController');
+    Route::resource('evaluation', 'ModelControllers\EvaluationController');
 
-Route::resource('api/gradescale', 'ModelControllers\GradeScaleController');
+    Route::resource('users', 'ModelControllers\UsersController');
+
+    Route::resource('gradescale', 'ModelControllers\GradeScaleController');
+
+    Route::resource('studysubmodules', 'ModelControllers\StudySubmodulesController');
+
+});
+
+
 
 Route::get('gradescale/{id}/marks', 'ModelControllers\GradeScaleController@getMarks');
 
@@ -35,7 +43,7 @@ Route::get('test', function () {
 Route::get('marks', function () {
 
 
-    return \Evaluation\GradeScale::findOrFail(4)->marks();
+    return \Evaluation\GradeScale::findOrFail(1)->marks();
 
 
 });

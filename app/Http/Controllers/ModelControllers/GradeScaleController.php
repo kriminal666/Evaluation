@@ -82,7 +82,7 @@ class GradeScaleController extends Controller
     {
         $gradeScale = GradeScale::find($id);
         $gradeScale->grade_scale_description = Request::input('grade_scale_description');
-        $todo->save();
+        $gradeScale->save();
     }
 
     /**

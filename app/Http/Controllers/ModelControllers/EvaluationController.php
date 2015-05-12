@@ -3,6 +3,8 @@
 use Evaluation\Evaluation;
 use Evaluation\Http\Controllers\Controller;
 use Evaluation\Http\Requests;
+
+
 use Request;
 
 
@@ -26,7 +28,7 @@ class EvaluationController extends Controller
      */
     public function index()
     {
-       return Evaluation::all();
+        return Evaluation::all();
     }
 
     /**
@@ -58,7 +60,7 @@ class EvaluationController extends Controller
     public function show($id)
     {
         //Show all
-        return Evaluation::find($id);
+        return Evaluation::findOrFail($id);
     }
 
     /**
@@ -80,7 +82,8 @@ class EvaluationController extends Controller
      */
     public function update($id)
     {
-        //
+        $evaluation = Evaluation::finfOrFail($id);
+
     }
 
     /**
@@ -93,19 +96,6 @@ class EvaluationController extends Controller
     {
         //
     }
-
-    /**
-     * Display the specified resource.
-     *
-     *
-     * @return Response
-     */
-    public function showAll()
-    {
-        //Show all
-        return Evaluation::all();
-    }
-
 
 
 }

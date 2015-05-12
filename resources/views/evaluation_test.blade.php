@@ -8,7 +8,7 @@
               ng-submit="evaluateForm.$valid && addEvaluation()" novalidate>
             <!--  Live Preview -->
             <blockquote>
-                <strong>Stars</strong>
+                <strong>Evaluations</strong>
 
                 <cite class="clearfix"></cite>
 
@@ -17,18 +17,21 @@
             <!--  Review Form -->
             <h4>Submit a evaluation</h4>
             <fieldset class="form-group">
-                <select ng-model="evaluate.mark" class="form-control" ng-options="mark.mark_id as mark.mark_value for mark in marks"  title="Marks" required>
+                <select ng-model="evaluate.mark" type="number" class="form-control" ng-options="mark.mark_id as mark.mark_value for mark in marks"  title="Marks" required>
                     <option value="">Evaluate</option>
                 </select>
             </fieldset>
             <fieldset class="form-group">
-                <select ng-model="evaluate.student" class="form-control" ng-options="user.id as user.name for user in users"  title="Users" required>
+                <select ng-model="evaluate.student" type="text" class="form-control" ng-options="user.id as user.name for user in users"  title="Users" required>
                     <option value="">Users</option>
                 </select>
 
             </fieldset>
             <fieldset class="form-group">
-                <input ng-model="evaluate.uf" type="number" class="form-control" placeholder="UF" title="UF" required />
+
+                <select ng-model="evaluate.uf" type="text" class="form-control" ng-options="submodule.study_submodules_id as submodule.study_submodules_name for submodule in studySubmodules"  title="Submodules" required>
+                    <option value="">Submodules</option>
+                    </select>
             </fieldset>
             <div>Evaluate Form is : $$ evaluateForm.$valid $$</div>
             <fieldset class="form-group">

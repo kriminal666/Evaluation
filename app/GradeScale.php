@@ -51,7 +51,7 @@ class GradeScale extends GradeScaleMark
     public function marks()
     {
         return $this->hasManyThrough('Evaluation\Mark', 'Evaluation\GradeScaleMark',
-            'grade_scale_mark_gradeScaleID', 'mark_id')->select(array('mark_value'))->getResults();
+            'grade_scale_mark_gradeScaleID', 'mark_id')->select(array('mark_id','mark_value'))->getResults();
     }
 
 }

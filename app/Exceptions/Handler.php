@@ -3,7 +3,7 @@
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Database\Eloquent\ModelNotFoundException as ModelNotFoundException;
-use Illuminate\Http\Response;
+
 
 class Handler extends ExceptionHandler
 {
@@ -39,11 +39,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        if($e instanceof ModelNotFoundException){
+        if ($e instanceof ModelNotFoundException) {
 
-
-            return response()->view('errors.404',array('message'=>$e->getMessage(),
-                                'file'=>$e->getFile(),'line'=>$e->getLine()), 404);
+            return response()->view('errors.404', array('message' => $e->getMessage(),
+                'file' => $e->getFile(), 'line' => $e->getLine()), 404);
         }
         return parent::render($request, $e);
     }

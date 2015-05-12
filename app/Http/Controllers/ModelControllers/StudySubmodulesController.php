@@ -3,10 +3,10 @@
 use Evaluation\Http\Requests;
 use Evaluation\Http\Controllers\Controller;
 
-use Evaluation\User;
+use Evaluation\StudySubmodules;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class StudySubmodulesController extends Controller
 {
 
     /**
@@ -26,7 +26,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return User::all();
+        return StudySubmodules::all();
     }
 
     /**
@@ -46,7 +46,7 @@ class UsersController extends Controller
      */
     public function store()
     {
-        User::create(Request::all());
+        //
     }
 
     /**
@@ -57,8 +57,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //Return one user
-        return User::find($id);
+        //
     }
 
     /**
@@ -92,17 +91,6 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    /**
-     * Get evaluations of all UFs from one user
-     * @param $id
-     * @return mixed
-     */
-    public function getUserEvaluations($id)
-    {
-
-        return User::findOrFail($id)->evaluations()->with('mark', 'user', 'studysubmodules', 'academicperiods')->get();
     }
 
 }
