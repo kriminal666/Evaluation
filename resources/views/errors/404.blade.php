@@ -23,7 +23,7 @@
 
                         <hr />
                         <h3 class="lighter smaller">We looked everywhere but we couldn't find it!</h3>
-
+                       <blockquote>{{$message}}<br/>{{$file}}<br/>{{$line}}</blockquote>
                         </div>
                             <form class="form-search">
                     <span class="input-icon align-middle">
