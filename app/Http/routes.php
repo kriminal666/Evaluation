@@ -15,23 +15,24 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
-Route::group(['prefix' =>'api'], function (){
+Route::group(['prefix' => 'api'], function () {
 
-    Route::resource('evaluation', 'ModelControllers\EvaluationController');
+    Route::resource('evaluations', 'ModelControllers\EvaluationController');
 
     Route::resource('users', 'ModelControllers\UsersController');
 
-    Route::resource('gradescale', 'ModelControllers\GradeScaleController');
+    Route::resource('gradescales', 'ModelControllers\GradeScaleController');
+
+    Route::resource('marks', 'ModelControllers\MarkController');
 
     Route::resource('studysubmodules', 'ModelControllers\StudySubmodulesController');
 
 });
 
 
-
 Route::get('gradescale/{id}/marks', 'ModelControllers\GradeScaleController@getMarks');
 
-Route::get('/user/evaluation/{id}', 'ModelControllers\UsersController@getUserEvaluations');
+Route::get('/user/evaluations/{id}', 'ModelControllers\UsersController@getUserEvaluations');
 
 Route::get('test1', 'ModelControllers\MarkController@test');
 
@@ -55,7 +56,7 @@ Route::controllers([
 
 //Get last query
 
- /*Event::listen('illuminate.query', function($sql)
- {
-  var_dump($sql);
-  });*/
+/*Event::listen('illuminate.query', function($sql)
+{
+ var_dump($sql);
+ });*/

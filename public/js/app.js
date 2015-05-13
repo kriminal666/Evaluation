@@ -41,7 +41,7 @@
 
         $scope.addEvaluation = function () {
             $scope.loading = true;
-            $http.post('/api/evaluation', {
+            $http.post('/api/evaluations', {
                 evaluation_academic_period_id: 4,
                 evaluation_mark_id: $scope.evaluate.mark,
                 evaluation_student_id: $scope.evaluate.student,
@@ -60,7 +60,7 @@
             console.log("cojones");
             $scope.userEvaluations = [];
             $scope.loading = true;
-            $http.get('/user/evaluation/' + $id).
+            $http.get('/user/evaluations/' + $id).
                 success(function (data, status, headers, config) {
                     $scope.userEvaluations = data;
                     $scope.loading = false;

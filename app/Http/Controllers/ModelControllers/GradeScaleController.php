@@ -4,19 +4,27 @@ use Evaluation\GradeScale;
 use Evaluation\Http\Requests;
 use Evaluation\Http\Controllers\Controller;
 
+use Evaluation\Transformers\GradeScaleTransformer;
+use Illuminate\Support\Facades\Response;
 use Request;
 
 class GradeScaleController extends Controller
 {
+    /**
+     * @var GradeScaleTransformer
+     */
+    protected $gradeScaleTransformer;
 
     /**
      * Create a new controller instance.
      *
-     *
+     * @param GradeScaleTransformer $gradeScaleTransformer
      */
-    public function __construct()
+    public function __construct(GradeScaleTransformer $gradeScaleTransformer)
     {
         $this->middleware('auth');
+
+        $this->gradeScaleTransformer = $gradeScaleTransformer;
     }
 
     /**
@@ -27,7 +35,13 @@ class GradeScaleController extends Controller
      */
     public function index()
     {
-        return GradeScale::all();
+        $gradeScales = GradeScale::all();
+
+        return Response::json([
+
+            'data' => $this->gradeScaleTransformer->transformCollection($gradeScales->toArray())
+
+        ], 200);
     }
 
     /**
@@ -58,7 +72,21 @@ class GradeScaleController extends Controller
      */
     public function show($id)
     {
-        return GradeScale::findOrFail($id);
+        $gradeScale = GradeScale::find($id);
+
+        if (!$gradeScale) {
+            return Response::json([
+                'error' => [
+                    'message' => 'Grade Scale does not exist'
+                ]
+            ], 404);
+        }
+
+        return Response::json([
+
+            'data' => $this->gradeScaleTransformer->transform($gradeScale)
+
+        ], 200);
     }
 
     /**

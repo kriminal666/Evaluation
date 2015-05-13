@@ -5,6 +5,8 @@ use Evaluation\Http\Controllers\Controller;
 use Evaluation\Http\Requests;
 
 
+use Evaluation\Transformers\EvaluationTransformer;
+use Illuminate\Support\Facades\Response;
 use Request;
 
 
@@ -12,13 +14,20 @@ class EvaluationController extends Controller
 {
 
     /**
+     * @var EvaluationTransformer
+     */
+    protected $gradeScaleTransformer;
+
+    /**
      * Create a new controller instance.
      *
-     *
+     * @param EvaluationTransformer $evaluationTransformer
      */
-    public function __construct()
+    public function __construct(EvaluationTransformer $evaluationTransformer)
     {
         $this->middleware('auth');
+
+        $this->evaluationTransformer = $evaluationTransformer;
     }
 
     /**
@@ -28,7 +37,13 @@ class EvaluationController extends Controller
      */
     public function index()
     {
-        return Evaluation::all();
+        $evaluations = Evaluation::all();
+
+        return Response::json([
+
+            'data' => $this->evaluationTransformer->transformCollection($evaluations->toArray())
+
+        ], 200);
     }
 
     /**
@@ -59,8 +74,22 @@ class EvaluationController extends Controller
      */
     public function show($id)
     {
-        //Show all
-        return Evaluation::findOrFail($id);
+        $evaluation = Evaluation::find($id);
+
+        if (!$evaluation) {
+            return Response::json([
+                'error' => [
+                    'message' => 'Evaluation does not exist'
+                ]
+            ], 404);
+        }
+
+        return Response::json([
+
+            'data' => $this->evaluationTransformer->transform($evaluation)
+
+        ], 200);
+
     }
 
     /**

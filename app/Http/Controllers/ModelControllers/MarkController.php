@@ -5,18 +5,28 @@ use Evaluation\Http\Controllers\Controller;
 
 use Evaluation\Mark;
 use Illuminate\Http\Request;
+use Evaluation\Transformers\MarkTransformer;
+use Illuminate\Support\Facades\Response;
+
 
 class MarkController extends Controller
 {
 
     /**
-     * Create a new controller instance.
-     *
-     *
+     * @var MarkTransformer
      */
-    public function __construct()
+    protected $markTransformer;
+
+    /**
+     * Create a new controller instance
+     *
+     * @param MarkTransformer $markTransformer
+     */
+    public function __construct(MarkTransformer $markTransformer)
     {
         $this->middleware('auth');
+
+        $this->markTransformer = $markTransformer;
     }
 
     /**
@@ -26,7 +36,13 @@ class MarkController extends Controller
      */
     public function index()
     {
-        return Mark::all();
+        $marks = Mark::all();
+
+        return Response::json([
+
+            'data' => $this->markTransformer->transformCollection($marks->toArray())
+
+        ], 200);
     }
 
     /**
@@ -46,7 +62,7 @@ class MarkController extends Controller
      */
     public function store()
     {
-       Mark::create(Request::all());
+        Mark::create(Request::all());
     }
 
     /**
@@ -57,7 +73,21 @@ class MarkController extends Controller
      */
     public function show($id)
     {
-        return Mark::findOrFail($id);
+        $mark = Mark::find($id);
+
+        if (!$mark) {
+            return Response::json([
+                'error' => [
+                    'message' => 'Mark does not exist'
+                ]
+            ], 404);
+        }
+
+        return Response::json([
+
+            'data' => $this->markTransformer->transform($mark)
+
+        ], 200);
     }
 
     /**
