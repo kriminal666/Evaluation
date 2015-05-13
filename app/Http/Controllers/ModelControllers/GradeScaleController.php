@@ -3,7 +3,6 @@
 use Evaluation\GradeScale;
 use Evaluation\Http\Requests;
 use Evaluation\Http\Controllers\Controller;
-
 use Evaluation\Transformers\GradeScaleTransformer;
 use Illuminate\Support\Facades\Response;
 use Request;

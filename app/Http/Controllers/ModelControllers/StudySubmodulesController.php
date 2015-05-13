@@ -2,9 +2,8 @@
 
 use Evaluation\Http\Requests;
 use Evaluation\Http\Controllers\Controller;
-
 use Evaluation\StudySubmodules;
-use Illuminate\Http\Request;
+use Request;
 
 class StudySubmodulesController extends Controller
 {
@@ -46,7 +45,7 @@ class StudySubmodulesController extends Controller
      */
     public function store()
     {
-        //
+        StudySubmodules::create(Request::all());
     }
 
     /**
@@ -57,7 +56,7 @@ class StudySubmodulesController extends Controller
      */
     public function show($id)
     {
-        //
+        return StudySubmodules::findorFail($id);
     }
 
     /**

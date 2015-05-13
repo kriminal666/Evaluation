@@ -2,9 +2,8 @@
 
 use Evaluation\Http\Requests;
 use Evaluation\Http\Controllers\Controller;
-
 use Evaluation\Mark;
-use Illuminate\Http\Request;
+use Request;
 use Evaluation\Transformers\MarkTransformer;
 use Illuminate\Support\Facades\Response;
 

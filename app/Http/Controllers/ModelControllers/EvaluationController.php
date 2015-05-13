@@ -3,11 +3,10 @@
 use Evaluation\Evaluation;
 use Evaluation\Http\Controllers\Controller;
 use Evaluation\Http\Requests;
-
-
 use Evaluation\Transformers\EvaluationTransformer;
-use Illuminate\Support\Facades\Response;
 use Request;
+use Illuminate\Support\Facades\Response;
+
 
 
 class EvaluationController extends Controller

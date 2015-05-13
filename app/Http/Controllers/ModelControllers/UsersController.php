@@ -4,7 +4,7 @@ use Evaluation\Http\Requests;
 use Evaluation\Http\Controllers\Controller;
 
 use Evaluation\User;
-use Illuminate\Http\Request;
+use Request;
 
 class UsersController extends Controller
 {
