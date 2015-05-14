@@ -1,12 +1,13 @@
 <?php namespace Evaluation\Http\Controllers\ModelControllers;
 
+use Evaluation\Http\Controllers\Api\ApiController;
 use Evaluation\Http\Requests;
-use Evaluation\Http\Controllers\Controller;
 use Evaluation\StudySubmodules;
 use Request;
 
-class StudySubmodulesController extends Controller
+class StudySubmodulesController extends ApiController
 {
+
 
     /**
      * Create a new controller instance.
@@ -25,7 +26,12 @@ class StudySubmodulesController extends Controller
      */
     public function index()
     {
-        return StudySubmodules::all();
+       $studySubModules = StudySubmodules::all();
+        return $this->respond([
+
+            'data' => ($studySubModules->toArray())
+
+        ]);
     }
 
     /**
@@ -56,7 +62,19 @@ class StudySubmodulesController extends Controller
      */
     public function show($id)
     {
-        return StudySubmodules::findorFail($id);
+        $studySubModule=  StudySubmodules::find($id);
+
+        if (!$studySubModule) {
+
+            return $this->respondNotFound('SubModule does not exists.');
+
+        }
+
+        return $this->respond([
+
+            'data' => $studySubModule
+
+        ]);
     }
 
     /**

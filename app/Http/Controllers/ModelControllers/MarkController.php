@@ -1,14 +1,14 @@
 <?php namespace Evaluation\Http\Controllers\ModelControllers;
 
+use Evaluation\Http\Controllers\Api\ApiController;
 use Evaluation\Http\Requests;
-use Evaluation\Http\Controllers\Controller;
 use Evaluation\Mark;
 use Request;
 use Evaluation\Transformers\MarkTransformer;
 use Illuminate\Support\Facades\Response;
 
 
-class MarkController extends Controller
+class MarkController extends ApiController
 {
 
     /**
@@ -37,11 +37,11 @@ class MarkController extends Controller
     {
         $marks = Mark::all();
 
-        return Response::json([
+        return $this->respond([
 
             'data' => $this->markTransformer->transformCollection($marks->toArray())
 
-        ], 200);
+        ]);
     }
 
     /**
@@ -75,18 +75,18 @@ class MarkController extends Controller
         $mark = Mark::find($id);
 
         if (!$mark) {
-            return Response::json([
-                'error' => [
-                    'message' => 'Mark does not exist'
-                ]
-            ], 404);
+
+            return $this->respondNotFound('Mark does not exists.');
+
         }
 
-        return Response::json([
+        return $this->respond([
 
             'data' => $this->markTransformer->transform($mark)
 
-        ], 200);
+        ]);
+
+
     }
 
     /**

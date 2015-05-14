@@ -1,13 +1,13 @@
 <?php namespace Evaluation\Http\Controllers\ModelControllers;
 
 use Evaluation\GradeScale;
+use Evaluation\Http\Controllers\Api\ApiController;
 use Evaluation\Http\Requests;
-use Evaluation\Http\Controllers\Controller;
 use Evaluation\Transformers\GradeScaleTransformer;
 use Illuminate\Support\Facades\Response;
 use Request;
 
-class GradeScaleController extends Controller
+class GradeScaleController extends ApiController
 {
     /**
      * @var GradeScaleTransformer
@@ -36,11 +36,11 @@ class GradeScaleController extends Controller
     {
         $gradeScales = GradeScale::all();
 
-        return Response::json([
+        return $this->respond([
 
             'data' => $this->gradeScaleTransformer->transformCollection($gradeScales->toArray())
 
-        ], 200);
+        ]);
     }
 
     /**
@@ -74,18 +74,15 @@ class GradeScaleController extends Controller
         $gradeScale = GradeScale::find($id);
 
         if (!$gradeScale) {
-            return Response::json([
-                'error' => [
-                    'message' => 'Grade Scale does not exist'
-                ]
-            ], 404);
+            
+            return $this->respondNotFound('Grade Scale does not exists.');
         }
 
-        return Response::json([
+        return $this->respond([
 
             'data' => $this->gradeScaleTransformer->transform($gradeScale)
 
-        ], 200);
+        ]);
     }
 
     /**

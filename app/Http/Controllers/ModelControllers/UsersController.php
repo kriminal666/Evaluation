@@ -1,12 +1,11 @@
 <?php namespace Evaluation\Http\Controllers\ModelControllers;
 
+use Evaluation\Http\Controllers\Api\ApiController;
 use Evaluation\Http\Requests;
-use Evaluation\Http\Controllers\Controller;
-
 use Evaluation\User;
 use Request;
 
-class UsersController extends Controller
+class UsersController extends ApiController
 {
 
     /**
@@ -26,7 +25,14 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return User::all();
+
+        $users = User::all();
+
+        return $this->respond([
+
+            'data' => ($users->toArray())
+
+        ]);
     }
 
     /**
@@ -57,8 +63,19 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //Return one user
-        return User::find($id);
+
+        $user = User::find($id);
+
+        if (!$user) {
+            return $this->respondNotFound('User does not exists.');
+        }
+
+        return $this->respond([
+
+            'data' => ($user->toArray())
+
+        ]);
+
     }
 
     /**

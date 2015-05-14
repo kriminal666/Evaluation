@@ -1,15 +1,14 @@
 <?php namespace Evaluation\Http\Controllers\ModelControllers;
 
 use Evaluation\Evaluation;
-use Evaluation\Http\Controllers\Controller;
+use Evaluation\Http\Controllers\Api\ApiController;
 use Evaluation\Http\Requests;
 use Evaluation\Transformers\EvaluationTransformer;
-use Request;
 use Illuminate\Support\Facades\Response;
+use Request;
 
 
-
-class EvaluationController extends Controller
+class EvaluationController extends ApiController
 {
 
     /**
@@ -38,11 +37,11 @@ class EvaluationController extends Controller
     {
         $evaluations = Evaluation::all();
 
-        return Response::json([
+        return $this->respond([
 
             'data' => $this->evaluationTransformer->transformCollection($evaluations->toArray())
 
-        ], 200);
+        ]);
     }
 
     /**
@@ -76,18 +75,15 @@ class EvaluationController extends Controller
         $evaluation = Evaluation::find($id);
 
         if (!$evaluation) {
-            return Response::json([
-                'error' => [
-                    'message' => 'Evaluation does not exist'
-                ]
-            ], 404);
+
+            return $this->respondNotFound('Evaluation does not exists.');
         }
 
-        return Response::json([
+        return $this->respond([
 
             'data' => $this->evaluationTransformer->transform($evaluation)
 
-        ], 200);
+        ]);
 
     }
 
