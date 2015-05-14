@@ -62,6 +62,8 @@ class EvaluationController extends ApiController
     public function store()
     {
         Evaluation::create(Request::all());
+
+        return $this->respondCreated('Evaluation created');
     }
 
     /**

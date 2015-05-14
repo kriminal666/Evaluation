@@ -61,6 +61,8 @@ class GradeScaleController extends ApiController
     public function store()
     {
         GradeScale::create(Request::all());
+
+        return $this->respondCreated('Grade Scale created');
     }
 
     /**
@@ -74,7 +76,7 @@ class GradeScaleController extends ApiController
         $gradeScale = GradeScale::find($id);
 
         if (!$gradeScale) {
-            
+
             return $this->respondNotFound('Grade Scale does not exists.');
         }
 

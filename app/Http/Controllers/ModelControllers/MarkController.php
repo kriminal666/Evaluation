@@ -62,6 +62,8 @@ class MarkController extends ApiController
     public function store()
     {
         Mark::create(Request::all());
+
+        return $this->respondCreated('Mark created');
     }
 
     /**

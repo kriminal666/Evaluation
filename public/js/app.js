@@ -11,7 +11,8 @@
         $scope.users = [];
         $scope.userEvaluations = [];
         $scope.studySubmodules = [];
-
+        $scope.response = false;
+        $scope.message = "";
         $scope.marks = function () {
             $scope.loading = true;
             $http.get('gradescale/1/marks').
@@ -48,6 +49,9 @@
                 evaluation_study_subModule_id: $scope.evaluate.uf
             }).success(function (data, status, headers, config) {
                 $scope.evaluates.push(data);
+                console.log(data);
+                $scope.response = true;
+                $scope.message = data.message;
                 $scope.loading = false;
             }).error(function (data, status, headers, config) {
                 return status;

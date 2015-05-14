@@ -2,7 +2,17 @@
 
 @section('content')
 
+
     <div class="container" ng-app="testEvaluation" ng-controller="FormController">
+        <div class="position-relative" ng-show="response">
+
+            <h3></h3>
+
+            <div class="alert alert-info">
+                <strong>$$ message $$</strong> <br>
+            </div>
+
+        </div>
         <!--  Review Form -->
         <form name="evaluateForm"
               ng-submit="evaluateForm.$valid && addEvaluation()" novalidate>
@@ -17,41 +27,46 @@
             <!--  Review Form -->
             <h4>Submit a evaluation</h4>
             <fieldset class="form-group">
-                <select ng-model="evaluate.mark" type="number" class="form-control" ng-options="mark.mark_id as mark.mark_value for mark in marks"  title="Marks" required>
+                <select ng-model="evaluate.mark" type="number" class="form-control"
+                        ng-options="mark.mark_id as mark.mark_value for mark in marks" title="Marks" required>
                     <option value="">Evaluate</option>
                 </select>
             </fieldset>
             <fieldset class="form-group">
-                <select ng-model="evaluate.student" type="text" class="form-control" ng-options="user.id as user.name for user in users"  title="Users" required>
+                <select ng-model="evaluate.student" type="text" class="form-control"
+                        ng-options="user.id as user.name for user in users.data" title="Users" required>
                     <option value="">Users</option>
                 </select>
 
             </fieldset>
             <fieldset class="form-group">
 
-                <select ng-model="evaluate.uf" type="text" class="form-control" ng-options="submodule.study_submodules_id as submodule.study_submodules_name for submodule in studySubmodules"  title="Submodules" required>
+                <select ng-model="evaluate.uf" type="text" class="form-control"
+                        ng-options="submodule.submoduleId as submodule.name for submodule in studySubmodules.data"
+                        title="Submodules" required>
                     <option value="">Submodules</option>
-                    </select>
+                </select>
             </fieldset>
             <div>Evaluate Form is : $$ evaluateForm.$valid $$</div>
             <fieldset class="form-group">
-                <input type="submit" class="btn btn-primary pull-right" value="Submit Evaluation" />
+                <input type="submit" class="btn btn-primary pull-right" value="Submit Evaluation"/>
                 <i ng-show="loading" class="fa fa-spinner fa-spin"></i>
             </fieldset>
         </form>
         <hr>
         <blockquote><p>Select user and get evaluation of him.</p></blockquote>
         <div class="row">
-        <div class="col-md-4">
-            <select ng-model="student" class="form-control" ng-options="user.id as user.name for user in users"  title="Users" required>
-                <option value="">Users</option>
-            </select>
+            <div class="col-md-4">
+                <select ng-model="student" class="form-control" ng-options="user.id as user.name for user in users.data"
+                        title="Users" required>
+                    <option value="">Users</option>
+                </select>
             </div>
-      <div class="col-md-4">
-        <button class="btn btn-primary" ng-click ="getUserEvaluations(student)">Get  evaluations</button>
-          <p> ID:$$student$$</p>
-      </div>
-    </div>
+            <div class="col-md-4">
+                <button class="btn btn-primary" ng-click="getUserEvaluations(student)">Get evaluations</button>
+                <p> ID:$$student$$</p>
+            </div>
+        </div>
         <hr>
         <div class="row">
             <div class="col-md-4">
@@ -65,10 +80,6 @@
                 </table>
             </div>
         </div>
-
-
-
-
 
 
     </div>

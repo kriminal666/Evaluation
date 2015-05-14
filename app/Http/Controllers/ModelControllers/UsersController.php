@@ -26,11 +26,11 @@ class UsersController extends ApiController
     public function index()
     {
 
-        $users = User::all();
 
+        $users = User::all();
         return $this->respond([
 
-            'data' => ($users->toArray())
+            'data' => $users->toArray(),
 
         ]);
     }
@@ -53,6 +53,8 @@ class UsersController extends ApiController
     public function store()
     {
         User::create(Request::all());
+
+        return $this->respondCreated('User created');
     }
 
     /**

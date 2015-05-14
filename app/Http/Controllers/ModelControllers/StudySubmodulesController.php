@@ -3,20 +3,27 @@
 use Evaluation\Http\Controllers\Api\ApiController;
 use Evaluation\Http\Requests;
 use Evaluation\StudySubmodules;
+use Evaluation\Transformers\StudySubmodulesTransformer;
 use Request;
 
 class StudySubmodulesController extends ApiController
 {
 
+    /**
+     * @var StudySubmodulesTransformer
+     */
+    protected $subModuleTransformer;
 
     /**
      * Create a new controller instance.
      *
-     *
+     * @param StudySubmodulesTransformer $subModuleTransformer
      */
-    public function __construct()
+    public function __construct(StudySubmodulesTransformer $subModuleTransformer)
     {
         $this->middleware('auth');
+
+        $this->subModuleTransformer = $subModuleTransformer;
     }
 
     /**
@@ -26,10 +33,11 @@ class StudySubmodulesController extends ApiController
      */
     public function index()
     {
-       $studySubModules = StudySubmodules::all();
+        $studySubModules = StudySubmodules::all();
+
         return $this->respond([
 
-            'data' => ($studySubModules->toArray())
+            'data' => $this->subModuleTransformer->transformCollection($studySubModules->toArray())
 
         ]);
     }
@@ -52,6 +60,8 @@ class StudySubmodulesController extends ApiController
     public function store()
     {
         StudySubmodules::create(Request::all());
+
+        return $this->respondCreated('Submodule created');
     }
 
     /**
@@ -62,7 +72,7 @@ class StudySubmodulesController extends ApiController
      */
     public function show($id)
     {
-        $studySubModule=  StudySubmodules::find($id);
+        $studySubModule = StudySubmodules::find($id);
 
         if (!$studySubModule) {
 
