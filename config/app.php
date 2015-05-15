@@ -144,6 +144,7 @@ return [
 		'Evaluation\Providers\ConfigServiceProvider',
 		'Evaluation\Providers\EventServiceProvider',
 		'Evaluation\Providers\RouteServiceProvider',
+        'Barryvdh\Cors\CorsServiceProvider'
 
 	],
 
