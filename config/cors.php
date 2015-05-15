@@ -17,10 +17,10 @@ return array(
      */
     'defaults' => array(
         'supportsCredentials' => false,
-        'allowedOrigins' => array(),
-        'allowedHeaders' => array(),
-        'allowedMethods' => array(),
-        'exposedHeaders' => array(),
+        'allowedOrigins' => array('*'),
+        'allowedHeaders' => array('*'),
+        'allowedMethods' => array('*'),
+        'exposedHeaders' => array('*'),
         'maxAge' => 0,
         'hosts' => array(),
     ),
