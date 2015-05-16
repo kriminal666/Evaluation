@@ -64,7 +64,7 @@
             console.log("cojones");
             $scope.userEvaluations = [];
             $scope.loading = true;
-            $http.get('/user/evaluations/' + $id).
+            $http.get('/user/'+ $id +'/evaluations/' ).
                 success(function (data, status, headers, config) {
                     $scope.userEvaluations = data;
                     $scope.loading = false;

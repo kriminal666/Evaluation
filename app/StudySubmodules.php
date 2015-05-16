@@ -63,4 +63,14 @@ class StudySubmodules extends Model
         return $this->hasMany('Evaluation\Evaluation', 'evaluation_study_subModule_id');
     }
 
+    /**
+     * This belongs to one module
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function studyModule()
+    {
+        return $this->belongsTo('Evaluation\StudyModule', 'study_submodules_study_module_id');
+    }
+
 }

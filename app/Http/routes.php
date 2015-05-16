@@ -27,12 +27,18 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::resource('studysubmodules', 'ModelControllers\StudySubmodulesController');
 
+    Route::resource('studymodules', 'ModelControllers\StudyModuleController');
+
 });
 
 
 Route::get('gradescale/{id}/marks', 'ModelControllers\GradeScaleController@getMarks');
 
-Route::get('/user/evaluations/{id}', 'ModelControllers\UsersController@getUserEvaluations');
+Route::get('/user/{id}/evaluations/', 'ModelControllers\UsersController@getUserEvaluations');
+
+Route::get('studymodule/{id}/submodules', 'ModelControllers\StudyModuleController@getSubModules');
+
+Route::get('studymodule/{id}/usersubmodulesevaluation', 'ModelControllers\StudyModuleController@getUsersSubModulesEvaluations');
 
 Route::get('test1', 'ModelControllers\MarkController@test');
 

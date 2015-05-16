@@ -21,7 +21,7 @@ class EvaluationController extends ApiController
      *
      * @param EvaluationTransformer $evaluationTransformer
      */
-    public function __construct(EvaluationTransformer $evaluationTransformer)
+    function __construct(EvaluationTransformer $evaluationTransformer)
     {
         $this->middleware('auth');
 
