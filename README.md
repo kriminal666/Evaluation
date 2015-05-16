@@ -17,3 +17,8 @@ Go to wiki documentation
 ##Evaluation-ng-admin (still don't works)
 
 [evaluation-ng-admin repository](https://github.com/kriminal666/evaluation-ng-admin)
+
+##Evaluation_module package
+Started doing package to use it in Packagist. Not finished.
+
+[Evaluation_module_package](https://github.com/kriminal666/Evaluation_module)
