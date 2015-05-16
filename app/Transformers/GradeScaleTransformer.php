@@ -12,7 +12,6 @@ namespace Evaluation\Transformers;
 class GradeScaleTransformer extends Transformer
 {
 
-
     /**
      * Transform GradeScale
      *

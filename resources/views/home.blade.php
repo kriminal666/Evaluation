@@ -9,7 +9,8 @@
 
 				<div class="panel-body">
 					You are logged in!<br />
-                    <blockquote><a href="/test">Evaluation></a></blockquote>
+                    <blockquote><a href="/test">Evaluation</a></blockquote>
+                    <blockquote><a href="/table">Evaluation-table</a></blockquote>
 
 				</div>
 			</div>

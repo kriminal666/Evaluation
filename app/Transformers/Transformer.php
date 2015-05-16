@@ -9,7 +9,6 @@
 abstract class Transformer
 {
 
-
     /**
      * Transform collection
      *

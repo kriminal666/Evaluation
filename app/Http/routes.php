@@ -47,6 +47,10 @@ Route::get('test', function () {
     return view('evaluation_test');
 });
 
+Route::get('table', function () {
+    return view('evaluation_table');
+});
+
 
 Route::get('marks', function () {
 
@@ -63,6 +67,6 @@ Route::controllers([
 
 //Get last query
 
-Event::listen('illuminate.query', function ($sql) {
+/*Event::listen('illuminate.query', function ($sql) {
     var_dump($sql);
-});
+});*/
