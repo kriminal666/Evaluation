@@ -106,7 +106,19 @@ class StudySubmodulesController extends ApiController
      */
     public function update($id)
     {
-        //
+        $subModule = StudySubmodules::findOrFail($id);
+
+        $subModule->study_submodules_name = Request::input('name');
+        $subModule->study_submodules_shortname = Request::input('shortName');
+        $subModule->study_submodules_study_module_id = Request::input('moduleId');
+        $subModule->study_submodules_courseid = Request::input('courseId');
+        $subModule->study_submodules_description = Request::input('description');
+        $subModule->study_submodules_order = Request::input('order');
+        $subModule->study_submodules_lastupdateUserId = Request::input('lastUpdateUserId');
+
+        $subModule->save();
+
+        return $subModule;
     }
 
     /**
@@ -117,7 +129,28 @@ class StudySubmodulesController extends ApiController
      */
     public function destroy($id)
     {
-        //
+        StudySubmodules::destroy($id);
+    }
+
+    /**
+     *Mark for deletion this
+     *
+     * @param $id
+     */
+    public function delete($id)
+    {
+        $subModule = StudySubmodules::findOrFail($id);
+        $subModule->delete();
+    }
+
+    /**
+     * this has many evaluations
+     *
+     * @return mixed
+     */
+    public function evaluation()
+    {
+        return $this->hasMany('Evaluation\Evaluation', 'evaluation_study_subModule_id');
     }
 
 }

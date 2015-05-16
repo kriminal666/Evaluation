@@ -110,7 +110,14 @@ class MarkController extends ApiController
      */
     public function update($id)
     {
-        //
+        $mark = Mark::findOrFail($id);
+
+        $mark->mark_value = Request::input('markValue');
+        $mark->mark_lastUpdateUserId = Request::input('lastUpdateUserId');
+
+        $mark->save();
+
+        return $mark;
     }
 
     /**
@@ -121,7 +128,19 @@ class MarkController extends ApiController
      */
     public function destroy($id)
     {
-        //
+        Mark::destroy($id);
+    }
+
+    /**
+     * Mark for deletion this
+     *
+     * @param $id
+     */
+    public function delete($id)
+    {
+        $mark = Mark::finfOrFail($id);
+
+        $mark->delete();
     }
 
     /**

@@ -62,6 +62,8 @@ class StudyModuleController extends ApiController
     public function store()
     {
         StudyModule::create(Request::all());
+
+        return $this->respondCreated('Study module created');
     }
 
     /**
@@ -105,7 +107,20 @@ class StudyModuleController extends ApiController
      */
     public function update($id)
     {
-        //
+        $studyModule = StudyModule::findOrFail($id);
+
+        $studyModule->study_module_description = Request::input('description');
+        $studyModule->study_module_name = Request::Input('name');
+        $studyModule->study_module_shortname = Request::input('shortName');
+        $studyModule->study_module_type = Request::input('type');
+        $studyModule->study_module_subtype = Request::input('subType');
+        $studyModule->study_module_order = Request::input('order');
+        $studyModule->study_module_hoursPerWeek = Request::input('hoursPerWeek');
+        $studyModule->study_module_lastupdateUserId = Request::input('lastUpdateUserId');
+
+        $studyModule->save();
+
+        return $studyModule;
     }
 
     /**
@@ -116,7 +131,18 @@ class StudyModuleController extends ApiController
      */
     public function destroy($id)
     {
-        //
+        StudyModule::destroy($id);
+    }
+
+    /**
+     * Mark for deletion this
+     *
+     * @param $id
+     */
+    public function delete($id)
+    {
+        $studyModule = StudyModule::findOrFail($id);
+        $studyModule->delete();
     }
 
     /**

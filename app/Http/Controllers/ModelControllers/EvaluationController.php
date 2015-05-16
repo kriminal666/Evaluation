@@ -35,8 +35,6 @@ class EvaluationController extends ApiController
      */
     public function index()
     {
-
-
         $evaluations = Evaluation::all();
 
         return $this->respond([
@@ -44,6 +42,17 @@ class EvaluationController extends ApiController
             'data' => $this->evaluationTransformer->transformCollection($evaluations->toArray())
 
         ]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function indexWithTrashed()
+    {
+       //return Evaluation::withTrashed()->get();
+
     }
 
     /**
@@ -112,17 +121,38 @@ class EvaluationController extends ApiController
     {
         $evaluation = Evaluation::finfOrFail($id);
 
+        $evaluation->evaluation_academic_period_id = Request::input('academicPeriodId');
+        $evaluation->evaluation_study_subModule_id = Request::input('subModuleId');
+        $evaluation->evaluation_student_id = Request::input('studentId');
+        $evaluation->evaluation_mark_id = Request::input('markId');
+        $evaluation->evaluation_lastUpdateUserId = Request::input('lastUpdateUserId');
+        $evaluation->save();
+
+        return $evaluation;
+
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove evaluation resource from storage.
      *
      * @param  int $id
      * @return Response
      */
     public function destroy($id)
     {
-        //
+        Evaluation::destroy($id);
+    }
+
+    /**
+     * Mark for deletion the evaluation
+     *
+     * @param $id
+     */
+    public function delete($id)
+    {
+        $evaluation = Evaluation::findOrFail($id);
+
+        $evaluation->delete();
     }
 
 

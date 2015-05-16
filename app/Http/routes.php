@@ -31,6 +31,7 @@ Route::group(['prefix' => 'api'], function () {
 
 });
 
+Route::get('evaluationswithTrashed', 'ModelControllers\EvaluationController@indexWithTrashed');
 
 Route::get('gradescale/{id}/marks', 'ModelControllers\GradeScaleController@getMarks');
 
@@ -62,7 +63,6 @@ Route::controllers([
 
 //Get last query
 
-/*Event::listen('illuminate.query', function($sql)
-{
- var_dump($sql);
- });*/
+Event::listen('illuminate.query', function ($sql) {
+    var_dump($sql);
+});

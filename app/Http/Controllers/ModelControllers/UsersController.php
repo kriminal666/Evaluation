@@ -99,7 +99,15 @@ class UsersController extends ApiController
      */
     public function update($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $user->name = Request::input('name');
+        $user->email = Request::input('email');
+        $user->users_lastUpdateUserId = Request::input('lastUpdateUserId');
+
+        $user->save();
+
+        return $user;
     }
 
     /**
@@ -110,7 +118,18 @@ class UsersController extends ApiController
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id);
+    }
+
+    /**
+     * mark for deletion this
+     *
+     * @param $id
+     */
+    public function delete($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
     }
 
     /**

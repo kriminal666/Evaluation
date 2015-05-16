@@ -107,8 +107,15 @@ class GradeScaleController extends ApiController
     public function update($id)
     {
         $gradeScale = GradeScale::find($id);
-        $gradeScale->grade_scale_description = Request::input('grade_scale_description');
+
+        $gradeScale->grade_scale_description = Request::input('description');
+        $gradeScale->grade_scale_lastUpdateUserId = Request::input('lastUpdateUserId');
+
         $gradeScale->save();
+
+        return $gradeScale;
+
+
     }
 
     /**
@@ -119,7 +126,19 @@ class GradeScaleController extends ApiController
      */
     public function destroy($id)
     {
-        //
+        GradeScale::destroy($id);
+    }
+
+    /**
+     * Mark for deletion this
+     *
+     * @param $id
+     */
+    public function delete($id)
+    {
+        $gradeScale = GradeScale::findOrFail($id);
+
+        $gradeScale->delete();
     }
 
     /**
