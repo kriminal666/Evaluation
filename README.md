@@ -13,3 +13,7 @@ Follow this link to all project used docs
 Go to wiki documentation
 
 [Wiki documentation](http://acacha.org/mediawiki/Usuari:Iván_Roldán/Módulo_Evaluación(Ebre-escool))
+
+##Evaluation-ng-admin (still don't works)
+
+[evaluation-ng-admin repository](https://github.com/kriminal666/evaluation-ng-admin)
