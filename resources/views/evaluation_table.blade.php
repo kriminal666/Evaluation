@@ -2,7 +2,26 @@
 
 @section('content')
 
-<div class="container" ng-app="testEvaluation">
+<div class="container" ng-app="testEvaluation" ng-controller="EvaluationTableController as EvaluationCtrl">
+    <div class="row">
+        <div class="col-md-4">
+            <select ng-model="module" class="" ng-options="module.moduleId as module.shortName for module in modules.data"
+                    title="Modules" ng-change="getSubModules(module)">
+                <option value="">Modules</option>
+            </select>
+        </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-md-4">
+                <select ng-model="moduleSubmodules" class="" ng-options="submodule.study_submodules_id as submodule.study_submodules_shortname for submodule in submodules"
+                        title="SubModules">
+                    <option value="">SubModules</option>
+                </select>
+            </div>
+            <p> ID:$$moduleSubmodules$$</p>
+            <hr/>
+    </div>
 <table class="table table-striped table-bordered table-hover dataTable" id="evaluations_table"
        aria-describedby="evaluations_table_info" style="width: 1315px;">
     <thead>
@@ -46,37 +65,22 @@
                 </span>
 
                 <p>
-                    <span ondblclick="study_module_onclick(this);" id="span_study_module_266"
-                          studymoduleid="266" data-rel="tooltip" class="label"
-                          data-original-title="Entorns de desenvolupament ( 266 ). Fernandez Morcillo, Cinta ( 38 ) ">
-                        <i class="icon-group bigger-120"></i>
-                        MP05
+                    <span ondblclick="" id=""
+                          studymoduleid="" data-rel="tooltip" class="label"
+                          data-original-title="">
+                        <i class=""></i>
+                        <select ng-model="module1" class="" ng-options="module.moduleId as module.shortName for module in modules.data"
+                                title="Modules" ng-change="getSubModules(module1)">
+                            <option value="">Modules</option>
+                            </select>
                     </span>
                 </p>
 
-                <div id="btn_group_10_266" class="btn-group">
-
-
-                    <button onclick="study_submodule_on_click(this,'btn_group_10_266',167,10);" data-rel="tooltip"
-                            class="btn btn-minier btn-inverse" id="btn_group_10_266_167" style="font-size: x-small;"
-                            data-original-title="UF1. Desenvolupament de programari (167) ( 30/11/-0001 - 30/11/-0001 )">
-                        UF1
-                        <i style="display:inline" id="btn_group_icon_10_266_167" class="icon-check bigger-120"></i>
-                    </button>
-                    <button onclick="study_submodule_on_click(this,'btn_group_10_266',168,10);" data-rel="tooltip"
-                            class="btn btn-minier btn-grey" id="btn_group_10_266_168" style="font-size: x-small;"
-                            data-original-title="UF2. Optimització del programari (168) ( 30/11/-0001 - 30/11/-0001 )">
-                        UF2
-                        <i style="display:none" id="btn_group_icon_10_266_168" class="icon-check bigger-120"></i>
-                    </button>
-                    <button onclick="study_submodule_on_click(this,'btn_group_10_266',169,10);" data-rel="tooltip"
-                            class="btn btn-minier btn-grey" id="btn_group_10_266_169" style="font-size: x-small;"
-                            data-original-title="UF3. Introducció al disseny orientat a objectes (169) ( 30/11/-0001 - 30/11/-0001 )">
-                        UF3
-                        <i style="display:none" id="btn_group_icon_10_266_169" class="icon-check bigger-120"></i>
-                    </button>
-
-
+                <div id="" class="">
+                    <select ng-model="moduleSubmodules" class="" ng-options="submodule.study_submodules_id as submodule.study_submodules_shortname for submodule in submodules"
+                            title="SubModules">
+                        <option value="">SubModules</option>
+                    </select>
                 </div>
 
             </center>
@@ -246,6 +250,10 @@
     </tr>
     </tbody>
 </table>
+
+
+
+
     </div>
 
     @endsection

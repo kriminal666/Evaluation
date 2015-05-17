@@ -82,7 +82,7 @@ class StudySubmodulesController extends ApiController
 
         return $this->respond([
 
-            'data' => $studySubModule
+            'data' => $this->subModuleTransformer->transform($studySubModule)
 
         ]);
     }
@@ -143,14 +143,18 @@ class StudySubmodulesController extends ApiController
         $subModule->delete();
     }
 
-    /**
-     * this has many evaluations
-     *
-     * @return mixed
-     */
-    public function evaluation()
+    public function getEvaluations($id)
     {
-        return $this->hasMany('Evaluation\Evaluation', 'evaluation_study_subModule_id');
+
+        $usersSubModulesEvaluations =  StudySubmodules::find($id)->evaluations()->get();
+
+        if (!$usersSubModulesEvaluations)
+        {
+            return $this->respondNotFound('Study SubModule does not exists');
+        }
+
+        return $usersSubModulesEvaluations->load('studySubmodules', 'user', 'mark');
     }
+
 
 }

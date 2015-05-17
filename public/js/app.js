@@ -77,5 +77,67 @@
         $scope.studySubmodules();
     });
 
+    app.controller('EvaluationTableController', function($scope, $http){
+        $scope.users = [];
+        $scope.modules = [];
+        $scope.submodules = [];
+        $scope.submoduleEvaluations = [];
+        $scope.evaluationMarks = [];
+
+
+        //get
+        $scope.getSubModules = function($id) {
+            $http.get('/studymodule/'+$id+'/submodules').
+                success(function(data,status,headers,config){
+                    $scope.submodules = data;
+                    console.log(data);
+
+                });
+
+        };
+        //get all modules
+        $scope.getModules = function() {
+            $http.get('/api/studymodules').
+                success(function(data,status,headers,config){
+                    $scope.modules = data;
+                    $scope.selected = $scope.modules[103];
+                });
+        };
+
+        $scope.getSubModuleEvaluations = function($id) {
+            $http.get('submodule/'+$id+'/evaluations').
+                success(function(data,status,headers,config){
+                    $scope.submoduleEvaluations = data;
+
+                });
+        };
+
+        $scope.marks = function () {
+            $http.get('gradescale/1/marks').
+                success(function (data, status, headers, config) {
+                    $scope.allMarks = data;
+
+                });
+        };
+
+        $scope.updateEvaluation = function($evaluationId,$user, $submodule, $markId){
+            console.log('user id:'+$user);
+            console.log('Mark id:'+$submodule);
+            console.log('evaluation id:'+$evaluationId);
+            console.log('Mark id:'+$markId);
+            $http.put('api/evaluations/'+$evaluationId,{
+                academicPeriodId:4,
+                subModuleId: $submodule,
+                studentId: $user,
+                markId: $markId
+            }).success(function(data,status,headers,config){
+                $scope.submoduleEvaluations = data;
+            });
+        };
+
+        $scope.getModules()
+        $scope.marks();
+    })
+
 
 })();

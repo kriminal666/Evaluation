@@ -176,7 +176,7 @@ class StudyModuleController extends ApiController
             return $this->respondNotFound('Study Module does not exists');
         }
 
-        return $usersSubModulesEvaluations->load('evaluation.user', 'evaluation.mark');
+        return $usersSubModulesEvaluations->load('evaluations.user', 'evaluations.mark');
     }
 
 }

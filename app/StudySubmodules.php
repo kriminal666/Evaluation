@@ -57,7 +57,7 @@ class StudySubmodules extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function evaluation()
+    public function evaluations()
     {
 
         return $this->hasMany('Evaluation\Evaluation', 'evaluation_study_subModule_id');
@@ -72,5 +72,6 @@ class StudySubmodules extends Model
     {
         return $this->belongsTo('Evaluation\StudyModule', 'study_submodules_study_module_id');
     }
+
 
 }

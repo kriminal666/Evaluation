@@ -25,7 +25,7 @@ class Evaluation extends Model
      * @var array
      */
     protected $fillable = ['evaluation_academic_period_id', 'evaluation_mark_id',
-        'evaluation_student_id', 'evaluation_study_subModule_id'];
+        'evaluation_student_id', 'evaluation_study_subModule_id', 'evaluation_lastUpdateUserId'];
 
     /**
      * The name of the "created at" column.

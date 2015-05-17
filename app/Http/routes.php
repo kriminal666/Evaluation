@@ -41,6 +41,8 @@ Route::get('studymodule/{id}/submodules', 'ModelControllers\StudyModuleControlle
 
 Route::get('studymodule/{id}/usersubmodulesevaluation', 'ModelControllers\StudyModuleController@getUsersSubModulesEvaluations');
 
+Route::get('submodule/{id}/evaluations', 'ModelControllers\StudySubmodulesController@getEvaluations');
+
 Route::get('test1', 'ModelControllers\MarkController@test');
 
 Route::get('test', function () {
@@ -49,6 +51,10 @@ Route::get('test', function () {
 
 Route::get('table', function () {
     return view('evaluation_table');
+});
+
+Route::get('table_test', function () {
+    return view('evaluation_table_test');
 });
 
 

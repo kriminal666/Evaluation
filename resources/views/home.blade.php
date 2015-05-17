@@ -11,6 +11,7 @@
 					You are logged in!<br />
                     <blockquote><a href="/test">Evaluation</a></blockquote>
                     <blockquote><a href="/table">Evaluation-table</a></blockquote>
+                    <blockquote><a href="/table_test">Evaluation-table2</a></blockquote>
 
 				</div>
 			</div>

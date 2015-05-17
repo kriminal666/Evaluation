@@ -94,7 +94,7 @@ class EvaluationController extends ApiController
 
         return $this->respond([
 
-            'data' => $this->evaluationTransformer->transform($evaluation)
+            'data' => $this->evaluationTransformer->transform($evaluation->toArray())
 
         ]);
 
@@ -119,7 +119,8 @@ class EvaluationController extends ApiController
      */
     public function update($id)
     {
-        $evaluation = Evaluation::finfOrFail($id);
+
+        $evaluation = Evaluation::findOrFail($id);
 
         $evaluation->evaluation_academic_period_id = Request::input('academicPeriodId');
         $evaluation->evaluation_study_subModule_id = Request::input('subModuleId');
