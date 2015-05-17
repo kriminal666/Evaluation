@@ -64,7 +64,7 @@
             console.log("cojones");
             $scope.userEvaluations = [];
             $scope.loading = true;
-            $http.get('/user/'+ $id +'/evaluations/' ).
+            $http.get('/user/' + $id + '/evaluations/').
                 success(function (data, status, headers, config) {
                     $scope.userEvaluations = data;
                     $scope.loading = false;
@@ -77,65 +77,124 @@
         $scope.studySubmodules();
     });
 
-    app.controller('EvaluationTableController', function($scope, $http){
+    app.controller('EvaluationTableController', function ($scope, $http) {
         $scope.users = [];
         $scope.modules = [];
         $scope.submodules = [];
         $scope.submoduleEvaluations = [];
         $scope.evaluationMarks = [];
+        $scope.showTable = false;
 
 
         //get
-        $scope.getSubModules = function($id) {
-            $http.get('/studymodule/'+$id+'/submodules').
-                success(function(data,status,headers,config){
+        $scope.getSubModules = function ($id) {
+            if ($id == null) {
+                return;
+            }
+            $http.get('/studymodule/' + $id + '/submodules').
+                success(function (data, status, headers, config) {
                     $scope.submodules = data;
                     console.log(data);
+
+                }).error(function (data, status, headers, config) {
+                    return status;
 
                 });
 
         };
         //get all modules
-        $scope.getModules = function() {
+        $scope.getModules = function () {
             $http.get('/api/studymodules').
-                success(function(data,status,headers,config){
+                success(function (data, status, headers, config) {
                     $scope.modules = data;
                     $scope.selected = $scope.modules[103];
+                }).error(function (data, status, headers, config) {
+                    return status;
+
                 });
         };
 
-        $scope.getSubModuleEvaluations = function($id) {
-            $http.get('submodule/'+$id+'/evaluations').
-                success(function(data,status,headers,config){
+        //get evaluations from subModule
+        $scope.getSubModuleEvaluations = function ($id) {
+            if ($id == null) {
+                return;
+            }
+            $http.get('submodule/' + $id + '/evaluations').
+                success(function (data, status, headers, config) {
                     $scope.submoduleEvaluations = data;
+                    $scope.showTable = true;
+
+                }).error(function (data, status, headers, config) {
+                    return status;
 
                 });
         };
 
+        //Get all marks
         $scope.marks = function () {
             $http.get('gradescale/1/marks').
                 success(function (data, status, headers, config) {
                     $scope.allMarks = data;
 
+                }).error(function (data, status, headers, config) {
+                    return status;
+
                 });
         };
 
-        $scope.updateEvaluation = function($evaluationId,$user, $submodule, $markId){
-            console.log('user id:'+$user);
-            console.log('Mark id:'+$submodule);
-            console.log('evaluation id:'+$evaluationId);
-            console.log('Mark id:'+$markId);
-            $http.put('api/evaluations/'+$evaluationId,{
-                academicPeriodId:4,
-                subModuleId: $submodule,
+        //Update mark of user
+        $scope.updateEvaluation = function ($evaluationId, $user, $academicPeriod, $subModule, $markId) {
+            console.log('user id:' + $user);
+            console.log('Academic Period: ' + $academicPeriod);
+            console.log('submodule id:' + $subModule);
+            console.log('evaluation id:' + $evaluationId);
+            console.log('Mark id:' + $markId);
+            if ($markId == null) {
+                return;
+            }
+            $http.put('api/evaluations/' + $evaluationId, {
+                academicPeriodId: $academicPeriod,
+                subModuleId: $subModule,
                 studentId: $user,
                 markId: $markId
-            }).success(function(data,status,headers,config){
-                $scope.submoduleEvaluations = data;
-            });
+            })
+                .success(function (data, status, headers, config) {
+
+                })
+                .error(function (data, status, headers, config) {
+                    return status;
+
+                });
         };
 
-        $scope.getModules()
+        //Mark for deletion evaluation
+        $scope.deleteEvaluation = function ($index, $userEvaluation) {
+            console.log($index);
+            $http.delete('/evaluation/' + $userEvaluation).success(function () {
+                $scope.submoduleEvaluations.splice($index, 1);
+            }).error(function (data, status, headers, config) {
+                return status;
+
+            });
+
+
+        };
+
+        //Destroy evaluation
+        $scope.destroyEvaluation = function ($index, $userEvaluation) {
+            console.log('Index: ' + $index);
+            console.log('evaluation id: ' + $userEvaluation);
+            $http.delete('/api/evaluations/' + $userEvaluation).success(function () {
+                $scope.submoduleEvaluations.splice($index, 1);
+            }).error(function (data, status, headers, config) {
+                return status;
+
+            });
+
+
+        };
+
+        $scope.getModules();
         $scope.marks();
     })
 

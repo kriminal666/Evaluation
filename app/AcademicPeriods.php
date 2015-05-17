@@ -7,7 +7,7 @@ use Illuminate\database\Eloquent\SoftDeletes;
 class AcademicPeriods extends Model
 {
 
-    //Use softdeletes
+    //Use softDeletes
     use SoftDeletes;
 
     /**

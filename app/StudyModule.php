@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class StudyModule extends Model
 {
 
-    //Use softdeletes
+    //Use softDeletes
     use SoftDeletes;
 
     /**

@@ -43,14 +43,16 @@ Route::get('studymodule/{id}/usersubmodulesevaluation', 'ModelControllers\StudyM
 
 Route::get('submodule/{id}/evaluations', 'ModelControllers\StudySubmodulesController@getEvaluations');
 
-Route::get('test1', 'ModelControllers\MarkController@test');
+Route::get('mark/{id}/gradescale', 'ModelControllers\MarkController@gradeScale');
+
+Route::delete('evaluation/{id}', 'ModelControllers\EvaluationController@delete');
 
 Route::get('test', function () {
     return view('evaluation_test');
 });
 
 Route::get('table', function () {
-    return view('evaluation_table');
+    return view('evaluation_table_test');
 });
 
 Route::get('table_test', function () {

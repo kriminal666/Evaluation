@@ -153,7 +153,7 @@ class StudySubmodulesController extends ApiController
             return $this->respondNotFound('Study SubModule does not exists');
         }
 
-        return $usersSubModulesEvaluations->load('studySubmodules', 'user', 'mark');
+        return $usersSubModulesEvaluations->load('studySubmodules', 'academicPeriods', 'user', 'mark');
     }
 
 

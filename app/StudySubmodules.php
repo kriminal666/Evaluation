@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class StudySubmodules extends Model
 {
 
-    //Use softdeletes
+    //Use softDeletes
     use SoftDeletes;
 
     /**
@@ -28,8 +28,13 @@ class StudySubmodules extends Model
      *
      * @var array
      */
-    protected $fillable = ['study_submodules_shortname', 'study_submodules_name',
-        'study_submodules_study_module_id', 'study_submodules_description'];
+    protected $fillable = [
+
+        'study_submodules_shortname',
+        'study_submodules_name',
+        'study_submodules_study_module_id',
+        'study_submodules_description'
+    ];
 
     /**
      * The name of the "created at" column.

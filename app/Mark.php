@@ -1,9 +1,17 @@
 <?php namespace Evaluation;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Mark extends Model
 {
+    use SoftDeletes;
+    /**
+     * Soft delete field
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
 
     /**
      * The database table used by the model.
@@ -60,7 +68,7 @@ class Mark extends Model
     public function gradeScaleMark()
     {
         return $this->hasMany('Evaluation\GradeScaleMark', 'grade_scale_mark_markID')->select(array('grade_scale_mark_markID'
-            , 'grade_scale_mark_gradeScaleID'));
+        , 'grade_scale_mark_gradeScaleID'));
     }
 
 

@@ -1,13 +1,21 @@
 <?php namespace Evaluation;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Response;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property string grade_scale_description
  */
-class GradeScale extends GradeScaleMark
+class GradeScale extends Model
 {
+
+    use SoftDeletes;
+    /**
+     * Soft delete field
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
 
     /**
      * The database table used by the model.

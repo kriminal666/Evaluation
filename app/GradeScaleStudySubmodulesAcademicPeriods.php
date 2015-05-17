@@ -1,9 +1,18 @@
 <?php namespace Evaluation;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class GradeScaleStudySubmodulesAcademicPeriods extends Model
 {
+
+    use SoftDeletes;
+    /**
+     * Soft delete field
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
 
     /**
      * The database table used by the model.
