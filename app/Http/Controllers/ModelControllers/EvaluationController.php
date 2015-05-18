@@ -14,7 +14,7 @@ class EvaluationController extends ApiController
     /**
      * @var EvaluationTransformer
      */
-    protected $gradeScaleTransformer;
+    protected $evaluationTransformer;
 
     /**
      * Create a new controller instance.
@@ -51,7 +51,7 @@ class EvaluationController extends ApiController
      */
     public function indexWithTrashed()
     {
-       //return Evaluation::withTrashed()->get();
+        //return Evaluation::withTrashed()->get();
 
     }
 

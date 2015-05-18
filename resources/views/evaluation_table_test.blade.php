@@ -29,7 +29,7 @@
         </div>
         <br/>
 
-        <table id="evaluations_table" class="display dataTable" ng-show="showTable">
+        <table ng-model="evaluations_table" class="display dataTable" ng-show="showTable">
             <thead>
             <tr>
                 <th>Foto</th>

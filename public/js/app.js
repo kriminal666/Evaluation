@@ -84,6 +84,7 @@
         $scope.submoduleEvaluations = [];
         $scope.evaluationMarks = [];
         $scope.showTable = false;
+        $scope.evaluations_table= $('#evaluations_table');
 
 
         //get
@@ -123,6 +124,8 @@
                 success(function (data, status, headers, config) {
                     $scope.submoduleEvaluations = data;
                     $scope.showTable = true;
+                    $scope.evaluations_table.ajax.reload();
+
 
                 }).error(function (data, status, headers, config) {
                     return status;
@@ -193,6 +196,10 @@
 
 
         };
+
+        $scope.reloadTable = function(){
+            evaluations_table.ajax.reload(null, true);
+        }
 
         $scope.getModules();
         $scope.marks();
