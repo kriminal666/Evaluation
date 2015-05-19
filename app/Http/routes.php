@@ -35,7 +35,9 @@ Route::get('evaluationswithTrashed', 'ModelControllers\EvaluationController@inde
 
 Route::get('gradescale/{id}/marks', 'ModelControllers\GradeScaleController@getMarks');
 
-Route::get('/user/{id}/evaluations/', 'ModelControllers\UsersController@getUserEvaluations');
+Route::get('user/{id}/evaluations/', 'ModelControllers\UsersController@getUserEvaluations');
+
+Route::get('usergroup/{kl}', 'ModelControllers\UsersController@getGroup');
 
 Route::get('studymodule/{id}/submodules', 'ModelControllers\StudyModuleController@getSubModules');
 

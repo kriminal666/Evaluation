@@ -115,7 +115,6 @@ class GradeScaleController extends ApiController
 
         return $gradeScale;
 
-
     }
 
     /**

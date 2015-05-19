@@ -72,9 +72,41 @@
     <script type="text/javascript" src="{{ asset('/data_tables/extensions/ColReorder/js/dataTables.colReorder.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/data_tables/extensions/ColVis/js/dataTables.colVis.js') }}"></script>
 <script type="text/javascript">
+
     $(document).ready(function(){
-        $('#evaluations_table').DataTable();
-    });
+        var table = $('evaluations_table').DataTable();
+
+        MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+
+        var observer = new MutationObserver(function(mutations, observer) {
+            // fired when a mutation occurs
+            console.log('Mutation ocurred');
+            table.ajax.reload();
+
+            // ...
+        });
+
+// define what element should be observed by the observer
+// and what types of mutations trigger the callback
+        observer.observe(document.getElementById('evaluations_table'), {
+            subtree: true,
+            attributes: true
+            //...
+        });
+
+
+        });
+
+
+
+
+
+
+
+
+
+
+
 </script>
 </body>
 </html>

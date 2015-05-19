@@ -143,4 +143,10 @@ class UsersController extends ApiController
         return User::findOrFail($id)->evaluations()->with('mark', 'user', 'studysubmodules', 'academicperiods')->get();
     }
 
+
+    public function getGroup($id= array())
+    {
+        return User::find($id);
+    }
+
 }
