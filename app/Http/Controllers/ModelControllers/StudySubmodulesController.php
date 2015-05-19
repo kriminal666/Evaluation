@@ -143,17 +143,22 @@ class StudySubmodulesController extends ApiController
         $subModule->delete();
     }
 
+    /**
+     * Get evaluations of one subModule
+     *
+     * @param $id
+     * @return mixed
+     */
     public function getEvaluations($id)
     {
 
-        $usersSubModulesEvaluations =  StudySubmodules::find($id)->evaluations()->get();
+        $usersSubModulesEvaluations = StudySubmodules::find($id)->evaluations()->get();
 
-        if (!$usersSubModulesEvaluations)
-        {
+        if (!$usersSubModulesEvaluations) {
             return $this->respondNotFound('Study SubModule does not exists');
         }
 
-        return $usersSubModulesEvaluations->load('studySubmodules', 'academicPeriods', 'user', 'mark');
+        return $usersSubModulesEvaluations->load('studySubModules', 'academicPeriods', 'user', 'mark');
     }
 
 

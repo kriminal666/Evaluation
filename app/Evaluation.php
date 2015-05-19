@@ -54,7 +54,8 @@ class Evaluation extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user(){
+    public function user()
+    {
 
         return $this->belongsTo('Evaluation\User', 'evaluation_student_id');
     }
@@ -64,9 +65,10 @@ class Evaluation extends Model
      *
      * @return mixed
      */
-    public function mark(){
+    public function mark()
+    {
 
-        return $this -> belongsTo('Evaluation\Mark', 'evaluation_mark_id')->select(array('mark_id', 'mark_value'));
+        return $this->belongsTo('Evaluation\Mark', 'evaluation_mark_id')->select(array('mark_id', 'mark_value'));
     }
 
     /**
@@ -74,7 +76,8 @@ class Evaluation extends Model
      *
      * @return mixed
      */
-    public function studySubmodules(){
+    public function studySubModules()
+    {
 
         return $this->belongsto('Evaluation\StudySubmodules', 'evaluation_study_subModule_id')
             ->select(array('study_submodules_id', 'study_submodules_shortname', 'study_submodules_name'));
@@ -85,7 +88,8 @@ class Evaluation extends Model
      *
      * @return mixed
      */
-    public function academicPeriods(){
+    public function academicPeriods()
+    {
 
         return $this->belongsTo('Evaluation\AcademicPeriods', 'evaluation_academic_period_id')
             ->select(array('academic_periods_id', 'academic_periods_name'));

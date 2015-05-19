@@ -3,6 +3,8 @@
 use Evaluation\Http\Controllers\Api\ApiController;
 use Evaluation\Http\Requests;
 use Evaluation\User;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Input;
 use Request;
 
 class UsersController extends ApiController
@@ -143,10 +145,22 @@ class UsersController extends ApiController
         return User::findOrFail($id)->evaluations()->with('mark', 'user', 'studysubmodules', 'academicperiods')->get();
     }
 
-
-    public function getGroup($id= array())
+    /**
+     * Get one users group evaluations
+     *
+     * @return Collection
+     */
+    public function getGroupEvaluations()
     {
-        return User::find($id);
+
+        $users = User::find(Input::get("id"));
+        $aux = new Collection();
+        foreach ($users as $user) {
+            $aux->push($user->load('evaluations', 'evaluations.mark', 'evaluations.studysubmodules'));
+        }
+
+        return $aux;
+
     }
 
 }

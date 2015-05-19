@@ -37,7 +37,7 @@ Route::get('gradescale/{id}/marks', 'ModelControllers\GradeScaleController@getMa
 
 Route::get('user/{id}/evaluations/', 'ModelControllers\UsersController@getUserEvaluations');
 
-Route::get('usergroup/{kl}', 'ModelControllers\UsersController@getGroup');
+Route::match(array('GET', 'POST'), 'usersgroupevaluations', 'ModelControllers\UsersController@getGroupEvaluations');
 
 Route::get('studymodule/{id}/submodules', 'ModelControllers\StudyModuleController@getSubModules');
 
