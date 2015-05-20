@@ -69,6 +69,7 @@ class Evaluation extends Model
     {
 
         return $this->belongsTo('Evaluation\Mark', 'evaluation_mark_id')->select(array('mark_id', 'mark_value'));
+
     }
 
     /**
@@ -80,7 +81,7 @@ class Evaluation extends Model
     {
 
         return $this->belongsto('Evaluation\StudySubmodules', 'evaluation_study_subModule_id')
-            ->select(array('study_submodules_id', 'study_submodules_shortname', 'study_submodules_name'));
+            ->select(array('study_submodules_id', 'study_submodules_shortname', 'study_submodules_name', 'study_submodules_study_module_id'));
     }
 
     /**

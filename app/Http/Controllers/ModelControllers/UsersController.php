@@ -153,10 +153,13 @@ class UsersController extends ApiController
     public function getGroupEvaluations()
     {
 
+
         $users = User::find(Request::input('id'));
         $aux = new Collection();
         foreach ($users as $user) {
-            $aux->push($user->load('evaluations', 'evaluations.mark', 'evaluations.studysubmodules'));
+
+            $aux->push($user->load('evaluations', 'evaluations.mark', 'evaluations.studysubmodules')
+                );
         }
 
         return $aux;

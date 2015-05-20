@@ -18,6 +18,10 @@
                                     it.</strong></p>
                             <a href="/table_test">Evaluation-table</a>
                         </blockquote>
+                        <blockquote>
+                            <p><strong>Another test.</strong></p>
+                            <a href="/table_testb">Evaluation-tableb</a>
+                        </blockquote>
 
                     </div>
                 </div>

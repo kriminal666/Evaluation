@@ -78,5 +78,10 @@ class StudySubmodules extends Model
         return $this->belongsTo('Evaluation\StudyModule', 'study_submodules_study_module_id');
     }
 
+    public function scopeFilterModule($moduleId)
+    {
+        return $this->studyModule()->where('study_submodules_study_module_id', $moduleId);
+    }
+
 
 }
