@@ -96,5 +96,11 @@ class Evaluation extends Model
             ->select(array('academic_periods_id', 'academic_periods_name'));
     }
 
+    public function scopeFilterModule($moduleId)
+    {
+        //$this->studySubModules()->where('study_submodules_study_module_id', $moduleId);
+       return $moduleId;
+    }
+
 
 }

@@ -153,16 +153,18 @@ class UsersController extends ApiController
     public function getGroupEvaluations()
     {
 
+//        $users = User::with(['evaluations.studysubmodules' => function($q){
+//            $q->where('study_submodules_study_module_id', Request::input('module'));
+//        }])->with('evaluations.mark')->find(Request::input('id'));
 
-        $users = User::find(Request::input('id'));
-        $aux = new Collection();
-        foreach ($users as $user) {
+        $users = User::with(['evaluations'
+            => function($query){
+                    $query->whereHas('studysubmodules', function($q){
+                        $q->where('study_submodules_study_module_id', Request::input('module'));
+                    })->with('studysubmodules','mark');
+              }])->find(Request::input('id'));
 
-            $aux->push($user->load('evaluations', 'evaluations.mark', 'evaluations.studysubmodules')
-                );
-        }
-
-        return $aux;
+        return $users;
 
     }
 
