@@ -65,6 +65,10 @@ Route::get('table_testb', function () {
     return view('evaluation_tableb');
 });
 
+Route::get('table_static', function () {
+    return view('evaluation_static');
+});
+
 
 Route::get('marks', function () {
 

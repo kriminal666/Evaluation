@@ -1,84 +1,9 @@
-
 var data2=[];
 (function () {
     var app = angular.module('testEvaluation', [], function ($interpolateProvider) {
         $interpolateProvider.startSymbol('$$');
         $interpolateProvider.endSymbol('$$');
     });
-
-    app.controller('FormController', function ($scope, $http) {
-        $scope.loading = false;
-        $scope.evaluates = [];
-        $scope.marks = [];
-        $scope.users = [];
-        $scope.userEvaluations = [];
-        $scope.studySubmodules = [];
-        $scope.response = false;
-        $scope.message = "";
-        $scope.marks = function () {
-            $scope.loading = true;
-            $http.get('gradescale/1/marks').
-                success(function (data, status, headers, config) {
-                    $scope.marks = data;
-                    $scope.loading = false;
-                });
-        };
-
-        $scope.users = function () {
-            $scope.loading = true;
-            $http.get('/api/users').
-                success(function (data, status, headers, config) {
-                    $scope.users = data;
-                    $scope.loading = false;
-                });
-        };
-
-        $scope.studySubmodules = function () {
-            $scope.loading = true;
-            $http.get('/api/studysubmodules').
-                success(function (data, status, headers, config) {
-                    $scope.studySubmodules = data;
-                    $scope.loading = false;
-                });
-        };
-
-        $scope.addEvaluation = function () {
-            $scope.loading = true;
-            $http.post('/api/evaluations', {
-                evaluation_academic_period_id: 4,
-                evaluation_mark_id: $scope.evaluate.mark,
-                evaluation_student_id: $scope.evaluate.student,
-                evaluation_study_subModule_id: $scope.evaluate.uf
-            }).success(function (data, status, headers, config) {
-                $scope.evaluates.push(data);
-                console.log(data);
-                $scope.response = true;
-                $scope.message = data.message;
-                $scope.loading = false;
-            }).error(function (data, status, headers, config) {
-                return status;
-
-            });
-
-        };
-
-        $scope.getUserEvaluations = function ($id) {
-            console.log("cojones");
-            $scope.userEvaluations = [];
-            $scope.loading = true;
-            $http.get('/user/' + $id + '/evaluations/').
-                success(function (data, status, headers, config) {
-                    $scope.userEvaluations = data;
-                    $scope.loading = false;
-
-                });
-        };
-
-        $scope.marks();
-        $scope.users();
-        $scope.studySubmodules();
-    });
-
     app.controller('EvaluationTableController', function ($scope, $http) {
         $scope.users = [];
         $scope.modules = [];
@@ -86,6 +11,7 @@ var data2=[];
         $scope.submoduleEvaluations = [];
         $scope.evaluationMarks = [];
         $scope.showTable = false;
+
 
 
 
@@ -97,6 +23,9 @@ var data2=[];
             $http.get('/studymodule/' + $id + '/submodules').
                 success(function (data, status, headers, config) {
                     $scope.submodules = data;
+                    $scope.uf1 = $scope.submodules[0].study_submodules_id;
+                    $scope.uf2 = $scope.submodules[1].study_submodules_id;
+                    $scope.uf3 = $scope.submodules[2].study_submodules_id;
                     console.log(data);
                     $scope.usersGroupEvaluations($id);
                     console.log('hemos llamado al método');
@@ -156,7 +85,7 @@ var data2=[];
             console.log('submodule id:' + $subModule);
             console.log('evaluation id:' + $evaluationId);
             console.log('Mark id:' + $markId);
-            if ($markId == null) {
+            if ($markId== null) {
                 return;
             }
             $http.put('api/evaluations/' + $evaluationId, {
@@ -203,86 +132,79 @@ var data2=[];
 
         //
         $scope.usersGroupEvaluations = function ($id) {
-                console.log('Estamos en el método de buscar evaluaciones '+$id);
+            console.log('Estamos en el método de buscar evaluaciones '+$id);
             $http.post('usersgroupevaluations', {
                 id: [16,37],
                 module: $id
 
             }).success(function (data, status, headers, config) {
 
-                //console.log(data);
+                console.log('success de la petición');
 
                 var str = "";
                 for (var i = 0, l = data.length; i < l; i++) {
 
-                  str = "{\"userId\":\""+ data[i].id+"\",\"username\":\""+ data[i].name+"\"";
+                    str = "{\"userId\":\""+ data[i].id+"\",\"username\":\""+ data[i].name+"\"";
 
-                     var evaluations = data[i].evaluations;
+                    var evaluations = data[i].evaluations;
                     for (var j = 0, le = evaluations.length; j < le; j++) {
-                            //",\"evaluationId"+j+"\":\""+evaluations[j].evaluation_id+ "\"
 
-                        str=str+",\"markId"+j+"\":\""+evaluations[j].mark.mark_id+"\"";
+
+                        str=str+",\"evaluationId"+j+"\":\""+evaluations[j].evaluation_id+"\""+
+                        ",\"markId"+j+"\":\""+evaluations[j].mark.mark_id+"\"";
 
 
                     }
                     str = str+"}";
-                   var json = JSON.parse( str );
+                    var json = JSON.parse( str );
                     data2.push(json);
-
+                    $scope.showTable = true;
 
                 }
+
+                $scope.userId1 = data2[0].userId;
+                console.log('Acabo de darle valor al userid:'+$scope.IdUser1);
                 initdataTables();
 
-                })
+            })
                 .error(function (data, status, headers, config) {
                     return status;
 
                 });
         };
 
+        $scope.setToMark = function () {
+            $scope.marks = $scope.allMarks.filter(function (item) {
+                return item.id == 1
+            })[0];
+        }
+
         $scope.getModules();
         $scope.marks();
 
-        //initdataTables();
+
     })
 
 
 })();
 
-//now declare datatables
-function initdataTables(){
+
+
+function initdataTables() {
     console.log(data2);
     console.log('estamos en init dataTables');
-    var oTable = $('#evaluations_table');
-    //for(var i = 0;i<data2.length; i++){
-    //
-    //    oTable.row.add( [
-    //        'Foto',
-    //        'Tipo',
-    //        'Oculto',
-    //        'Lastname 1',
-    //        'Lastname 2',
-    //        data2[i].username,
-    //        'Academic Course',
-    //        data2[i].markId0,
-    //        data2[i].markId1,
-    //        data2[i].markId3
-    //    ] ).draw();
-    //
-    //}
+    var oTable = $('#evaluations_static').DataTable();
+    //Init values to selects
+    //var element = document.getElementById('select1');
+    //element.value = data2[0].markId0;
 
 
+        $("#select1").val(data2[0].markId0);
+        $("#select3").val(data2[0].markId1);
+        $("#select2").val(data2[0].markId2);
+        $("#select4").val(data2[1].markId0);
+        $("#select5").val(data2[1].markId1);
+        $("#select6").val(data2[1].markId2);
 
-}
 
-
-
-function waitSeconds(iMilliSeconds) {
-    var counter= 0
-        , start = new Date().getTime()
-        , end = 0;
-    while (counter < iMilliSeconds) {
-        end = new Date().getTime();
-        counter = end - start;
-    }
 }

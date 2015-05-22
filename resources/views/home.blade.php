@@ -22,6 +22,10 @@
                             <p><strong>Another test.</strong></p>
                             <a href="/table_testb">Evaluation-tableb</a>
                         </blockquote>
+                        <blockquote>
+                            <p><strong>Another test.</strong></p>
+                            <a href="/table_static">Evaluation-static</a>
+                        </blockquote>
 
                     </div>
                 </div>

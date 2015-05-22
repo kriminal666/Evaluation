@@ -24,7 +24,7 @@
                 <th>Lastname 2</th>
                 <th>Name</th>
                 <th>Academic Course</th>
-                <th ng-repeat="submodule in submodules" class="uf">
+                <th ng-model="submodule" ng-value="submodule.study_submodules_id" ng-repeat="submodule in submodules" class="uf">
                     <label class="hidden id">$$submodule.study_submodules_id$$</label>
                     $$submodule.study_submodules_shortname$$</th>
 

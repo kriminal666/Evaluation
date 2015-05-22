@@ -76,7 +76,7 @@
                 <td ng-model="submodule" ng-value="submodule = evaluation.study_submodules.study_submodules_id">
                     $$evaluation.study_submodules.study_submodules_name $$
                 </td>
-                <td><select ng-model="marks" class="" ng-options="mark.mark_id as mark.mark_value for mark in allMarks"
+                <td><select ng-model="marks" class="" ng-options="mark as mark.mark_value  for mark in allMarks track by mark.mark_id"
                             title="Marks" ng-init="marks =  evaluation.mark.mark_id"
                             ng-change="updateEvaluation(userEvaluation,userId,academicPeriod,submodule,marks)">
                         <option value="">Evaluate</option>

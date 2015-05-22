@@ -66,11 +66,12 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <!-- angular.js and personal app.js-->
     <script type="text/javascript" src="{{ asset('/js/angular.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <!--<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>-->
     <!--data_tables-->
     <script type="text/javascript" src="{{ asset('/data_tables/media/js/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/data_tables/extensions/ColReorder/js/dataTables.colReorder.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/data_tables/extensions/ColVis/js/dataTables.colVis.js') }}"></script>
-    <!--<script type="text/javascript" src="{{asset('/js/data_table.js')}}"></script>-->
+    <script type="text/javascript" src="{{asset('/js/static_table.js')}}"></script>
+
 </body>
 </html>
