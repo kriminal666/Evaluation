@@ -146,23 +146,18 @@ class UsersController extends ApiController
     }
 
     /**
-     * Get one users group evaluations
+     * Get one users group evaluations filtered by module
      *
      * @return Collection
      */
     public function getGroupEvaluations()
     {
-
-//        $users = User::with(['evaluations.studysubmodules' => function($q){
-//            $q->where('study_submodules_study_module_id', Request::input('module'));
-//        }])->with('evaluations.mark')->find(Request::input('id'));
-
         $users = User::with(['evaluations'
-            => function($query){
-                    $query->whereHas('studysubmodules', function($q){
-                        $q->where('study_submodules_study_module_id', Request::input('module'));
-                    })->with('studysubmodules','mark');
-              }])->find(Request::input('id'));
+        => function ($query) {
+                $query->whereHas('studysubmodules', function ($q) {
+                    $q->where('study_submodules_study_module_id', Request::input('module'));
+                })->with('studysubmodules', 'mark');
+            }])->find(Request::input('id'));
 
         return $users;
 

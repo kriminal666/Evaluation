@@ -1,3 +1,5 @@
+
+var data2=[];
 (function () {
     var app = angular.module('testEvaluation', [], function ($interpolateProvider) {
         $interpolateProvider.startSymbol('$$');
@@ -96,6 +98,8 @@
                 success(function (data, status, headers, config) {
                     $scope.submodules = data;
                     console.log(data);
+                    $scope.usersGroupEvaluations($id);
+                    console.log('hemos llamado al método');
 
                 }).error(function (data, status, headers, config) {
                     return status;
@@ -108,7 +112,7 @@
             $http.get('/api/studymodules').
                 success(function (data, status, headers, config) {
                     $scope.modules = data;
-                    $scope.selected = $scope.modules[103];
+
                 }).error(function (data, status, headers, config) {
                     return status;
 
@@ -197,13 +201,88 @@
 
         };
 
-        $scope.reloadTable = function(){
-            evaluations_table.ajax.reload(null, true);
-        }
+        //
+        $scope.usersGroupEvaluations = function ($id) {
+                console.log('Estamos en el método de buscar evaluaciones '+$id);
+            $http.post('usersgroupevaluations', {
+                id: [16,37],
+                module: $id
+
+            }).success(function (data, status, headers, config) {
+
+                //console.log(data);
+
+                var str = ""
+                for (var i = 0, l = data.length; i < l; i++) {
+
+                  str = "{\"userId\":\""+ data[i].id+"\",\"username\":\""+ data[i].name+"\"";
+
+                     var evaluations = data[i].evaluations;
+                    for (var j = 0, le = evaluations.length; j < le; j++) {
+
+                        str=str+",\"evaluationId"+j+"\":\""+evaluations[j].evaluation_id+
+                           "\",\"markId"+j+"\":\""+evaluations[j].mark.mark_id+"\"";
+
+
+                    }
+                    str = str+"}";
+                   var json = JSON.parse( str );
+                    data2.push(json);
+
+
+                }
+                initdataTables();
+
+                })
+                .error(function (data, status, headers, config) {
+                    return status;
+
+                });
+        };
 
         $scope.getModules();
         $scope.marks();
+
+        //initdataTables();
     })
 
 
 })();
+
+//now declare datatables
+function initdataTables(){
+    console.log(data2);
+    console.log('estamos en init dataTables');
+    var oTable = $('#evaluations_table').DataTable();
+    for(var i = 0;i<data2.length; i++){
+
+        oTable.row.add( [
+            'Foto',
+            'Tipo',
+            'Oculto',
+            'Lastname 1',
+            'Lastname 2',
+            data2[i].username,
+            'Academic Course',
+            data2[i].markId0,
+            data2[i].markId1,
+            data2[i].markId3
+        ] ).draw();
+
+    }
+
+
+
+}
+
+
+
+function waitSeconds(iMilliSeconds) {
+    var counter= 0
+        , start = new Date().getTime()
+        , end = 0;
+    while (counter < iMilliSeconds) {
+        end = new Date().getTime();
+        counter = end - start;
+    }
+}

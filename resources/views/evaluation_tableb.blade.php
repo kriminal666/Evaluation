@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-4">
                 <strong>Select Module(id=103 ;))</strong>
-                <select ng-model="module" class=""
+                <select id="module_selector" ng-model="module" class=""
                         ng-options="module.moduleId as module.shortName for module in modules.data"
                         title="Modules" ng-change="getSubModules(module)">
                     <option value="">Modules</option>
@@ -27,9 +27,9 @@
                 <th ng-repeat="submodule in submodules" class="uf">
                     <label class="hidden id">$$submodule.study_submodules_id$$</label>
                     $$submodule.study_submodules_shortname$$</th>
-                <th>Mark</th>
-                <th>SoftDelete</th>
-                <th>Destroy</th>
+
+
+
             </tr>
             </thead>
             <tfoot>
@@ -42,12 +42,12 @@
                 <th>Name</th>
                 <th>Academic Course</th>
                 <th ng-repeat="submodule in submodules">$$submodule.study_submodules_shortname$$</th>
-                <th>Mark</th>
-                <th>SoftDelete</th>
-                <th>Destroy</th>
+
+
             </tr>
             </tfoot>
             <tbody>
+
             </tbody>
         </table>
         <div id="submodules"
