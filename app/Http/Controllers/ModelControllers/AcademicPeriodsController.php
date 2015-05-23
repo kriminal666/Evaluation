@@ -82,7 +82,7 @@ class AcademicPeriodsController extends ApiController
 
         return $this->respond([
 
-            'data' => $this->academicPeriodTransformer->transform($academicPeriod)
+            'data' => $this->academicPeriodsTransformer->transform($academicPeriod)
 
         ]);
     }
@@ -120,8 +120,7 @@ class AcademicPeriodsController extends ApiController
 
         $academicPeriod->save();
 
-        if ($academicPeriod->academic_periods_markedForDeletion == "y")
-        {
+        if ($academicPeriod->academic_periods_markedForDeletion == "y") {
             $this->delete($academicPeriod->academic_periods_id);
         }
     }
@@ -134,7 +133,8 @@ class AcademicPeriodsController extends ApiController
      */
     public function destroy($id)
     {
-        AcademicPeriods::destroy($id);
+        $academicPeriod = AcademicPeriods::findOrFail($id);
+        $academicPeriod->forceDelete($id);
     }
 
     /**
@@ -146,6 +146,52 @@ class AcademicPeriodsController extends ApiController
         $academicPeriod = AcademicPeriods::findOrFail($id);
 
         $academicPeriod->delete();
+
+    }
+
+    /**
+     * Restore marked for deletion this
+     *
+     * @param $id
+     */
+    public function restore($id)
+    {
+
+        AcademicPeriods::withTrashed()->where('academic_periods_id', '=', $id)->first()->restore();
+
+    }
+
+    /**
+     * Return all academic Periods included trashed
+     *
+     * @return \Illuminate\Database\Eloquent\Builder|static
+     */
+    public function getAllWithTrashed()
+    {
+
+        return AcademicPeriods::withTrashed();
+    }
+
+    /**
+     * Return one academic preiod trashed
+     * @param $id
+     * @return mixed
+     */
+    public function getOneTrashed($id)
+    {
+        $academicPeriod = AcademicPeriods::withTrashed()->where('academic_periods_id', '=', $id)->first();
+
+        if (!$academicPeriod) {
+
+            return $this->respondNotFound('Academic period does not exists.');
+        }
+
+        return $this->respond([
+
+            'data' => $this->academicPeriodsTransformer->transform($academicPeriod)
+
+        ]);
+
 
     }
 

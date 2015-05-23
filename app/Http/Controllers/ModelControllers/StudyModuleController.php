@@ -146,6 +146,52 @@ class StudyModuleController extends ApiController
     }
 
     /**
+     * Restore marked for deletion this
+     *
+     * @param $id
+     */
+    public function restore($id)
+    {
+
+        StudyModule::withTrashed()->where('study_module_id', '=', $id)->first()->restore();
+
+    }
+
+    /**
+     * Return all, included trashed
+     *
+     * @return \Illuminate\Database\Eloquent\Builder|static
+     */
+    public function getAllWithTrashed()
+    {
+
+        return StudyModule::withTrashed();
+    }
+
+    /**
+     * Return one trashed
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function getOneTrashed($id)
+    {
+        $studyModule = StudyModule::withTrashed()->where('study_module_id', '=', $id)->first();
+
+        if (!$studyModule) {
+
+            return $this->respondNotFound('Study module does not exists.');
+        }
+
+        return $this->respond([
+
+            'data' => $this->studyModuleTransformer->transform($studyModule)
+
+        ]);
+
+    }
+
+    /**
      * Get the submodules of module
      * @param $id
      * @return mixed

@@ -141,7 +141,8 @@ class EvaluationController extends ApiController
      */
     public function destroy($id)
     {
-        Evaluation::destroy($id);
+        $evaluation = Evaluation::findorfail($id);
+        $evaluation->forceDelete($id);
     }
 
     /**

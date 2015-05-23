@@ -9,12 +9,14 @@
 namespace Evaluation\Transformers;
 
 
-class AcademicPeriodsTransformer extends Transformer {
+class AcademicPeriodsTransformer extends Transformer
+{
 
     /**
+     *
      * @param $academicPeriod
      * @return mixed
-     * @internal param $item
+     *
      */
     public function transform($academicPeriod)
     {
@@ -44,7 +46,7 @@ class AcademicPeriodsTransformer extends Transformer {
 
             'softDelete' => $evaluation['academic_periods_markedForDeletionDate'],
 
-            'softDeleteMark' =>$academicPeriod['academic_periods_markedForDeletion']
+            'softDeleteMark' => $academicPeriod['academic_periods_markedForDeletion']
 
         ];
     }

@@ -144,6 +144,52 @@ class MarkController extends ApiController
     }
 
     /**
+     * Restore marked for deletion this
+     *
+     * @param $id
+     */
+    public function restore($id)
+    {
+
+        Mark::withTrashed()->where('mark_id', '=', $id)->first()->restore();
+
+    }
+
+    /**
+     * Return all, included trashed
+     *
+     * @return \Illuminate\Database\Eloquent\Builder|static
+     */
+    public function getAllWithTrashed()
+    {
+
+        return Mark::withTrashed();
+    }
+
+    /**
+     * Return one trashed
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function getOneTrashed($id)
+    {
+        $mark = Mark::withTrashed()->where('mark_id', '=', $id)->first();
+
+        if (!$mark) {
+
+            return $this->respondNotFound('Mark does not exists.');
+        }
+
+        return $this->respond([
+
+            'data' => $this->markTransformer->transform($mark)
+
+        ]);
+
+    }
+
+    /**
      * Get the grade_scale of this
      *
      * @param  int $id

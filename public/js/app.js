@@ -1,5 +1,4 @@
-
-var data2=[];
+var data2 = [];
 (function () {
     var app = angular.module('testEvaluation', [], function ($interpolateProvider) {
         $interpolateProvider.startSymbol('$$');
@@ -88,7 +87,6 @@ var data2=[];
         $scope.showTable = false;
 
 
-
         //get
         $scope.getSubModules = function ($id) {
             if ($id == null) {
@@ -128,7 +126,6 @@ var data2=[];
                 success(function (data, status, headers, config) {
                     $scope.submoduleEvaluations = data;
                     $scope.showTable = true;
-
 
 
                 }).error(function (data, status, headers, config) {
@@ -203,9 +200,9 @@ var data2=[];
 
         //
         $scope.usersGroupEvaluations = function ($id) {
-                console.log('Estamos en el método de buscar evaluaciones '+$id);
+            console.log('Estamos en el método de buscar evaluaciones ' + $id);
             $http.post('usersgroupevaluations', {
-                id: [16,37],
+                id: [16, 37],
                 module: $id
 
             }).success(function (data, status, headers, config) {
@@ -215,25 +212,25 @@ var data2=[];
                 var str = "";
                 for (var i = 0, l = data.length; i < l; i++) {
 
-                  str = "{\"userId\":\""+ data[i].id+"\",\"username\":\""+ data[i].name+"\"";
+                    str = "{\"userId\":\"" + data[i].id + "\",\"username\":\"" + data[i].name + "\"";
 
-                     var evaluations = data[i].evaluations;
+                    var evaluations = data[i].evaluations;
                     for (var j = 0, le = evaluations.length; j < le; j++) {
-                            //",\"evaluationId"+j+"\":\""+evaluations[j].evaluation_id+ "\"
+                        //",\"evaluationId"+j+"\":\""+evaluations[j].evaluation_id+ "\"
 
-                        str=str+",\"markId"+j+"\":\""+evaluations[j].mark.mark_id+"\"";
+                        str = str + ",\"markId" + j + "\":\"" + evaluations[j].mark.mark_id + "\"";
 
 
                     }
-                    str = str+"}";
-                   var json = JSON.parse( str );
+                    str = str + "}";
+                    var json = JSON.parse(str);
                     data2.push(json);
 
 
                 }
                 initdataTables();
 
-                })
+            })
                 .error(function (data, status, headers, config) {
                     return status;
 
@@ -250,7 +247,7 @@ var data2=[];
 })();
 
 //now declare datatables
-function initdataTables(){
+function initdataTables() {
     console.log(data2);
     console.log('estamos en init dataTables');
     var oTable = $('#evaluations_table');
@@ -272,13 +269,11 @@ function initdataTables(){
     //}
 
 
-
 }
 
 
-
 function waitSeconds(iMilliSeconds) {
-    var counter= 0
+    var counter = 0
         , start = new Date().getTime()
         , end = 0;
     while (counter < iMilliSeconds) {

@@ -125,7 +125,8 @@ class GradeScaleController extends ApiController
      */
     public function destroy($id)
     {
-        GradeScale::destroy($id);
+        $gradeScale = GradeScale::findOrFail($id);
+        $gradeScale->forceDelete($id);
     }
 
     /**
@@ -141,7 +142,54 @@ class GradeScaleController extends ApiController
     }
 
     /**
+     * Restore marked for deletion this
+     *
+     * @param $id
+     */
+    public function restore($id)
+    {
+
+        GradeScale::withTrashed()->where('grade_scale_id', '=', $id)->first()->restore();
+
+    }
+
+    /**
+     * Return all, included trashed
+     *
+     * @return \Illuminate\Database\Eloquent\Builder|static
+     */
+    public function getAllWithTrashed()
+    {
+
+        return GradeScale::withTrashed();
+    }
+
+    /**
+     * Return one trashed
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function getOneTrashed($id)
+    {
+        $gradeScale = GradeScale::withTrashed()->where('grade_scale_id', '=', $id)->first();
+
+        if (!$gradeScale) {
+
+            return $this->respondNotFound('Grade scale does not exists.');
+        }
+
+        return $this->respond([
+
+            'data' => $this->gradeScaleTransformer->transform($gradeScale)
+
+        ]);
+
+    }
+
+    /**
      * Get all marks from one grade_scale
+     *
      * @param $id
      * @return mixed
      */

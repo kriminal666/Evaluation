@@ -14,7 +14,7 @@
 
             <p> ID:$$module$$</p>
         </div>
-        <table id ="evaluations_table" class="display dataTable">
+        <table id="evaluations_table" class="display dataTable">
             <thead>
             <tr>
                 <th>Foto</th>
@@ -24,10 +24,11 @@
                 <th>Lastname 2</th>
                 <th>Name</th>
                 <th>Academic Course</th>
-                <th ng-model="submodule" ng-value="submodule.study_submodules_id" ng-repeat="submodule in submodules" class="uf">
+                <th ng-model="submodule" ng-value="submodule.study_submodules_id" ng-repeat="submodule in submodules"
+                    class="uf">
                     <label class="hidden id">$$submodule.study_submodules_id$$</label>
-                    $$submodule.study_submodules_shortname$$</th>
-
+                    $$submodule.study_submodules_shortname$$
+                </th>
 
 
             </tr>
@@ -52,15 +53,15 @@
         </table>
         <div id="submodules"
         <div ng-show="showTable">
-        <select ng-model="marks" class="" ng-options="mark.mark_id as mark.mark_value for mark in allMarks"
-                title="Marks" ng-init="marks =  evaluation.mark.mark_id"
-                ng-change="updateEvaluation(userEvaluation,userId,academicPeriod,submodule,marks)">
-            <option value="">Evaluate</option>
-        </select></td>
+            <select ng-model="marks" class="" ng-options="mark.mark_id as mark.mark_value for mark in allMarks"
+                    title="Marks" ng-init="marks =  evaluation.mark.mark_id"
+                    ng-change="updateEvaluation(userEvaluation,userId,academicPeriod,submodule,marks)">
+                <option value="">Evaluate</option>
+            </select></td>
         </div>
 
     </div>
     <!--data_tables-->
 
 
-    @endsection
+@endsection

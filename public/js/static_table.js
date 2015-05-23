@@ -1,4 +1,4 @@
-var data2=[];
+var data2 = [];
 (function () {
     var app = angular.module('testEvaluation', [], function ($interpolateProvider) {
         $interpolateProvider.startSymbol('$$');
@@ -11,8 +11,6 @@ var data2=[];
         $scope.submoduleEvaluations = [];
         $scope.evaluationMarks = [];
         $scope.showTable = false;
-
-
 
 
         //get
@@ -59,7 +57,6 @@ var data2=[];
                     $scope.showTable = true;
 
 
-
                 }).error(function (data, status, headers, config) {
                     return status;
 
@@ -78,16 +75,53 @@ var data2=[];
                 });
         };
 
+        $scope.actionToDo = function ($evaluationId, $user, $academicPeriod, $subModule, $markId) {
+            console.log('action to do');
+
+            switch (angular.isUndefined($evaluationId)) {
+                case true : //create new evaluation
+                    $scope.createEvaluation($user, $academicPeriod, $subModule, $markId);
+                    break;
+                default : //update or destroy
+                    switch ($markId) {
+                        case null: //destroy
+                            $scope.destroyEvaluation($evaluationId);
+                            break;
+                        default: //Update evaluation
+                            $scope.updateEvaluation($evaluationId, $user, $academicPeriod, $subModule, $markId);
+                    }
+            }
+
+        };
+
+        //create a new evaluation
+        $scope.createEvaluation = function ($user, $academicPeriod, $subModule, $markId) {
+            console.log('create');
+            $academicPeriod = 4;
+            $http.post('/api/evaluations', {
+                evaluation_academic_period_id: $academicPeriod,
+                evaluation_mark_id: $markId,
+                evaluation_student_id: $user,
+                evaluation_study_subModule_id: $subModule
+            }).success(function (data, status, headers, config) {
+                console.log(data);
+
+            }).error(function (data, status, headers, config) {
+                return status;
+
+            });
+        };
+
         //Update mark of user
         $scope.updateEvaluation = function ($evaluationId, $user, $academicPeriod, $subModule, $markId) {
+            console.log('update');
+            $academicPeriod = 4;
             console.log('user id:' + $user);
             console.log('Academic Period: ' + $academicPeriod);
             console.log('submodule id:' + $subModule);
             console.log('evaluation id:' + $evaluationId);
             console.log('Mark id:' + $markId);
-            if ($markId== null) {
-                return;
-            }
+
             $http.put('api/evaluations/' + $evaluationId, {
                 academicPeriodId: $academicPeriod,
                 subModuleId: $subModule,
@@ -117,11 +151,13 @@ var data2=[];
         };
 
         //Destroy evaluation
-        $scope.destroyEvaluation = function ($index, $userEvaluation) {
-            console.log('Index: ' + $index);
+        $scope.destroyEvaluation = function ($userEvaluation) {
+
             console.log('evaluation id: ' + $userEvaluation);
+            console.log('destroy');
+
             $http.delete('/api/evaluations/' + $userEvaluation).success(function () {
-                $scope.submoduleEvaluations.splice($index, 1);
+                //$scope.submoduleEvaluations.splice($index, 1);
             }).error(function (data, status, headers, config) {
                 return status;
 
@@ -132,9 +168,9 @@ var data2=[];
 
         //
         $scope.usersGroupEvaluations = function ($id) {
-            console.log('Estamos en el método de buscar evaluaciones '+$id);
+            console.log('Estamos en el método de buscar evaluaciones ' + $id);
             $http.post('usersgroupevaluations', {
-                id: [16,37],
+                id: [16, 37],
                 module: $id
 
             }).success(function (data, status, headers, config) {
@@ -144,26 +180,34 @@ var data2=[];
                 var str = "";
                 for (var i = 0, l = data.length; i < l; i++) {
 
-                    str = "{\"userId\":\""+ data[i].id+"\",\"username\":\""+ data[i].name+"\"";
+                    str = "{\"userId\":\"" + data[i].id + "\",\"username\":\"" + data[i].name + "\"";
 
                     var evaluations = data[i].evaluations;
                     for (var j = 0, le = evaluations.length; j < le; j++) {
 
 
-                        str=str+",\"evaluationId"+j+"\":\""+evaluations[j].evaluation_id+"\""+
-                        ",\"markId"+j+"\":\""+evaluations[j].mark.mark_id+"\"";
+                        str = str + ",\"evaluationId" + j + "\":\"" + evaluations[j].evaluation_id + "\"" +
+                        ",\"markValue" + j + "\":\"" + evaluations[j].mark.mark_value + "\"";
 
 
                     }
-                    str = str+"}";
-                    var json = JSON.parse( str );
+                    str = str + "}";
+                    var json = JSON.parse(str);
                     data2.push(json);
                     $scope.showTable = true;
 
                 }
 
                 $scope.userId1 = data2[0].userId;
-                console.log('Acabo de darle valor al userid:'+$scope.IdUser1);
+                $scope.userId2 = data2[1].userId;
+
+                $scope.eval1 = data2[0].evaluationId0;
+                $scope.eval2 = data2[0].evaluationId1;
+                $scope.eval3 = data2[0].evaluationId2;
+                $scope.eval4 = data2[1].evaluationId0;
+                $scope.eval5 = data2[1].evaluationId1;
+                $scope.eval6 = data2[1].evaluationId2;
+
                 initdataTables();
 
             })
@@ -172,12 +216,6 @@ var data2=[];
 
                 });
         };
-
-        $scope.setToMark = function () {
-            $scope.marks = $scope.allMarks.filter(function (item) {
-                return item.id == 1
-            })[0];
-        }
 
         $scope.getModules();
         $scope.marks();
@@ -189,22 +227,17 @@ var data2=[];
 })();
 
 
-
 function initdataTables() {
     console.log(data2);
     console.log('estamos en init dataTables');
     var oTable = $('#evaluations_static').DataTable();
     //Init values to selects
-    //var element = document.getElementById('select1');
-    //element.value = data2[0].markId0;
-
-
-        $("#select1").val(data2[0].markId0);
-        $("#select3").val(data2[0].markId1);
-        $("#select2").val(data2[0].markId2);
-        $("#select4").val(data2[1].markId0);
-        $("#select5").val(data2[1].markId1);
-        $("#select6").val(data2[1].markId2);
+    $("#select1").val(data2[0].markValue0);
+    $("#select2").val(data2[0].markValue1);
+    $("#select3").val(data2[0].markValue2);
+    $("#select4").val(data2[1].markValue0);
+    $("#select5").val(data2[1].markValue1);
+    $("#select6").val(data2[1].markValue2);
 
 
 }

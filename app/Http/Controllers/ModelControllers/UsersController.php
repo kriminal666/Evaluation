@@ -156,7 +156,7 @@ class UsersController extends ApiController
         => function ($query) {
                 $query->whereHas('studysubmodules', function ($q) {
                     $q->where('study_submodules_study_module_id', Request::input('module'));
-                })->with('studysubmodules', 'mark');
+                })->orderby('evaluation_study_subModule_id', 'ASC')->with('studysubmodules')->with('mark');
             }])->find(Request::input('id'));
 
         return $users;

@@ -144,6 +144,52 @@ class StudySubmodulesController extends ApiController
     }
 
     /**
+     * Restore marked for deletion this
+     *
+     * @param $id
+     */
+    public function restore($id)
+    {
+
+        StudySubmodules::withTrashed()->where('grade_scale_id', '=', $id)->first()->restore();
+
+    }
+
+    /**
+     * Return all, included trashed
+     *
+     * @return \Illuminate\Database\Eloquent\Builder|static
+     */
+    public function getAllWithTrashed()
+    {
+
+        return StudySubmodules::withTrashed();
+    }
+
+    /**
+     * Return one trashed
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function getOneTrashed($id)
+    {
+        $studySubModule = StudySubmodules::withTrashed()->where('grade_scale_id', '=', $id)->first();
+
+        if (!$studySubModule) {
+
+            return $this->respondNotFound('Study subModule does not exists.');
+        }
+
+        return $this->respond([
+
+            'data' => $this->subModuleTransformer->transform($studySubModule)
+
+        ]);
+
+    }
+
+    /**
      * Get evaluations of one subModule
      *
      * @param $id
