@@ -22,3 +22,7 @@ Go to wiki documentation
 Started doing package to use it in Packagist. Not finished.
 
 [Evaluation_module_package](https://github.com/kriminal666/Evaluation_module)
+
+##Project presentation
+
+[Evaluation_Module_Presentation](https://github.com/kriminal666/Evaluation_Module_Presentation)
