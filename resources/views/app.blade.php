@@ -12,8 +12,10 @@
     <link href="{{ asset('/data_tables/extensions/ColReorder/css/dataTables.colReorder.css') }}" rel="stylesheet">
     <link href="{{ asset('/data_tables/extensions/ColVis/css/dataTables.colVis.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/dynamic_table.css') }}" rel="stylesheet">
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,6 +23,7 @@
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
+
 
 
 </head>
@@ -67,11 +70,15 @@
     <!-- angular.js and personal app.js-->
     <script type="text/javascript" src="{{ asset('/js/angular.min.js') }}"></script>
     <!--<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>-->
-    <!--data_tables-->
+
+    <!--data_tables
     <script type="text/javascript" src="{{ asset('/data_tables/media/js/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/data_tables/extensions/ColReorder/js/dataTables.colReorder.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/data_tables/extensions/ColVis/js/dataTables.colVis.js') }}"></script>
-    <script type="text/javascript" src="{{asset('/js/static_table.js')}}"></script>
+
+    <script type="text/javascript" src="{{asset('/js/static_table.js')}}"></script>-->
+    <script type="text/javascript" src="{{asset('/js/dynamic_table.js')}}"></script>
+
 
 </body>
 </html>

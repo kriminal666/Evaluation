@@ -19,11 +19,13 @@
                             <a href="/table_test">Evaluation-table</a>
                         </blockquote>
                         <blockquote>
-                            <p><strong>Another test.</strong></p>
-                            <a href="/table_testb">Evaluation-tableb</a>
+                            <p><strong>This still don't work's with CRUD</strong></p>
+                            <p>Change script in app.blade to load dynamic_table.js</p>
+                            <a href="/table_testb">Evaluation-dinamic</a>
                         </blockquote>
                         <blockquote>
-                            <p><strong>Another test.</strong></p>
+                            <p><strong>This works with crud</strong></p>
+                            <p>change script in app.blade to load static_table.js and dataTables scripts </p>
                             <a href="/table_static">Evaluation-static</a>
                         </blockquote>
 
