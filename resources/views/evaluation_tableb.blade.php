@@ -4,12 +4,15 @@
     <div class="container" ng-app="testEvaluation" ng-controller="EvaluationController as EvaluationCtrl">
         <div class="row">
             <div class="col-md-4">
-                <strong>Select Module(id=103 ;))</strong>
-                <select id="module_selector" ng-model="module" class=""
+                <strong>Select Module(id=103 ;))</strong><br />
+                <div class="form-group">
+                <select id="module_selector" ng-model="module" class="form-control"
                         ng-options="module.moduleId as module.shortName for module in modules.data"
                         title="Modules" ng-change="getSubModules(module)">
                     <option value="">Modules</option>
                 </select>
+            </div>
+
             </div>
 
             <p> ID:$$module$$</p>
@@ -30,7 +33,7 @@
         </form>
                 </div>
             </div>
-            <table >
+            <table bs-table>
                 <thead class="tableHeader">
                 <tr role="row">
                     <th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1"
@@ -82,7 +85,8 @@
 
                 <!-- IMPORTANT, class="list" have to be at tbody -->
                 <tbody class="list" role="alert" aria-live="polite" aria-relevant="all">
-                <tr ng-repeat="userEvaluations in usersEvaluations | orderBy:sortType:sortReverse | filter:searchUser">
+                <tr ng-repeat="userEvaluations in usersEvaluations | orderBy:sortType:sortReverse | filter:searchUser"
+                        ng-model="userEvaluations">
                     <td class="foto image-thumbnail" href="#">
                         <img class="msg-photo" src="{{asset('/images/image.png')}}" alt="" style="max-width:50px;"
                              data-rel="tooltip" data-original-title="">
@@ -94,11 +98,11 @@
                     <td class="lastname2">Lastname 2</td>
                     <td class="name">$$userEvaluations.name$$</td>
                     <td class="aPeriod">Academic Period</td>
-                    <td class="uF" ng-repeat="subModuleEvaluations in userEvaluations.evaluations">
+                    <td class="uF" ng-repeat="subModuleEvaluations in userEvaluations.evaluations" ng-model="subModuleEvaluations" >
 
-                        <select ng-model="marks" class="" ng-options="mark.mark_id as mark.mark_value for mark in allMarks"
+                        <select ng-model="marks " class="" ng-options="mark.mark_id as mark.mark_value for mark in allMarks"
                                 title="Marks" ng-init="marks =  subModuleEvaluations.mark.mark_id"
-                                ng-change="updateEvaluation(userEvaluation,userId,academicPeriod,submodule,marks)">
+                                ng-change="actionToDo(subModuleEvaluations.evaluation_id,userEvaluations.id,academicPeriod,subModuleEvaluations.studysubmodules.study_submodules_id,marks)">
                             <option value="">Evaluate</option>
                         </select>
                     </td>

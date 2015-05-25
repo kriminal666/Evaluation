@@ -78,6 +78,7 @@
 
     <script type="text/javascript" src="{{asset('/js/static_table.js')}}"></script>-->
     <script type="text/javascript" src="{{asset('/js/dynamic_table.js')}}"></script>
+    <script type="text/javascript" src="{{asset('/js/bs-table.min.js')}}"></script>
 
 
 </body>
