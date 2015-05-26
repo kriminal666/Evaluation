@@ -61,8 +61,8 @@ Route::get('table_test', function () {
     return view('evaluation_table_test');
 });
 
-Route::get('table_testb', function () {
-    return view('evaluation_tableb');
+Route::get('table_dynamic', function () {
+    return view('evaluation_dynamic');
 });
 
 Route::get('table_static', function () {

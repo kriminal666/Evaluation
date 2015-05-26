@@ -85,7 +85,7 @@
 
                 <!-- IMPORTANT, class="list" have to be at tbody -->
                 <tbody class="list" role="alert" aria-live="polite" aria-relevant="all">
-                <tr ng-repeat="userEvaluations in usersEvaluations | orderBy:sortType:sortReverse | filter:searchUser"
+                <tr ng-repeat="userEvaluations in finalArray| orderBy:sortType:sortReverse | filter:searchUser"
                         ng-model="userEvaluations">
                     <td class="foto image-thumbnail" href="#">
                         <img class="msg-photo" src="{{asset('/images/image.png')}}" alt="" style="max-width:50px;"
@@ -142,6 +142,10 @@
 
                 </tbody>
             </table>
+        <br/>
+        <br/>
+
+        <p> $$ finalArray $$</p>
 
 
 
@@ -149,4 +153,9 @@
     <!--data_tables-->
 
 
+@endsection
+
+@section('table_scripts')
+    <script type="text/javascript" src="{{asset('/js/dynamic_table.js')}}"></script>
+    <script type="text/javascript" src="{{asset('/js/bs-table.min.js')}}"></script>
 @endsection

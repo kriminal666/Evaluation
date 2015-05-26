@@ -12,6 +12,8 @@
         $scope.submoduleEvaluations = [];
         $scope.evaluationMarks = [];
         $scope.usersEvaluations=[];
+        $scope.finalArray = [];
+        $scope.test=[];
         $scope.showTable = false;
         //Search and filter table
         $scope.sortType     = 'name'; // set the default sort type
@@ -70,12 +72,12 @@
         $scope.usersGroupEvaluations = function ($id) {
             console.log('Estamos en el método de buscar evaluaciones ' + $id);
             $http.post('usersgroupevaluations', {
-                id: [16, 37, 23, 45,55,66],
+                id: [16], // 37, 23, 45,55,66]
                 module: $id
 
             }).success(function (data, status, headers, config) {
                 $scope.usersEvaluations = data;
-
+                subArrayGenerate();
                 console.log('success de la petición');
 
 
@@ -86,6 +88,78 @@
 
                 });
         };
+
+        //generate a new subarray
+        function subArrayGenerate(){
+            console.log('hay tantas UFs'+$scope.submodules.length);
+           var final = [];
+            var data = $scope.usersEvaluations;
+            var subModules = $scope.submodules;
+            for (var i = 0;i<data.length;i++){
+               var aux1 ={};
+
+                var evaluations = data[i].evaluations;
+                var auxEval=[];
+
+                for(var j =0;j<evaluations.length;j++){
+
+
+                    var aux3 = null;
+                    if(evaluations.length != subModules.length ){
+                        for (var s = 0 ; s<subModules.length;s++){
+                            if(j==s){
+                                if (evaluations[j].studysubmodules.study_submodules_id==subModules[s].study_submodules_id){
+                                    aux3 = {
+                                        "study_submodules_id": subModules[s].study_submodules_id
+                                    };
+                                }
+
+                            }
+
+
+                        }//end third for
+
+                    }
+                    var aux2;
+                    if(aux3 != null){
+                        aux2 = {
+                            "evaluation_id": "",
+                            "studysubmodules": aux3,
+                            "mark": {"mark_id":""}
+
+                        };
+
+                    }else{
+                        aux2 = {
+                            "evaluation_id": evaluations[j].evaluation_id,
+                            "studysubmodules": evaluations[j].studysubmodules,
+                            "mark": {"mark_id": evaluations[j].mark.mark_id}
+                        }
+                    }
+
+                   auxEval.push(aux2);
+                   console.log(auxEval);
+
+                    aux3 = null;
+                }//end second for
+
+
+                aux1={
+                    "id": data[i].id,
+                    "name": data[i].name,
+                    "evaluations": auxEval
+                };
+                final.push(aux1);
+            }//End first for
+
+
+
+          console.log(final);
+          $scope.finalArray = final;
+
+
+
+        }
 
         $scope.actionToDo = function ($evaluationId, $user, $academicPeriod, $subModule, $markId) {
             console.log('action to do');
