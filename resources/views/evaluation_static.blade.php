@@ -212,6 +212,7 @@
 
             </tbody>
         </table>
+        <p>$$array$$</p>
     </div>
 
 

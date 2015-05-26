@@ -14,6 +14,7 @@
         $scope.usersEvaluations=[];
         $scope.finalArray = [];
         $scope.test=[];
+        var moduleId=0;
         $scope.showTable = false;
         //Search and filter table
         $scope.sortType     = 'name'; // set the default sort type
@@ -57,6 +58,7 @@
                 success(function (data, status, headers, config) {
                     $scope.submodules = data;
                     //console.log(data);
+                    moduleId=$id;
                    $scope.usersGroupEvaluations($id);
                     //console.log('hemos llamado al método');
 
@@ -72,7 +74,7 @@
         $scope.usersGroupEvaluations = function ($id) {
             console.log('Estamos en el método de buscar evaluaciones ' + $id);
             $http.post('usersgroupevaluations', {
-                id: [16], // 37, 23, 45,55,66]
+                id: [16, 37, 23, 45, 55, 66],
                 module: $id
 
             }).success(function (data, status, headers, config) {
@@ -101,25 +103,24 @@
                 var evaluations = data[i].evaluations;
                 var auxEval=[];
 
-                for(var j =0;j<evaluations.length;j++){
-
-
+                for(var j =0;j<subModules.length;j++){
                     var aux3 = null;
-                    if(evaluations.length != subModules.length ){
-                        for (var s = 0 ; s<subModules.length;s++){
-                            if(j==s){
-                                if (evaluations[j].studysubmodules.study_submodules_id==subModules[s].study_submodules_id){
-                                    aux3 = {
-                                        "study_submodules_id": subModules[s].study_submodules_id
-                                    };
-                                }
+                    var count=0;
+                        for (var s = 0 ; s<evaluations.length;s++){
 
+                                if (subModules[j].study_submodules_id==evaluations[s].studysubmodules.study_submodules_id) {
+                                    count=s;
+                                    break;
+                                }else{
+                                    if(s==evaluations.length-1){
+                                    aux3 = {
+                                        "study_submodules_id": subModules[j].study_submodules_id
+                                    };
+                                    break;
+                                }
                             }
 
-
                         }//end third for
-
-                    }
                     var aux2;
                     if(aux3 != null){
                         aux2 = {
@@ -129,11 +130,24 @@
 
                         };
 
-                    }else{
+                    }else if(evaluations.length !=0){
                         aux2 = {
-                            "evaluation_id": evaluations[j].evaluation_id,
-                            "studysubmodules": evaluations[j].studysubmodules,
-                            "mark": {"mark_id": evaluations[j].mark.mark_id}
+                            "evaluation_id": evaluations[count].evaluation_id,
+                            "studysubmodules": evaluations[count].studysubmodules,
+                            "mark": {"mark_id": evaluations[count].mark.mark_id}
+                        }
+                    }else{
+                        if(evaluations.length ==0){
+                            aux3 = {
+                                "study_submodules_id": subModules[j].study_submodules_id
+                            };
+                            aux2 = {
+                                "evaluation_id": "",
+                                "studysubmodules": aux3,
+                                "mark": {"mark_id":""}
+
+                            };
+
                         }
                     }
 
@@ -236,6 +250,7 @@
 
             $http.delete('/api/evaluations/' + $userEvaluation).success(function () {
                 //$scope.submoduleEvaluations.splice($index, 1);
+                //$scope.usersGroupEvaluations(moduleId);
             }).error(function (data, status, headers, config) {
                 return status;
 

@@ -11,6 +11,7 @@ var data2 = [];
         $scope.submoduleEvaluations = [];
         $scope.evaluationMarks = [];
         $scope.showTable = false;
+        var moduleId=0;
 
 
         //get
@@ -25,6 +26,7 @@ var data2 = [];
                     $scope.uf2 = $scope.submodules[1].study_submodules_id;
                     $scope.uf3 = $scope.submodules[2].study_submodules_id;
                     console.log(data);
+                    moduleId=$id;
                     $scope.usersGroupEvaluations($id);
                     console.log('hemos llamado al método');
 
@@ -158,6 +160,7 @@ var data2 = [];
 
             $http.delete('/api/evaluations/' + $userEvaluation).success(function () {
                 //$scope.submoduleEvaluations.splice($index, 1);
+                //$scope.usersGroupEvaluations(moduleId);
             }).error(function (data, status, headers, config) {
                 return status;
 
@@ -170,7 +173,7 @@ var data2 = [];
         $scope.usersGroupEvaluations = function ($id) {
             console.log('Estamos en el método de buscar evaluaciones ' + $id);
             $http.post('usersgroupevaluations', {
-                id: [16, 37],
+                id: [16,37],
                 module: $id
 
             }).success(function (data, status, headers, config) {
@@ -183,8 +186,9 @@ var data2 = [];
                     str = "{\"userId\":\"" + data[i].id + "\",\"username\":\"" + data[i].name + "\"";
 
                     var evaluations = data[i].evaluations;
-                    for (var j = 0, le = evaluations.length; j < le; j++) {
-
+                    var subModules = $scope.submodules;
+                    for (var j = 0, le = subModules.length; j < le; j++) {
+                        var count = 0;//TODO
 
                         str = str + ",\"evaluationId" + j + "\":\"" + evaluations[j].evaluation_id + "\"" +
                         ",\"markValue" + j + "\":\"" + evaluations[j].mark.mark_value + "\"";
@@ -194,6 +198,7 @@ var data2 = [];
                     str = str + "}";
                     var json = JSON.parse(str);
                     data2.push(json);
+
                     $scope.showTable = true;
 
                 }
@@ -209,6 +214,7 @@ var data2 = [];
                 $scope.eval6 = data2[1].evaluationId2;
 
                 initdataTables();
+                $scope.array = data2;
 
             })
                 .error(function (data, status, headers, config) {
