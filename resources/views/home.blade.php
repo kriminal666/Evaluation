@@ -11,20 +11,21 @@
                         You are logged in!<br/>
                         <blockquote>
                             <p><strong>Here create new evaluation and you can show one user evaluations</strong></p>
+                            <p>This was the first test i've done</p>
                             <a href="/test"> Create Evaluation</a>
                         </blockquote>
                         <blockquote>
                             <p><strong>Here update users module/submodule evaluations. Soft delete and destroy
                                     it.</strong></p>
-                            <a href="/table_test">Evaluation-table</a>
+                            <a href="#" >Evaluation-table</a>
                         </blockquote>
                         <blockquote>
-                            <p><strong>Update, delete, by now</strong></p>
+                            <p><strong>Dynamic table done with angular full CRUD</strong></p>
 
                             <a href="/table_dynamic">Evaluation-dynamic</a>
                         </blockquote>
                         <blockquote>
-                            <p><strong>This works with CRUD</strong></p>
+                            <p><strong>Static Table (DataTables) with CRUD</strong></p>
 
                             <a href="/table_static">Evaluation-static</a>
                         </blockquote>

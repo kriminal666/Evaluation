@@ -53,14 +53,6 @@ Route::get('test', function () {
     return view('evaluation_test');
 });
 
-Route::get('table', function () {
-    return view('evaluation_table_test');
-});
-
-Route::get('table_test', function () {
-    return view('evaluation_table_test');
-});
-
 Route::get('table_dynamic', function () {
     return view('evaluation_dynamic');
 });
@@ -69,22 +61,7 @@ Route::get('table_static', function () {
     return view('evaluation_static');
 });
 
-
-Route::get('marks', function () {
-
-
-    return \Evaluation\GradeScale::findOrFail(1)->marks();
-
-
-});
-
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
 ]);
-
-//Get last query
-
-/*Event::listen('illuminate.query', function ($sql) {
-    var_dump($sql);
-});*/

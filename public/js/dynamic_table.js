@@ -1,5 +1,5 @@
 (function () {
-    var app = angular.module('testEvaluation',['bsTable'], function ($interpolateProvider) {
+    var app = angular.module('testEvaluation', ['bsTable'], function ($interpolateProvider) {
         $interpolateProvider.startSymbol('$$');
         $interpolateProvider.endSymbol('$$');
     });
@@ -11,18 +11,15 @@
         $scope.submodules = [];
         $scope.submoduleEvaluations = [];
         $scope.evaluationMarks = [];
-        $scope.usersEvaluations=[];
+        $scope.usersEvaluations = [];
         $scope.finalArray = [];
-        $scope.test=[];
-        var moduleId=0;
+        $scope.test = [];
+        var moduleId = 0;
         $scope.showTable = false;
         //Search and filter table
-        $scope.sortType     = 'name'; // set the default sort type
-        $scope.sortReverse  = false;  // set the default sort order
-        $scope.searchUser   = '';     // set the default search/filter term
-
-
-
+        $scope.sortType = 'name'; // set the default sort type
+        $scope.sortReverse = false;  // set the default sort order
+        $scope.searchUser = '';     // set the default search/filter term
 
 
         //Get all marks
@@ -58,8 +55,8 @@
                 success(function (data, status, headers, config) {
                     $scope.submodules = data;
                     //console.log(data);
-                    moduleId=$id;
-                   $scope.usersGroupEvaluations($id);
+                    moduleId = $id;
+                    $scope.usersGroupEvaluations($id);
                     //console.log('hemos llamado al método');
 
                 }).error(function (data, status, headers, config) {
@@ -68,7 +65,6 @@
                 });
 
         };
-
 
 
         $scope.usersGroupEvaluations = function ($id) {
@@ -83,7 +79,6 @@
                 console.log('success de la petición');
 
 
-
             })
                 .error(function (data, status, headers, config) {
                     return status;
@@ -92,73 +87,73 @@
         };
 
         //generate a new subarray
-        function subArrayGenerate(){
-            console.log('hay tantas UFs'+$scope.submodules.length);
-           var final = [];
+        function subArrayGenerate() {
+            console.log('hay tantas UFs' + $scope.submodules.length);
+            var final = [];
             var data = $scope.usersEvaluations;
             var subModules = $scope.submodules;
-            for (var i = 0;i<data.length;i++){
-               var aux1 ={};
+            for (var i = 0; i < data.length; i++) {
+                var aux1 = {};
 
                 var evaluations = data[i].evaluations;
-                var auxEval=[];
+                var auxEval = [];
 
-                for(var j =0;j<subModules.length;j++){
+                for (var j = 0; j < subModules.length; j++) {
                     var aux3 = null;
-                    var count=0;
-                        for (var s = 0 ; s<evaluations.length;s++){
+                    var count = 0;
+                    for (var s = 0; s < evaluations.length; s++) {
 
-                                if (subModules[j].study_submodules_id==evaluations[s].studysubmodules.study_submodules_id) {
-                                    count=s;
-                                    break;
-                                }else{
-                                    if(s==evaluations.length-1){
-                                    aux3 = {
-                                        "study_submodules_id": subModules[j].study_submodules_id
-                                    };
-                                    break;
-                                }
+                        if (subModules[j].study_submodules_id == evaluations[s].studysubmodules.study_submodules_id) {
+                            count = s;
+                            break;
+                        } else {
+                            if (s == evaluations.length - 1) {
+                                aux3 = {
+                                    "study_submodules_id": subModules[j].study_submodules_id
+                                };
+                                break;
                             }
+                        }
 
-                        }//end third for
+                    }//end third for
                     var aux2;
-                    if(aux3 != null){
+                    if (aux3 != null) {
                         aux2 = {
-                            "evaluation_id": "",
+                            "evaluation_id": null,
                             "studysubmodules": aux3,
-                            "mark": {"mark_id":""}
+                            "mark": {"mark_id": null}
 
                         };
 
-                    }else if(evaluations.length !=0){
+                    } else if (evaluations.length != 0) {
                         aux2 = {
                             "evaluation_id": evaluations[count].evaluation_id,
                             "studysubmodules": evaluations[count].studysubmodules,
                             "mark": {"mark_id": evaluations[count].mark.mark_id}
                         }
-                    }else{
-                        if(evaluations.length ==0){
+                    } else {
+                        if (evaluations.length == 0) {
                             aux3 = {
                                 "study_submodules_id": subModules[j].study_submodules_id
                             };
                             aux2 = {
-                                "evaluation_id": "",
+                                "evaluation_id": null,
                                 "studysubmodules": aux3,
-                                "mark": {"mark_id":""}
+                                "mark": {"mark_id": null}
 
                             };
 
                         }
                     }
 
-                   auxEval.push(aux2);
-                   console.log(auxEval);
+                    auxEval.push(aux2);
+                    console.log(auxEval);
 
                     aux3 = null;
                 }//end second for
 
 
-                aux1={
+                aux1 = {
                     "id": data[i].id,
                     "name": data[i].name,
                     "evaluations": auxEval
@@ -167,10 +162,8 @@
             }//End first for
 
 
-
-          console.log(final);
-          $scope.finalArray = final;
-
+            console.log(final);
+            $scope.finalArray = final;
 
 
         }
@@ -178,23 +171,22 @@
         $scope.actionToDo = function ($evaluationId, $user, $academicPeriod, $subModule, $markId) {
             console.log('action to do');
             $academicPeriod = 4;
-            console.log('Evaluation Id:'+$evaluationId);
-            console.log('userID:'+$user);
-            console.log('academicPeriod: '+$academicPeriod);
-            console.log('submodule: '+$subModule);
-            console.log('markID: '+$markId);
-            switch (angular.isUndefined($evaluationId)) {
-                case true : //create new evaluation
-                    $scope.createEvaluation($user, $academicPeriod, $subModule, $markId);
-                    break;
-                default : //update or destroy
-                    switch ($markId) {
-                        case null: //destroy
-                            $scope.destroyEvaluation($evaluationId);
-                            break;
-                        default: //Update evaluation
-                            $scope.updateEvaluation($evaluationId, $user, $academicPeriod, $subModule, $markId);
-                    }
+            console.log('Evaluation Id:' + $evaluationId);
+            console.log('userID:' + $user);
+            console.log('academicPeriod: ' + $academicPeriod);
+            console.log('submodule: ' + $subModule);
+            console.log('markID: ' + $markId);
+            if (angular.isUndefined($evaluationId) || $evaluationId == null) {
+                console.log('Evaluation id:' + $evaluationId);
+                console.log('user id: ' + $user);
+                console.log('');
+                $scope.createEvaluation($user, $academicPeriod, $subModule, $markId);
+            } else {
+                if ($markId == null) {
+                    $scope.destroyEvaluation($evaluationId);
+                } else {
+                    $scope.updateEvaluation($evaluationId, $user, $academicPeriod, $subModule, $markId);
+                }
             }
         };
 
@@ -210,6 +202,8 @@
                 evaluation_study_subModule_id: $subModule
             }).success(function (data, status, headers, config) {
                 console.log(data);
+
+                $scope.usersGroupEvaluations(moduleId);
 
             }).error(function (data, status, headers, config) {
                 return status;
@@ -250,7 +244,7 @@
 
             $http.delete('/api/evaluations/' + $userEvaluation).success(function () {
                 //$scope.submoduleEvaluations.splice($index, 1);
-                //$scope.usersGroupEvaluations(moduleId);
+                $scope.usersGroupEvaluations(moduleId);
             }).error(function (data, status, headers, config) {
                 return status;
 
@@ -260,10 +254,8 @@
         };
 
 
-
-
-    $scope.getModules();
-    $scope.marks();
+        $scope.getModules();
+        $scope.marks();
 
     });//Close EvaluationController'
 

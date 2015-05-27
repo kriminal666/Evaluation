@@ -4,6 +4,9 @@
     <div class="container" ng-app="testEvaluation" ng-controller="EvaluationTableController as EvaluationCtrl">
         <div class="row">
             <div class="col-md-4">
+                <p>Remember: This is static table if you choose a module which users 16 and 37 doesn't exist in it's
+                    submodules,
+                    this won't work..</p>
                 <strong>Select Module(id=103 ;))</strong>
                 <select id="module_selector" ng-model="module" class=""
                         ng-options="module.moduleId as module.shortName for module in modules.data"
@@ -212,7 +215,13 @@
 
             </tbody>
         </table>
-        <p>$$array$$</p>
+
+        <h4><b>Here you can see the real json data after create or delete</b></h4>
+
+        <blockquote>
+            $$array$$
+        </blockquote>
+
     </div>
 
 
@@ -221,8 +230,9 @@
 @section('table_scripts')
     <!--data_tables-->
     <script type="text/javascript" src="{{ asset('/data_tables/media/js/jquery.dataTables.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/data_tables/extensions/ColReorder/js/dataTables.colReorder.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('/data_tables/extensions/ColReorder/js/dataTables.colReorder.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/data_tables/extensions/ColVis/js/dataTables.colVis.js') }}"></script>
     <script type="text/javascript" src="{{asset('/js/static_table.js')}}"></script>
-    @endsection
+@endsection
 

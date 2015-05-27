@@ -11,7 +11,7 @@ var data2 = [];
         $scope.submoduleEvaluations = [];
         $scope.evaluationMarks = [];
         $scope.showTable = false;
-        var moduleId=0;
+        var moduleId = 0;
 
 
         //get
@@ -26,7 +26,7 @@ var data2 = [];
                     $scope.uf2 = $scope.submodules[1].study_submodules_id;
                     $scope.uf3 = $scope.submodules[2].study_submodules_id;
                     console.log(data);
-                    moduleId=$id;
+                    moduleId = $id;
                     $scope.usersGroupEvaluations($id);
                     console.log('hemos llamado al método');
 
@@ -80,18 +80,17 @@ var data2 = [];
         $scope.actionToDo = function ($evaluationId, $user, $academicPeriod, $subModule, $markId) {
             console.log('action to do');
 
-            switch (angular.isUndefined($evaluationId)) {
-                case true : //create new evaluation
-                    $scope.createEvaluation($user, $academicPeriod, $subModule, $markId);
-                    break;
-                default : //update or destroy
-                    switch ($markId) {
-                        case null: //destroy
-                            $scope.destroyEvaluation($evaluationId);
-                            break;
-                        default: //Update evaluation
-                            $scope.updateEvaluation($evaluationId, $user, $academicPeriod, $subModule, $markId);
-                    }
+            if (angular.isUndefined($evaluationId) || $evaluationId == null) {
+                console.log('Evaluation id:' + $evaluationId);
+                console.log('user id: ' + $user);
+                console.log('');
+                $scope.createEvaluation($user, $academicPeriod, $subModule, $markId);
+            } else {
+                if ($markId == null) {
+                    $scope.destroyEvaluation($evaluationId);
+                } else {
+                    $scope.updateEvaluation($evaluationId, $user, $academicPeriod, $subModule, $markId);
+                }
             }
 
         };
@@ -107,7 +106,7 @@ var data2 = [];
                 evaluation_study_subModule_id: $subModule
             }).success(function (data, status, headers, config) {
                 console.log(data);
-
+                $scope.usersGroupEvaluations(moduleId);
             }).error(function (data, status, headers, config) {
                 return status;
 
@@ -160,7 +159,7 @@ var data2 = [];
 
             $http.delete('/api/evaluations/' + $userEvaluation).success(function () {
                 //$scope.submoduleEvaluations.splice($index, 1);
-                //$scope.usersGroupEvaluations(moduleId);
+                $scope.usersGroupEvaluations(moduleId);
             }).error(function (data, status, headers, config) {
                 return status;
 
@@ -173,7 +172,7 @@ var data2 = [];
         $scope.usersGroupEvaluations = function ($id) {
             console.log('Estamos en el método de buscar evaluaciones ' + $id);
             $http.post('usersgroupevaluations', {
-                id: [16,37],
+                id: [16, 37],
                 module: $id
 
             }).success(function (data, status, headers, config) {
@@ -181,6 +180,7 @@ var data2 = [];
                 console.log('success de la petición');
 
                 var str = "";
+                data2 = [];
                 for (var i = 0, l = data.length; i < l; i++) {
 
                     str = "{\"userId\":\"" + data[i].id + "\",\"username\":\"" + data[i].name + "\"";
@@ -189,9 +189,17 @@ var data2 = [];
                     var subModules = $scope.submodules;
                     for (var j = 0, le = subModules.length; j < le; j++) {
                         var count = 0;//TODO
-
-                        str = str + ",\"evaluationId" + j + "\":\"" + evaluations[j].evaluation_id + "\"" +
-                        ",\"markValue" + j + "\":\"" + evaluations[j].mark.mark_value + "\"";
+                        for (var t = 0; t < evaluations.length; t++) {
+                            if (subModules[j].study_submodules_id == evaluations[t].studysubmodules.study_submodules_id) {
+                                str = str + ",\"evaluationId" + j + "\":\"" + evaluations[t].evaluation_id + "\"" +
+                                ",\"markValue" + j + "\":\"" + evaluations[t].mark.mark_value + "\"";
+                                break;
+                            }
+                            if (t == evaluations.length - 1) {
+                                str = str + ",\"evaluationId" + j + "\":" + null +
+                                ",\"markValue" + j + "\":" + null;
+                            }
+                        }
 
 
                     }
