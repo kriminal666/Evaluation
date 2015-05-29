@@ -5,6 +5,10 @@ use Evaluation\Http\Requests;
 use Illuminate\Http\Response as IlluminateResponse;
 use Illuminate\Support\Facades\Response;
 
+/**
+ * Class ApiController
+ * @package Evaluation\Http\Controllers\Api
+ */
 class ApiController extends Controller
 {
 
@@ -15,6 +19,7 @@ class ApiController extends Controller
     protected $statusCode = 200;
 
     /**
+     * @method
      * @return mixed
      */
     public function getStatusCode()
@@ -23,7 +28,7 @@ class ApiController extends Controller
     }
 
     /**
-     *
+     *@method
      * @param mixed $statusCode
      * @return $this
      */
@@ -36,8 +41,8 @@ class ApiController extends Controller
 
 
     /**
+     * @method
      * @param string $message
-     *
      * @return mixed
      */
     public function respondNotFound($message = 'Not Found')
@@ -48,8 +53,8 @@ class ApiController extends Controller
     }
 
     /**
+     * @method
      * @param string $message
-     *
      * @return mixed
      */
     public function respondInternalError($message = 'Internal error')
@@ -60,6 +65,7 @@ class ApiController extends Controller
     }
 
     /**
+     * @method
      * @param $message
      * @return mixed
      */
@@ -71,6 +77,7 @@ class ApiController extends Controller
     }
 
     /**
+     * @method
      * @param $data
      * @param array $headers
      * @return mixed
@@ -82,6 +89,7 @@ class ApiController extends Controller
     }
 
     /**
+     * @method
      * @param $message
      * @return mixed
      */

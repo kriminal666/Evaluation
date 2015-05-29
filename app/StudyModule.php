@@ -3,6 +3,10 @@
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class StudyModule
+ * @package Evaluation
+ */
 class StudyModule extends Model
 {
 

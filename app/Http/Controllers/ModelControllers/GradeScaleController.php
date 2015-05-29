@@ -7,6 +7,10 @@ use Evaluation\Transformers\GradeScaleTransformer;
 use Illuminate\Support\Facades\Response;
 use Request;
 
+/**
+ * Class GradeScaleController
+ * @package Evaluation\Http\Controllers\ModelControllers
+ */
 class GradeScaleController extends ApiController
 {
     /**
@@ -29,7 +33,7 @@ class GradeScaleController extends ApiController
     /**
      * Display a listing of the resource.
      *
-     *
+     * @api
      * @return Response
      */
     public function index()
@@ -56,6 +60,7 @@ class GradeScaleController extends ApiController
     /**
      * Store a newly created resource in storage.
      *
+     * @api
      * @return Response
      */
     public function store()
@@ -68,6 +73,7 @@ class GradeScaleController extends ApiController
     /**
      * Display the specified resource.
      *
+     * @api
      * @param  int $id
      * @return Response
      */
@@ -101,6 +107,7 @@ class GradeScaleController extends ApiController
     /**
      * Update the specified resource in storage.
      *
+     * @api
      * @param  int $id
      * @return Response
      */
@@ -120,6 +127,7 @@ class GradeScaleController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
+     * @api
      * @param  int $id
      * @return Response
      */
@@ -132,6 +140,7 @@ class GradeScaleController extends ApiController
     /**
      * Mark for deletion this
      *
+     * @api
      * @param $id
      */
     public function delete($id)
@@ -144,6 +153,7 @@ class GradeScaleController extends ApiController
     /**
      * Restore marked for deletion this
      *
+     * @api
      * @param $id
      */
     public function restore($id)
@@ -156,6 +166,7 @@ class GradeScaleController extends ApiController
     /**
      * Return all, included trashed
      *
+     * @api
      * @return \Illuminate\Database\Eloquent\Builder|static
      */
     public function getAllWithTrashed()
@@ -167,6 +178,7 @@ class GradeScaleController extends ApiController
     /**
      * Return one trashed
      *
+     * @api
      * @param $id
      * @return mixed
      */
@@ -190,6 +202,7 @@ class GradeScaleController extends ApiController
     /**
      * Get all marks from one grade_scale
      *
+     * @api
      * @param $id
      * @return mixed
      */

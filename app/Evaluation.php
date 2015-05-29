@@ -3,6 +3,10 @@
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Evaluation
+ * @package Evaluation
+ */
 class Evaluation extends Model
 {
     use SoftDeletes;

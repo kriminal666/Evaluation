@@ -23,6 +23,10 @@ Started doing package to use it in Packagist. Not finished.
 
 [Evaluation_module_package](https://github.com/kriminal666/Evaluation_module)
 
+##Evaluation Module PHPDocs
+
+[Evaluation_API_PHPDocs](http://kriminal666.github.io/Evaluation_API_PHPDoc/)
+
 ##Project presentation
 
 [Evaluation_Module_Presentation](https://github.com/kriminal666/Evaluation_Module_Presentation)

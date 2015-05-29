@@ -3,12 +3,17 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
+/**
+ * GradeScaleStudySubmodulesAcademicPeriods table migration
+ * Class CreateGradeScaleStudySubmodulesAcademicPeriodsTable
+ */
 class CreateGradeScaleStudySubmodulesAcademicPeriodsTable extends Migration
 {
 
     /**
      * Run the migrations.
      *
+     * @method
      * @return void
      */
     public function up()
@@ -29,6 +34,7 @@ class CreateGradeScaleStudySubmodulesAcademicPeriodsTable extends Migration
     /**
      * Reverse the migrations.
      *
+     * @method
      * @return void
      */
     public function down()

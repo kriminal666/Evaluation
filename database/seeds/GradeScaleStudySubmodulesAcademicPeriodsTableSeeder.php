@@ -3,13 +3,17 @@
 use Evaluation\GradeScaleStudySubmodulesAcademicPeriods;
 use Illuminate\Database\Eloquent\Model;
 
-
+/**
+ * GradeScaleStudySubmodulesAcademicPeriods table seeder
+ * Class GradeScaleStudySubmodulesAcademicPeriodsTableSeeder
+ */
 class GradeScaleStudySubmodulesAcademicPeriodsTableSeeder extends DatabaseSeeder
 {
 
     /**
      * Table gradeScale_studySubmodules_academicPeriods seeder
      *
+     * @method
      * @return void
      */
     public function run()

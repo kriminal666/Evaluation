@@ -3,13 +3,17 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-
+/**
+ * Evaluation table migration
+ * Class CreateEvaluationTable
+ */
 class CreateEvaluationTable extends Migration
 {
 
     /**
      * Run the migrations.
      *
+     * @method
      * @return void
      */
     public function up()
@@ -33,6 +37,7 @@ class CreateEvaluationTable extends Migration
     /**
      * Reverse the migrations.
      *
+     * @method
      * @return void
      */
     public function down()

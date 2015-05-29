@@ -6,6 +6,10 @@ use Evaluation\Http\Requests;
 use Evaluation\Transformers\AcademicPeriodsTransformer;
 use Request;
 
+/**
+ * Class AcademicPeriodsController
+ * @package Evaluation\Http\Controllers\ModelControllers
+ */
 class AcademicPeriodsController extends ApiController
 {
 
@@ -29,6 +33,7 @@ class AcademicPeriodsController extends ApiController
     /**
      * Display a listing of the resource.
      *
+     * @api
      * @return Response
      */
     public function index()
@@ -56,6 +61,7 @@ class AcademicPeriodsController extends ApiController
     /**
      * Store a newly created resource in storage.
      *
+     * @api
      * @return Response
      */
     public function store()
@@ -68,6 +74,7 @@ class AcademicPeriodsController extends ApiController
     /**
      * Display the specified resource.
      *
+     * @api
      * @param  int $id
      * @return Response
      */
@@ -101,6 +108,7 @@ class AcademicPeriodsController extends ApiController
     /**
      * Update the specified resource in storage.
      *
+     * @api
      * @param  int $id
      * @return Response
      */
@@ -128,6 +136,7 @@ class AcademicPeriodsController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
+     * @api
      * @param  int $id
      * @return Response
      */
@@ -139,6 +148,8 @@ class AcademicPeriodsController extends ApiController
 
     /**
      * This marked for deletion
+     *
+     * @api
      * @param $id
      */
     public function delete($id)
@@ -152,6 +163,7 @@ class AcademicPeriodsController extends ApiController
     /**
      * Restore marked for deletion this
      *
+     * @api
      * @param $id
      */
     public function restore($id)
@@ -164,6 +176,7 @@ class AcademicPeriodsController extends ApiController
     /**
      * Return all academic Periods included trashed
      *
+     * @api
      * @return \Illuminate\Database\Eloquent\Builder|static
      */
     public function getAllWithTrashed()
@@ -173,7 +186,9 @@ class AcademicPeriodsController extends ApiController
     }
 
     /**
-     * Return one academic preiod trashed
+     * Return one academic period trashed
+     *
+     * @api
      * @param $id
      * @return mixed
      */

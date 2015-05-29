@@ -4,7 +4,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * @property string grade_scale_description
+ * Class GradeScale
+ * @package Evaluation
  */
 class GradeScale extends Model
 {
@@ -54,6 +55,7 @@ class GradeScale extends Model
 
     /**
      * Get all marks that belongs to this
+     *
      * @return mixed
      */
     public function marks()

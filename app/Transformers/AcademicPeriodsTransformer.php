@@ -8,12 +8,17 @@
 
 namespace Evaluation\Transformers;
 
-
+/**
+ * Class AcademicPeriodsTransformer
+ * @package Evaluation\Transformers
+ */
 class AcademicPeriodsTransformer extends Transformer
 {
 
     /**
+     * Transform academic period
      *
+     * @method
      * @param $academicPeriod
      * @return mixed
      *

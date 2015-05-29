@@ -8,13 +8,16 @@
 
 namespace Evaluation\Transformers;
 
-
+/**
+ * Class EvaluationTransformer
+ * @package Evaluation\Transformers
+ */
 class EvaluationTransformer extends Transformer
 {
 
     /**
      * Transform evaluation
-     *
+     * @method
      * @param $evaluation
      * @return array
      */

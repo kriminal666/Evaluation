@@ -7,7 +7,10 @@ use Evaluation\Transformers\EvaluationTransformer;
 use Illuminate\Support\Facades\Response;
 use Request;
 
-
+/**
+ * Class EvaluationController
+ * @package Evaluation\Http\Controllers\ModelControllers
+ */
 class EvaluationController extends ApiController
 {
 
@@ -31,6 +34,7 @@ class EvaluationController extends ApiController
     /**
      * Display a listing of the resource.
      *
+     * @api
      * @return Response
      */
     public function index()
@@ -68,6 +72,7 @@ class EvaluationController extends ApiController
     /**
      * Store a newly created resource in storage.
      *
+     * @api
      * @return Response
      */
     public function store()
@@ -80,6 +85,7 @@ class EvaluationController extends ApiController
     /**
      * Display the specified resource.
      *
+     * @api
      * @param  int $id
      * @return Response
      */
@@ -114,6 +120,7 @@ class EvaluationController extends ApiController
     /**
      * Update the specified resource in storage.
      *
+     * @api
      * @param  int $id
      * @return Response
      */
@@ -136,6 +143,7 @@ class EvaluationController extends ApiController
     /**
      * Remove evaluation resource from storage.
      *
+     * @api
      * @param  int $id
      * @return Response
      */
@@ -148,6 +156,7 @@ class EvaluationController extends ApiController
     /**
      * Mark for deletion the evaluation
      *
+     * @api
      * @param $id
      */
     public function delete($id)

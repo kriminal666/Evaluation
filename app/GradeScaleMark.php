@@ -3,6 +3,10 @@
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class GradeScaleMark
+ * @package Evaluation
+ */
 class GradeScaleMark extends Model
 {
 

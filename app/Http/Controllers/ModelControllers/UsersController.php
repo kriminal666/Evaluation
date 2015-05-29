@@ -4,9 +4,12 @@ use Evaluation\Http\Controllers\Api\ApiController;
 use Evaluation\Http\Requests;
 use Evaluation\User;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Input;
 use Request;
 
+/**
+ * Class UsersController
+ * @package Evaluation\Http\Controllers\ModelControllers
+ */
 class UsersController extends ApiController
 {
 
@@ -23,6 +26,7 @@ class UsersController extends ApiController
     /**
      * Display a listing of the resource.
      *
+     * @api
      * @return Response
      */
     public function index()
@@ -50,6 +54,7 @@ class UsersController extends ApiController
     /**
      * Store a newly created resource in storage.
      *
+     * @api
      * @return Response
      */
     public function store()
@@ -62,6 +67,7 @@ class UsersController extends ApiController
     /**
      * Display the specified resource.
      *
+     * @api
      * @param  int $id
      * @return Response
      */
@@ -96,6 +102,7 @@ class UsersController extends ApiController
     /**
      * Update the specified resource in storage.
      *
+     * @api
      * @param  int $id
      * @return Response
      */
@@ -115,17 +122,21 @@ class UsersController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
+     * @api
      * @param  int $id
      * @return Response
      */
     public function destroy($id)
     {
-        User::destroy($id);
+        $user = User::findOrFail($id);
+
+        $user->forcedelete();
     }
 
     /**
      * mark for deletion this
      *
+     * @api
      * @param $id
      */
     public function delete($id)
@@ -136,6 +147,8 @@ class UsersController extends ApiController
 
     /**
      * Get evaluations of all UFs from one user
+     *
+     * @api
      * @param $id
      * @return mixed
      */
@@ -148,6 +161,7 @@ class UsersController extends ApiController
     /**
      * Get one users group evaluations filtered by module
      *
+     * @api
      * @return Collection
      */
     public function getGroupEvaluations()

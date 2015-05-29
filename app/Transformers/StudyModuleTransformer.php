@@ -8,11 +8,17 @@
 
 namespace Evaluation\Transformers;
 
-
+/**
+ * Class StudyModuleTransformer
+ * @package Evaluation\Transformers
+ */
 class StudyModuleTransformer extends Transformer
 {
 
     /**
+     * Transform studyModule
+     *
+     * @method
      * @param $studyModule
      * @return mixed
      */

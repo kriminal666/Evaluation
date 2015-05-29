@@ -6,6 +6,10 @@ use Evaluation\StudySubmodules;
 use Evaluation\Transformers\StudySubmodulesTransformer;
 use Request;
 
+/**
+ * Class StudySubmodulesController
+ * @package Evaluation\Http\Controllers\ModelControllers
+ */
 class StudySubmodulesController extends ApiController
 {
 
@@ -29,6 +33,7 @@ class StudySubmodulesController extends ApiController
     /**
      * Display a listing of the resource.
      *
+     * @api
      * @return Response
      */
     public function index()
@@ -55,6 +60,7 @@ class StudySubmodulesController extends ApiController
     /**
      * Store a newly created resource in storage.
      *
+     * @api
      * @return Response
      */
     public function store()
@@ -67,6 +73,7 @@ class StudySubmodulesController extends ApiController
     /**
      * Display the specified resource.
      *
+     * @api
      * @param  int $id
      * @return Response
      */
@@ -90,6 +97,7 @@ class StudySubmodulesController extends ApiController
     /**
      * Show the form for editing the specified resource.
      *
+     * @api
      * @param  int $id
      * @return Response
      */
@@ -101,6 +109,7 @@ class StudySubmodulesController extends ApiController
     /**
      * Update the specified resource in storage.
      *
+     * @api
      * @param  int $id
      * @return Response
      */
@@ -124,17 +133,21 @@ class StudySubmodulesController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
+     * @api
      * @param  int $id
      * @return Response
      */
     public function destroy($id)
     {
-        StudySubmodules::destroy($id);
+        $studySubModule = StudySubmodules::findOrFail($id);
+
+        $studySubModule->forceDelete();
     }
 
     /**
-     *Mark for deletion this
+     * Mark for deletion this
      *
+     * @api
      * @param $id
      */
     public function delete($id)
@@ -146,6 +159,7 @@ class StudySubmodulesController extends ApiController
     /**
      * Restore marked for deletion this
      *
+     * @api
      * @param $id
      */
     public function restore($id)
@@ -158,6 +172,7 @@ class StudySubmodulesController extends ApiController
     /**
      * Return all, included trashed
      *
+     * @api
      * @return \Illuminate\Database\Eloquent\Builder|static
      */
     public function getAllWithTrashed()
@@ -169,6 +184,7 @@ class StudySubmodulesController extends ApiController
     /**
      * Return one trashed
      *
+     * @api
      * @param $id
      * @return mixed
      */
@@ -192,6 +208,7 @@ class StudySubmodulesController extends ApiController
     /**
      * Get evaluations of one subModule
      *
+     * @api
      * @param $id
      * @return mixed
      */

@@ -8,13 +8,17 @@
 
 namespace Evaluation\Transformers;
 
-
+/**
+ * Class GradeScaleTransformer
+ * @package Evaluation\Transformers
+ */
 class GradeScaleTransformer extends Transformer
 {
 
     /**
      * Transform GradeScale
      *
+     * @method
      * @param $gradeScale
      * @return mixed
      */

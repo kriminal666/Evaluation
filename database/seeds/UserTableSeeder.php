@@ -2,12 +2,17 @@
 
 use Evaluation\User;
 
+/**
+ * User table seeder
+ * Class UserTableSeeder
+ */
 class UserTableSeeder extends DatabaseSeeder
 {
 
     /**
      * Table users seeder
      *
+     * @method
      * @return void
      */
     public function run()

@@ -3,11 +3,14 @@
 use Evaluation\Http\Controllers\Api\ApiController;
 use Evaluation\Http\Requests;
 use Evaluation\Mark;
-use Request;
 use Evaluation\Transformers\MarkTransformer;
 use Illuminate\Support\Facades\Response;
+use Request;
 
-
+/**
+ * Class MarkController
+ * @package Evaluation\Http\Controllers\ModelControllers
+ */
 class MarkController extends ApiController
 {
 
@@ -31,6 +34,7 @@ class MarkController extends ApiController
     /**
      * Display a listing of the resource.
      *
+     * @api
      * @return Response
      */
     public function index()
@@ -57,6 +61,7 @@ class MarkController extends ApiController
     /**
      * Store a newly created resource in storage.
      *
+     * @api
      * @return Response
      */
     public function store()
@@ -69,6 +74,7 @@ class MarkController extends ApiController
     /**
      * Display the specified resource.
      *
+     * @api
      * @param  int $id
      * @return Response
      */
@@ -105,6 +111,7 @@ class MarkController extends ApiController
     /**
      * Update the specified resource in storage.
      *
+     * @api
      * @param  int $id
      * @return Response
      */
@@ -123,17 +130,21 @@ class MarkController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
+     * @api
      * @param  int $id
      * @return Response
      */
     public function destroy($id)
     {
-        Mark::destroy($id);
+        $mark = Mark::findOrFail($id);
+
+        $mark->forceDelete($id);
     }
 
     /**
      * Mark for deletion this
      *
+     * @api
      * @param $id
      */
     public function delete($id)
@@ -146,6 +157,7 @@ class MarkController extends ApiController
     /**
      * Restore marked for deletion this
      *
+     * @api
      * @param $id
      */
     public function restore($id)
@@ -158,6 +170,7 @@ class MarkController extends ApiController
     /**
      * Return all, included trashed
      *
+     * @api
      * @return \Illuminate\Database\Eloquent\Builder|static
      */
     public function getAllWithTrashed()
@@ -169,6 +182,7 @@ class MarkController extends ApiController
     /**
      * Return one trashed
      *
+     * @api
      * @param $id
      * @return mixed
      */
@@ -192,6 +206,7 @@ class MarkController extends ApiController
     /**
      * Get the grade_scale of this
      *
+     * @api
      * @param  int $id
      * @return mixed
      */

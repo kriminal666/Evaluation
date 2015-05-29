@@ -6,12 +6,17 @@
  * Time: 20:11
  */
 
+/**
+ * Class MarkTransformer
+ * @package Evaluation\Transformers
+ */
 class MarkTransformer extends Transformer
 {
 
     /**
      * Transform mark
      *
+     * @method
      * @param $mark
      * @return array
      */

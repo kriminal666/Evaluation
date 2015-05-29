@@ -4,6 +4,10 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\database\Eloquent\SoftDeletes;
 
+/**
+ * Class AcademicPeriods
+ * @package Evaluation
+ */
 class AcademicPeriods extends Model
 {
 

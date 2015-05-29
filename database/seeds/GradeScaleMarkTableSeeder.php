@@ -3,13 +3,17 @@
 use Evaluation\GradeScaleMark;
 use Illuminate\Database\Eloquent\Model;
 
-
+/**
+ * Grade_scale_mark table seeder
+ * Class GradeScaleMarkTableSeeder
+ */
 class GradeScaleMarkTableSeeder extends DatabaseSeeder
 {
 
     /**
      * Table grade_scale_mark seeder
      *
+     * @method
      * @return void
      */
     public function run()

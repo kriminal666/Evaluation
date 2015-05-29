@@ -3,13 +3,17 @@
 use Evaluation\Mark;
 use Illuminate\Database\Eloquent\Model;
 
-
+/**
+ * Mark table seeder
+ * Class MarkTableSeeder
+ */
 class MarkTableSeeder extends DatabaseSeeder
 {
 
     /**
      * Table mark seeder
      *
+     * @method
      * @return void
      */
     public function run()

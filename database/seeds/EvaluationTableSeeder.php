@@ -3,13 +3,17 @@
 use Evaluation\Evaluation;
 use Illuminate\Database\Eloquent\Model;
 
-
+/**
+ * Evaluation table seeder
+ * Class EvaluationTableSeeder
+ */
 class EvaluationTableSeeder extends DatabaseSeeder
 {
 
     /**
      * Table evaluation seeder
      *
+     * @method
      * @return void
      */
     public function run()

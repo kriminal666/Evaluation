@@ -3,12 +3,17 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
+/**
+ * Grade scale table migration
+ * Class CreateGradeScaleTable
+ */
 class CreateGradeScaleTable extends Migration
 {
 
     /**
      * Run the migrations.
      *
+     * @method
      * @return void
      */
     public function up()
@@ -27,6 +32,7 @@ class CreateGradeScaleTable extends Migration
     /**
      * Reverse the migrations.
      *
+     * @method
      * @return void
      */
     public function down()

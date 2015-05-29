@@ -6,12 +6,17 @@
  * Time: 20:05
  */
 
+/**
+ * Class Transformer
+ * @package Evaluation\Transformers
+ */
 abstract class Transformer
 {
 
     /**
      * Transform collection
      *
+     * @method
      * @param $items
      * @return array
      */
@@ -21,6 +26,9 @@ abstract class Transformer
     }
 
     /**
+     * Transform
+     *
+     * @method
      * @param $item
      * @return mixed
      */
