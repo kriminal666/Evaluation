@@ -16,7 +16,7 @@ class GradeScale extends Model
 	 *
 	 * @var array
 	 */
-	protected $dates = ['deleted_at'];
+	protected $dates = [ 'deleted_at' ];
 
 	/**
 	 * The database table used by the model.
@@ -51,7 +51,7 @@ class GradeScale extends Model
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['grade_scale_description'];
+	protected $fillable = [ 'grade_scale_description' ];
 
 	/**
 	 * Get all marks that belongs to this
@@ -61,7 +61,7 @@ class GradeScale extends Model
 	public function marks()
 	{
 		return $this->hasManyThrough('Evaluation\Mark', 'Evaluation\GradeScaleMark',
-			'grade_scale_mark_gradeScaleID', 'mark_id')->select(array('mark_id','mark_value'))->getResults();
+			'grade_scale_mark_gradeScaleID', 'mark_id')->select(array('mark_id', 'mark_value'))->getResults();
 	}
 
 }
