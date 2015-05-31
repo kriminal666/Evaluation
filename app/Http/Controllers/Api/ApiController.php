@@ -82,7 +82,7 @@ class ApiController extends Controller
 	 * @param array $headers
 	 * @return mixed
 	 */
-	public function respond($data, $headers = [])
+	public function respond($data, $headers = [ ])
 	{
 
 		return Response::json($data, $this->getStatusCode(), $headers);
@@ -103,6 +103,6 @@ class ApiController extends Controller
 				'message' => $message,
 
 				'status_code' => $this->getStatusCode()
-			]]);
+			] ]);
 	}
 }
