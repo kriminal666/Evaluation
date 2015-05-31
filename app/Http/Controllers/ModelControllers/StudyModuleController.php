@@ -15,7 +15,7 @@ class StudyModuleController extends ApiController
 {
 
     /**
-     * @var StudyModule
+     * @var StudyModuleTransformer
      */
     protected $studyModuleTransformer;
 

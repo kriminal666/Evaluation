@@ -97,7 +97,7 @@ class Evaluation extends Model
     {
 
         return $this->belongsTo('Evaluation\AcademicPeriods', 'evaluation_academic_period_id')
-            ->select(array('academic_periods_id', 'academic_periods_name'));
+            ->Select(array('academic_periods_id', 'academic_periods_name'));
     }
 
 
