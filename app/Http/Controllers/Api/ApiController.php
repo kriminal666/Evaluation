@@ -13,96 +13,96 @@ class ApiController extends Controller
 {
 
 
-    /**
-     * @var int
-     */
-    protected $statusCode = 200;
+	/**
+	 * @var int
+	 */
+	protected $statusCode = 200;
 
-    /**
-     * @method
-     * @return mixed
-     */
-    public function getStatusCode()
-    {
-        return $this->statusCode;
-    }
+	/**
+	 * @method
+	 * @return mixed
+	 */
+	public function getStatusCode()
+	{
+		return $this->statusCode;
+	}
 
-    /**
-     *@method
-     * @param mixed $statusCode
-     * @return $this
-     */
-    public function setStatusCode($statusCode)
-    {
-        $this->statusCode = $statusCode;
+	/**
+	 *@method
+	 * @param mixed $statusCode
+	 * @return $this
+	 */
+	public function setStatusCode($statusCode)
+	{
+		$this->statusCode = $statusCode;
 
-        return $this;
-    }
+		return $this;
+	}
 
 
-    /**
-     * @method
-     * @param string $message
-     * @return mixed
-     */
-    public function respondNotFound($message = 'Not Found')
-    {
+	/**
+	 * @method
+	 * @param string $message
+	 * @return mixed
+	 */
+	public function respondNotFound($message = 'Not Found')
+	{
 
-        return $this->setStatusCode(IlluminateResponse::HTTP_NOT_FOUND)->respondWithError($message);
+		return $this->setStatusCode(IlluminateResponse::HTTP_NOT_FOUND)->respondWithError($message);
 
-    }
+	}
 
-    /**
-     * @method
-     * @param string $message
-     * @return mixed
-     */
-    public function respondInternalError($message = 'Internal error')
-    {
+	/**
+	 * @method
+	 * @param string $message
+	 * @return mixed
+	 */
+	public function respondInternalError($message = 'Internal error')
+	{
 
-        return $this->setStatusCode(IlluminateResponse::HTTP_INTERNAL_SERVER_ERROR)->respondWithError($message);
+		return $this->setStatusCode(IlluminateResponse::HTTP_INTERNAL_SERVER_ERROR)->respondWithError($message);
 
-    }
+	}
 
-    /**
-     * @method
-     * @param $message
-     * @return mixed
-     */
-    protected function respondCreated($message)
-    {
-        return $this->setStatusCode(IlluminateResponse::HTTP_CREATED)->respond([
-            'message' => $message
-        ]);
-    }
+	/**
+	 * @method
+	 * @param $message
+	 * @return mixed
+	 */
+	protected function respondCreated($message)
+	{
+		return $this->setStatusCode(IlluminateResponse::HTTP_CREATED)->respond([
+			'message' => $message
+		]);
+	}
 
-    /**
-     * @method
-     * @param $data
-     * @param array $headers
-     * @return mixed
-     */
-    public function respond($data, $headers = [])
-    {
+	/**
+	 * @method
+	 * @param $data
+	 * @param array $headers
+	 * @return mixed
+	 */
+	public function respond($data, $headers = [])
+	{
 
-        return Response::json($data, $this->getStatusCode(), $headers);
-    }
+		return Response::json($data, $this->getStatusCode(), $headers);
+	}
 
-    /**
-     * @method
-     * @param $message
-     * @return mixed
-     */
-    public function respondWithError($message)
-    {
+	/**
+	 * @method
+	 * @param $message
+	 * @return mixed
+	 */
+	public function respondWithError($message)
+	{
 
-        return $this->respond([
+		return $this->respond([
 
-            'error' => [
+			'error' => [
 
-                'message' => $message,
+				'message' => $message,
 
-                'status_code' => $this->getStatusCode()
-            ]]);
-    }
+				'status_code' => $this->getStatusCode()
+			]]);
+	}
 }
