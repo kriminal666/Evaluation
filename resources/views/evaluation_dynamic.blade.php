@@ -36,7 +36,8 @@
                 </form>
             </div>
         </div>
-        <table bs-table>
+
+        <table class="table display table-striped table-bordered table-hover table-responsive" bs-table>
             <thead class="tableHeader">
             <tr role="row">
                 <th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1"
@@ -147,6 +148,7 @@
 
             </tbody>
         </table>
+
         <br/>
         <br/>
 
