@@ -13,168 +13,168 @@ use Request;
 class UsersController extends ApiController
 {
 
-    /**
-     * Create a new controller instance.
-     *
-     *
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+	/**
+	 * Create a new controller instance.
+	 *
+	 *
+	 */
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @api
-     * @return Response
-     */
-    public function index()
-    {
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @api
+	 * @return Response
+	 */
+	public function index()
+	{
 
 
-        $users = User::all();
-        return $this->respond([
+		$users = User::all();
+		return $this->respond([
 
-            'data' => $users->toArray(),
+			'data' => $users->toArray(),
 
-        ]);
-    }
+		]);
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+		//
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @api
-     * @return Response
-     */
-    public function store()
-    {
-        User::create(Request::all());
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @api
+	 * @return Response
+	 */
+	public function store()
+	{
+		User::create(Request::all());
 
-        return $this->respondCreated('User created');
-    }
+		return $this->respondCreated('User created');
+	}
 
-    /**
-     * Display the specified resource.
-     *
-     * @api
-     * @param  int $id
-     * @return Response
-     */
-    public function show($id)
-    {
+	/**
+	 * Display the specified resource.
+	 *
+	 * @api
+	 * @param  int $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
 
-        $user = User::find($id);
+		$user = User::find($id);
 
-        if (!$user) {
-            return $this->respondNotFound('User does not exists.');
-        }
+		if (!$user) {
+			return $this->respondNotFound('User does not exists.');
+		}
 
-        return $this->respond([
+		return $this->respond([
 
-            'data' => ($user->toArray())
+			'data' => ($user->toArray())
 
-        ]);
+		]);
 
-    }
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int $id
+	 * @return Response
+	 */
+	public function edit($id)
+	{
+		//
+	}
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @api
-     * @param  int $id
-     * @return Response
-     */
-    public function update($id)
-    {
-        $user = User::findOrFail($id);
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @api
+	 * @param  int $id
+	 * @return Response
+	 */
+	public function update($id)
+	{
+		$user = User::findOrFail($id);
 
-        $user->name = Request::input('name');
-        $user->email = Request::input('email');
-        $user->users_lastUpdateUserId = Request::input('lastUpdateUserId');
+		$user->name = Request::input('name');
+		$user->email = Request::input('email');
+		$user->users_lastUpdateUserId = Request::input('lastUpdateUserId');
 
-        $user->save();
+		$user->save();
 
-        return $user;
-    }
+		return $user;
+	}
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @api
-     * @param  int $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        $user = User::findOrFail($id);
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @api
+	 * @param  int $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		$user = User::findOrFail($id);
 
-        $user->forcedelete();
-    }
+		$user->forcedelete();
+	}
 
-    /**
-     * mark for deletion this
-     *
-     * @api
-     * @param $id
-     */
-    public function delete($id)
-    {
-        $user = User::findOrFail($id);
-        $user->delete();
-    }
+	/**
+	 * mark for deletion this
+	 *
+	 * @api
+	 * @param $id
+	 */
+	public function delete($id)
+	{
+		$user = User::findOrFail($id);
+		$user->delete();
+	}
 
-    /**
-     * Get evaluations of all UFs from one user
-     *
-     * @api
-     * @param $id
-     * @return mixed
-     */
-    public function getUserEvaluations($id)
-    {
+	/**
+	 * Get evaluations of all UFs from one user
+	 *
+	 * @api
+	 * @param $id
+	 * @return mixed
+	 */
+	public function getUserEvaluations($id)
+	{
 
-        return User::findOrFail($id)->evaluations()->with('mark', 'user', 'studysubmodules', 'academicperiods')->get();
-    }
+		return User::findOrFail($id)->evaluations()->with('mark', 'user', 'studysubmodules', 'academicperiods')->get();
+	}
 
-    /**
-     * Get one users group evaluations filtered by module
-     *
-     * @api
-     * @return Collection
-     */
-    public function getGroupEvaluations()
-    {
-        $users = User::with(['evaluations'
-        => function ($query) {
-                $query->whereHas('studysubmodules', function ($q) {
-                    $q->where('study_submodules_study_module_id', Request::input('module'));
-                })->orderby('evaluation_study_subModule_id', 'ASC')->with('studysubmodules')->with('mark');
-            }])->find(Request::input('id'));
+	/**
+	 * Get one users group evaluations filtered by module
+	 *
+	 * @api
+	 * @return Collection
+	 */
+	public function getGroupEvaluations()
+	{
+		$users = User::with(['evaluations'
+		=> function ($query) {
+				$query->whereHas('studysubmodules', function ($q) {
+					$q->where('study_submodules_study_module_id', Request::input('module'));
+				})->orderby('evaluation_study_subModule_id', 'ASC')->with('studysubmodules')->with('mark');
+			}])->find(Request::input('id'));
 
-        return $users;
+		return $users;
 
-    }
+	}
 
 }

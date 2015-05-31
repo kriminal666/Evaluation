@@ -14,157 +14,157 @@ use Request;
 class EvaluationController extends ApiController
 {
 
-    /**
-     * @var EvaluationTransformer
-     */
-    protected $evaluationTransformer;
+	/**
+	 * @var EvaluationTransformer
+	 */
+	protected $evaluationTransformer;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @param EvaluationTransformer $evaluationTransformer
-     */
-    function __construct(EvaluationTransformer $evaluationTransformer)
-    {
-        $this->middleware('auth');
+	/**
+	 * Create a new controller instance.
+	 *
+	 * @param EvaluationTransformer $evaluationTransformer
+	 */
+	function __construct(EvaluationTransformer $evaluationTransformer)
+	{
+		$this->middleware('auth');
 
-        $this->evaluationTransformer = $evaluationTransformer;
-    }
+		$this->evaluationTransformer = $evaluationTransformer;
+	}
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @api
-     * @return Response
-     */
-    public function index()
-    {
-        $evaluations = Evaluation::all();
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @api
+	 * @return Response
+	 */
+	public function index()
+	{
+		$evaluations = Evaluation::all();
 
-        return $this->respond([
+		return $this->respond([
 
-            'data' => $this->evaluationTransformer->transformCollection($evaluations->toArray())
+			'data' => $this->evaluationTransformer->transformCollection($evaluations->toArray())
 
-        ]);
-    }
+		]);
+	}
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function indexWithTrashed()
-    {
-        //return Evaluation::withTrashed()->get();
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function indexWithTrashed()
+	{
+		//return Evaluation::withTrashed()->get();
 
-    }
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+		//
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @api
-     * @return Response
-     */
-    public function store()
-    {
-        Evaluation::create(Request::all());
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @api
+	 * @return Response
+	 */
+	public function store()
+	{
+		Evaluation::create(Request::all());
 
-        return $this->respondCreated('Evaluation created');
-    }
+		return $this->respondCreated('Evaluation created');
+	}
 
-    /**
-     * Display the specified resource.
-     *
-     * @api
-     * @param  int $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        $evaluation = Evaluation::find($id);
+	/**
+	 * Display the specified resource.
+	 *
+	 * @api
+	 * @param  int $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		$evaluation = Evaluation::find($id);
 
-        if (!$evaluation) {
+		if (!$evaluation) {
 
-            return $this->respondNotFound('Evaluation does not exists.');
-        }
+			return $this->respondNotFound('Evaluation does not exists.');
+		}
 
-        return $this->respond([
+		return $this->respond([
 
-            'data' => $this->evaluationTransformer->transform($evaluation->toArray())
+			'data' => $this->evaluationTransformer->transform($evaluation->toArray())
 
-        ]);
+		]);
 
-    }
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int $id
+	 * @return Response
+	 */
+	public function edit($id)
+	{
+		//
+	}
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @api
-     * @param  int $id
-     * @return Response
-     */
-    public function update($id)
-    {
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @api
+	 * @param  int $id
+	 * @return Response
+	 */
+	public function update($id)
+	{
 
-        $evaluation = Evaluation::findOrFail($id);
+		$evaluation = Evaluation::findOrFail($id);
 
-        $evaluation->evaluation_academic_period_id = Request::input('academicPeriodId');
-        $evaluation->evaluation_study_subModule_id = Request::input('subModuleId');
-        $evaluation->evaluation_student_id = Request::input('studentId');
-        $evaluation->evaluation_mark_id = Request::input('markId');
-        $evaluation->evaluation_lastUpdateUserId = Request::input('lastUpdateUserId');
-        $evaluation->save();
+		$evaluation->evaluation_academic_period_id = Request::input('academicPeriodId');
+		$evaluation->evaluation_study_subModule_id = Request::input('subModuleId');
+		$evaluation->evaluation_student_id = Request::input('studentId');
+		$evaluation->evaluation_mark_id = Request::input('markId');
+		$evaluation->evaluation_lastUpdateUserId = Request::input('lastUpdateUserId');
+		$evaluation->save();
 
-        return $evaluation;
+		return $evaluation;
 
-    }
+	}
 
-    /**
-     * Remove evaluation resource from storage.
-     *
-     * @api
-     * @param  int $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        $evaluation = Evaluation::findorfail($id);
-        $evaluation->forceDelete($id);
-    }
+	/**
+	 * Remove evaluation resource from storage.
+	 *
+	 * @api
+	 * @param  int $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		$evaluation = Evaluation::findorfail($id);
+		$evaluation->forceDelete($id);
+	}
 
-    /**
-     * Mark for deletion the evaluation
-     *
-     * @api
-     * @param $id
-     */
-    public function delete($id)
-    {
-        $evaluation = Evaluation::findOrFail($id);
+	/**
+	 * Mark for deletion the evaluation
+	 *
+	 * @api
+	 * @param $id
+	 */
+	public function delete($id)
+	{
+		$evaluation = Evaluation::findOrFail($id);
 
-        $evaluation->delete();
-    }
+		$evaluation->delete();
+	}
 
 
 }
