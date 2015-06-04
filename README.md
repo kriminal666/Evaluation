@@ -4,6 +4,25 @@
 [![Build Status](https://scrutinizer-ci.com/g/kriminal666/Evaluation/badges/build.png?b=master)](https://scrutinizer-ci.com/g/kriminal666/Evaluation/build-status/master)
 # Evaluation
 Evaluation module for Ebre-escool aplication
+
+##Instalation
+
+With [Composer](https://getcomposer.org/)
+
+```sh
+$ composer create-project criminal/evaluation /home/user/evaluation "dev-master"
+```
+Or you can use:
+
+```sh
+$ composer create-project criminal/evaluation /home/user/evaluation "v1.0"
+```
+Cloning this proyect
+
+```sh
+$ git clone https://github.com/kriminal666/Evaluation
+$ cd Evaluation && composer install
+```
 ##Project Docs
 Follow this link to all project used docs 
 
